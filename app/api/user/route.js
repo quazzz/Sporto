@@ -15,7 +15,6 @@ export async function POST(req){
              name: name,
              email: email,
              password: hashed
-            
             }
         })
    // if all ok then send response with status code 200

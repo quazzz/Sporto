@@ -2,6 +2,7 @@
 import React, { use } from 'react'
 import Link from 'next/link'
 import { useState } from 'react'
+import toast from 'react-hot-toast'
 export default function RegisterForm() {
     //set states for fetching them in future
     const [name,setName] = useState('')
@@ -9,6 +10,10 @@ export default function RegisterForm() {
     const [password,setPassword] = useState('')
     //handle button click
     const handleSubmit = async(e) => {
+        // check for fields 
+        if(!name || !email || !password){
+          toast('All fields must be filled')
+        }
         // prevent page from reloading
         e.preventDefault()
         // send POST request with data to API endpoint
@@ -19,7 +24,7 @@ export default function RegisterForm() {
         })
         // if response isnt okay then throw error
         if(!response.ok){
-          throw new Error('Error with data')
+          console.log('All fields must be completed')
         }
         const data = await response.json()
 
@@ -53,6 +58,7 @@ export default function RegisterForm() {
         <div className="mb-6">
           <label className="block text-sm font-medium text-gray-700">Your Password</label>
           <input
+            minLength={8}
             onChange={(e) => setPassword(e.target.value)}
             type="password"
             className="transition w-full px-4 py-3 mt-1 rounded-lg font-medium bg-gray-100 border border-gray-300 placeholder-gray-500 text-sm focus:outline-none focus:border-black focus:bg-white"

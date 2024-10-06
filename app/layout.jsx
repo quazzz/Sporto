@@ -2,6 +2,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import React, { Suspense } from "react";
 import Navbar from '@/components/Navbar'
+import { AuthProvider } from "./Providers";
+import { Toaster } from 'react-hot-toast'
 import LoadingPage from "../app/loading"
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -23,11 +25,17 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <Suspense fallback={<LoadingPage/>}>
+     
         <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        
+        
+        <Toaster position="bottom-center" />
+        <AuthProvider>
         <Navbar></Navbar>
-        {children}
+          {children}
+          </AuthProvider>
       </body>
       </Suspense>
       
