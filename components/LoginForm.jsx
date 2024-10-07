@@ -1,27 +1,43 @@
 "use client";
 import Link from 'next/link';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
+import {toast} from 'react-hot-toast'
 export default function LoginForm() {
+  //setting states for future POST req
   const [email,setEmail] = useState('')
   const [password,setPassword] = useState('')
-  const router = useRouter()
+  // event handler on button
   const handleSubmit = async(e) => {
     e.preventDefault();
+    if(!email || !password){
+      toast('All fields must be filled')
+    }
     try {
       const res = await signIn('credentials',{
         email,
         password, 
         redirect: false
       })
-      if(res.error){
-        return
+     
+      if(!res.ok){
+        if(res.error){
+          toast(res.error)
+        }
+        else{
+          toast('Failed to login, try again')
+        }
       }
-      router.push('/dashboard')
-    } catch (error) {
-      console.error(error)
+      if(res.ok){
+        window.location.reload()
+      }
+     
+    } 
+    catch (error) {
+      console.log(error)
+      toast('An unexpected error occurred, please try again.')
     }
+    
   };
 
   return (

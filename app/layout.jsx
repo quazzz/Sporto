@@ -25,12 +25,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <Suspense fallback={<LoadingPage/>}>
-     
-        <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        
-        
+        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Toaster position="bottom-center" />
         <AuthProvider>
         <Navbar></Navbar>
@@ -38,7 +33,6 @@ export default function RootLayout({ children }) {
           </AuthProvider>
       </body>
       </Suspense>
-      
     </html>
   );
 }

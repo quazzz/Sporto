@@ -7,6 +7,24 @@ export async function POST(req){
     try {
         // get info from request -> name,email,password
         const {name,email,password} = await req.json()
+        if(!name || !email || !password){
+            return new Response(JSON.stringify({message:'All fields must be fielded in'}),{
+                status: 500,
+                headers: {'Content-Type' : 'application/json'}
+            })
+        }
+        //check for email valid
+        const emailcheck = await prisma.user.findUnique({
+            where: {
+                email: email
+            }
+        })
+        if(emailcheck){
+            return new Response(JSON.stringify({message:'Email is used by somebody'}),{
+                status: 500,
+                headers: {'Content-Type' : 'application/json'}
+            })
+        }
         // hash password for security
         const hashed = await bcrypt.hash(password,10)
         // create new user in db 

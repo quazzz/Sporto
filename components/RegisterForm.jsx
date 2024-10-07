@@ -3,19 +3,23 @@ import React, { use } from 'react'
 import Link from 'next/link'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
+import { useRouter } from 'next/navigation'
 export default function RegisterForm() {
+    //declaring router
+    const router = useRouter()
     //set states for fetching them in future
     const [name,setName] = useState('')
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
     //handle button click
     const handleSubmit = async(e) => {
+          // prevent page from reloading
+        e.preventDefault()
         // check for fields 
         if(!name || !email || !password){
           toast('All fields must be filled')
+          return
         }
-        // prevent page from reloading
-        e.preventDefault()
         // send POST request with data to API endpoint
         const response = await fetch('/api/user', {
           method: 'POST',
@@ -24,9 +28,15 @@ export default function RegisterForm() {
         })
         // if response isnt okay then throw error
         if(!response.ok){
-          console.log('All fields must be completed')
+          const error = await response.json()
+          toast(error.message)
+          return
         }
-        const data = await response.json()
+        if(response.ok){
+           router.push('/login')
+           return
+        }
+       
 
     }
     
