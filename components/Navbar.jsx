@@ -25,11 +25,11 @@ export default function Navbar() {
           <Link href="/">Sporto</Link>
         </div>
         <div className="space-x-4">
-          {loading ? // if loading is true then return text
-            <span className="text-gray-700">Loading...</span>
-           : session ?  // if session is true then return logout button
+          {session ?  // if session is true then return logout button
            <> 
+            
              <Link href="/dashboard"><span className="text-gray-700 hover:text-indigo-600 transition-colors duration-300">Dashboard</span></Link>
+             <Link href="/dashboard/catalog"><span className="text-gray-700 hover:text-indigo-600 transition-colors duration-300">Catalog</span></Link>
            <button className='text-gray-700 hover:text-indigo-600 transition-colors duration-300' onClick={handleClick}>Logout</button>
            </>
            
