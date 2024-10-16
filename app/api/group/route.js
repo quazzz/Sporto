@@ -3,7 +3,7 @@ const prisma = new PrismaClient()
 export async function POST(req){
     const {namer,id} = await req.json()
     if(!namer || !id){
-        return new Response(JSON.stringify({message:'All fields must be fielded in'}),{
+        return new Response(JSON.stringify({message:'All fields must be fullfilled'}),{
             status: 500,
             headers: {'Content-Type' : 'application/json'}
         })
