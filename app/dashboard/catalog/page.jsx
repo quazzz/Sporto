@@ -4,31 +4,19 @@ import React, { useEffect, useState } from 'react'
 import ExerciseCard from '@/components/ExerciseCard'
 export default function page() {
   const [exercises,setExercises] = useState([])
-  const [loading, setLoading] = useState(true)
   useEffect(() => {
     const fetchworkouts = async() => {
-      const url = 'https://exercisedb.p.rapidapi.com/exercises?limit=100&offset=0';
-      const options = {
-	      method: 'GET',
-	      headers: {
-		    'x-rapidapi-key': '35acc8b4e3mshe34e746a6e2b6a6p1c1acajsn1f4306ed6fd0',
-		    'x-rapidapi-host': 'exercisedb.p.rapidapi.com'
-	    }
-};
-      try{
-        const response = await fetch(url,options)
-        console.log(response)
-        const res = await response.json()
-        setExercises(res)
-      }
-      catch(error){
+      try {
+        const res = await fetch('/api/catalog')
+        const data = await res.json()
+        console.log(data)
+        setExercises(data)
+      } catch (error) {
         console.error(error)
       }
-      finally{
-        setLoading(false)
-      }
-    }
-    fetchworkouts()
+    };
+      fetchworkouts()
+  
   },[])
  
     return (
