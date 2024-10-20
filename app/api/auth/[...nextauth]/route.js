@@ -39,6 +39,7 @@ export const authOptions = {
 
                 }
                 catch(error){
+                    // if error occures then return it to client-side
                     console.log('Error',error)
                     throw new Error(error)
                 }
@@ -46,20 +47,25 @@ export const authOptions = {
         }),
     ],
     session: {
+        // adding stratergy (jsonwebtoken)
         strategy: 'jwt'
     },
     callbacks:{
+        // returning token
         async jwt({token,user}){
             if(user){
                 token.id = user.id
             }
             return token
         },
+        // adding session
         async session({session,token}){
             session.user.id = token.id
             return session
         },
+        // config secret
         secret: process.env.NEXTAUTH_SECRET,
+        // custom login page
         pages: {
             signIn: '/'
         }
