@@ -2,6 +2,7 @@ import Image from "next/image";
 export default function ExerciseCard({ workout }) {
   const name0 = workout.name
   const gifurl0 = workout.gifUrl
+  console.log(gifurl0)
   const target0 = workout.target
   const equipment0 = workout.equipment
   function capitalizeFirstLetter(string) {
