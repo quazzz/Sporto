@@ -86,3 +86,26 @@ export async function DELETE(req) {
     console.error(error);
   }
 }
+export async function PUT(req){
+  const { searchParams } = new URL(req.url);
+  const groupid = searchParams.get("id");
+  const {name} = await req.json();
+  if(!groupid){
+    return new Response(JSON.stringify({message: 'Something is missing'}),{
+      status: 520,
+      headers: {'Content-Type' : 'application/json'}
+    })
+  }
+  const newgroup = await prisma.group.update({
+    where: {
+      id: groupid,
+    },
+    data: {
+      name: name
+    }
+  })
+  return new Response(JSON.stringify({message: 'Group succesfuly updated'}),{
+    status: 200,
+    headers: {'Content-Type' : 'application/json'}
+  })
+}

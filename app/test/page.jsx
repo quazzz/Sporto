@@ -1,33 +1,78 @@
 "use client"
-import React from 'react'
-import { useEffect, useState } from 'react'
-import { useSession } from 'next-auth/react'
-import GroupModalCard from '@/components/GroupModalCard'
-export default function page() {
-    const {data: session,status} = useSession()
-    const [groups,setGroups] = useState([])
-    useEffect(() => {
-      if (session?.user.id) {
-        fetch(`/api/group/?userId=${session.user.id}`, {
-          method: 'GET',
-          headers: { 'Content-Type': 'application/json' }
-        })
-          .then(response => response.json())
-          .then(data => {
-            setGroups(data)
-            console.log(data) 
-          })
-          .catch(error => console.error('Error fetching groups:', error))
-      }
-    },[session?.user.id])
+import React, { useState } from 'react'
+
+export default function Page() {
+  const [options, setOptions] = useState([])
+
+  const handleCheckboxChange = (e) => {
+    const { value, checked } = e.target
+
+    if (checked) {
+      // Add option to state if checked
+      setOptions(prev => [...prev, value])
+    } else {
+      // Remove option from state if unchecked
+      setOptions(prev => prev.filter(option => option !== value))
+    }
+  }
+
   return (
     <div>
-      {session?.user.id}
-      {groups.length > 0 ? (
-        groups.map((group) => <GroupModalCard key={group.id} group={group} />)
-      ) : (
-        <p>No groups found</p>
-      )}
+      <h3>Select Muscles:</h3>
+
+      {/* Checkboxes for each option */}
+      <div>
+        <input
+          type="checkbox"
+          id="biceps"
+          value="biceps"
+          onChange={handleCheckboxChange}
+        />
+        <label htmlFor="biceps">Biceps</label>
+      </div>
+
+      <div>
+        <input
+          type="checkbox"
+          id="triceps"
+          value="triceps"
+          onChange={handleCheckboxChange}
+        />
+        <label htmlFor="triceps">Triceps</label>
+      </div>
+
+      <div>
+        <input
+          type="checkbox"
+          id="quads"
+          value="quads"
+          onChange={handleCheckboxChange}
+        />
+        <label htmlFor="quads">Quads</label>
+      </div>
+
+      <div>
+        <input
+          type="checkbox"
+          id="hamstrings"
+          value="hamstrings"
+          onChange={handleCheckboxChange}
+        />
+        <label htmlFor="hamstrings">Hamstrings</label>
+      </div>
+
+      <div>
+        <input
+          type="checkbox"
+          id="calves"
+          value="calves"
+          onChange={handleCheckboxChange}
+        />
+        <label htmlFor="calves">Calves</label>
+      </div>
+
+      {/* Display selected options */}
+      <p>Selected muscles: {options.join('?')}</p>
     </div>
   )
 }
