@@ -1,6 +1,6 @@
 export async function GET(req, res) {
   // preparing for fetch, adding options and url
-  const url = "https://exercisedb.p.rapidapi.com/exercises?limit=100&offset=0";
+  const url = "https://exercisedb.p.rapidapi.com/exercises?limit=1000";
   const options = {
     method: "GET",
     headers: {

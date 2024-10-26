@@ -1,14 +1,77 @@
-export default function GroupCard({ group }) {
-    return (
-      <div className="max-w-sm rounded-lg flex flex-col items-center overflow-hidden shadow-lg bg-white p-6 m-4 text-center">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">{group.name}</h2>
-        <button
-          className="transition-all duration-300 ease-in-out py-3 px-10 bg-black text-white text-lg font-bold rounded-full shadow-lg hover:bg-gray-800 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-gray-400 focus:ring-offset-2"
-          onClick={() => alert('Added to Group!')}
-        >
-          Add
-        </button>
+"use client";
+import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
+
+
+export default function GroupModalCard({ exercise, onClose, isOpen }) {
+  const { data: session, status } = useSession();
+  const [groups, setGroups] = useState([]);
+
+  // Add console log to track component mounting
+  useEffect(() => {
+    console.log("GroupModalCard mounted");
+    return () => console.log("GroupModalCard unmounted");
+  }, []);
+
+  useEffect(() => {
+    const fetchGroups = async () => {
+     
+        try {
+          console.log('trying')
+          const res = await fetch(`/api/group?userId=${session?.user.id}`);
+          const json = await res.json();
+          setGroups(json);
+        } catch (error) {
+          console.error("Error fetching groups:", error);
+        }
+      
+    };
+
+    fetchGroups();
+  }, [session?.user.id]);
+
+  const handleClose = (e) => {
+    e.stopPropagation(); 
+    onClose();
+  };
+
+  const handleModalClick = (e) => {
+    e.stopPropagation(); 
+  };
+
+  return (
+    <div
+      className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
+      onClick={handleClose}
+    >
+      <div 
+        className="bg-white p-6 rounded-lg shadow-xl max-w-md w-full m-4"
+        onClick={handleModalClick}
+      >
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-xl font-bold text-gray-800">
+            Select group for {exercise?.name}
+          </h2>
+          <button
+            onClick={handleClose}
+            className="text-gray-500 hover:text-red-500 transition-colors"
+          >
+            ✕
+          </button>
+        </div>
+
+        <div className="mt-4">
+          {groups?.length > 0 ? (
+            <ul className="space-y-2">
+                {groups.map((group) => (
+                    <li key={group.id} className="p-3 border rounded hover:bg-gray-50 cursor-pointer transition-colors">{group.name}</li>
+                ))}
+            </ul>
+          ) : (
+            <p className="text-gray-600 text-center">No groups found</p>
+          )}
+        </div>
       </div>
-    );
-  }
-  
+    </div>
+  );
+}

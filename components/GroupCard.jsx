@@ -1,4 +1,3 @@
-import React, { use } from "react";
 import { useState } from "react";
 export default function GroupCard({ group }) {
   const [nameVisible, setNameVisible] = useState(true);
@@ -51,7 +50,7 @@ export default function GroupCard({ group }) {
         />
       )}
       <button
-        className="transition-all duration-300 ease-in-out py-3 px-10 bg-black text-white text-lg font-bold rounded shadow-lg hover:bg-gray-800 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-gray-400 focus:ring-offset-2"
+        className="transition-all duration-300 ease-in-out py-3 px-10 bg-black text-white text-lg  rounded shadow-lg hover:bg-gray-800 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-gray-400 focus:ring-offset-2"
         onClick={() =>
           nameVisible ? setNameVisible(false) : handleChangeName()
         }
@@ -63,7 +62,7 @@ export default function GroupCard({ group }) {
         <button
           type="button"
           onClick={handleDelete}
-          className="transition-all duration-300 ease-in-out py-3 px-10 bg-black text-white text-lg font-bold rounded shadow-lg hover:bg-gray-800 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-gray-400 focus:ring-offset-2"
+          className="transition-all duration-300 ease-in-out py-3 px-10 bg-black text-white text-lg  rounded shadow-lg hover:bg-gray-800 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-gray-400 focus:ring-offset-2"
         >
           Delete
         </button>

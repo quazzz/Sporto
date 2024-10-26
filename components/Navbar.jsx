@@ -33,7 +33,7 @@ export default function Navbar() {
                 <span
                   className={clsx(
                     "text-gray-700 hover:text-indigo-600 transition-colors duration-300",
-                    { "text-indigo-600 font-bold": isActive("/dashboard") }
+                    { "text-black font-semibold": isActive("/dashboard") }
                   )}
                 >
                   Dashboard
@@ -43,7 +43,7 @@ export default function Navbar() {
                 <span
                   className={clsx(
                     "text-gray-700 hover:text-indigo-600 transition-colors duration-300",
-                    { "text-indigo-600 font-bold": isActive("/dashboard/catalog") }
+                    { "text-black font-semibold": isActive("/dashboard/catalog") }
                   )}
                 >
                   Catalog
@@ -63,7 +63,7 @@ export default function Navbar() {
                 <span
                   className={clsx(
                     "text-gray-700 hover:text-indigo-600 transition-colors duration-300",
-                    { "text-indigo-600 font-bold": isActive("/login") }
+                    { "text-black font-semibold": isActive("/login") }
                   )}
                 >
                   Login
@@ -73,7 +73,7 @@ export default function Navbar() {
                 <span
                   className={clsx(
                     "text-gray-700 hover:text-indigo-600 transition-colors duration-300",
-                    { "text-indigo-600 font-bold": isActive("/register") }
+                    { "text-black font-semibold": isActive("/register") }
                   )}
                 >
                   Register

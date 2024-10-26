@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { NextResponse } from "next/server";
 const prisma = new PrismaClient();
 export async function POST(req) {
   // getting name and id from request
@@ -46,10 +47,7 @@ export async function GET(req) {
       },
     });
     // all ok so we return code 200
-    return new Response(JSON.stringify(groups), {
-      status: 200,
-      headers: { "Content-Type": "application/json" },
-    });
+    return NextResponse.json(groups)
   } catch (err) {
     // if error occuring then console that
     console.error(err);

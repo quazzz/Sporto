@@ -1,8 +1,8 @@
 import Image from "next/image";
-export default function ExerciseCard({ workout }) {
+export default function ExerciseCard({ workout, onPlusClick }) {
   const name0 = workout.name;
   const gifurl0 = workout.gifUrl;
-  console.log(gifurl0);
+ 
   const target0 = workout.target;
   const equipment0 = workout.equipment;
   function capitalizeFirstLetter(string) {
@@ -30,6 +30,7 @@ export default function ExerciseCard({ workout }) {
         </button>
         <button
           type="button"
+          onClick={onPlusClick}
           className="transition-all bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full ml-3"
         >
           +
