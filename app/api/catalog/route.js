@@ -1,3 +1,6 @@
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
+import { NextResponse } from "next/server";
 export async function GET(req, res) {
   // preparing for fetch, adding options and url
   const url = "https://exercisedb.p.rapidapi.com/exercises?limit=1000";
@@ -22,4 +25,21 @@ export async function GET(req, res) {
     // if error occures then we console it
     console.log(error);
   }
+}
+export async function POST(req){
+  const {name,equipment,gifUrl,target,bodyPart,instructions,secondaryMuscles,groupId} = await req.json()
+  const newex = await prisma.exercise.create({
+    data: {
+      name: name,
+      equipment: equipment,
+      gifUrl: gifUrl,
+      target: target,
+      bodyPart: bodyPart,
+      instructions: instructions,
+      secondaryMuscles: secondaryMuscles,
+      groupId: groupId
+    }
+  })
+  return new NextResponse('All good')
+
 }

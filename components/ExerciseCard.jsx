@@ -2,14 +2,14 @@ import Image from "next/image";
 export default function ExerciseCard({ workout, onPlusClick }) {
   const name0 = workout.name;
   const gifurl0 = workout.gifUrl;
- 
+  const bodypart = workout.bodyPart
   const target0 = workout.target;
   const equipment0 = workout.equipment;
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
   const name = capitalizeFirstLetter(name0);
-  const target = capitalizeFirstLetter(target0);
+
   const equipment = capitalizeFirstLetter(equipment0);
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white p-4 m-4 text-center">
@@ -22,7 +22,8 @@ export default function ExerciseCard({ workout, onPlusClick }) {
         height={100}
         alt="Gif of workout"
       />
-      <p className="text-gray-700 text-base mb-4">{target}</p>
+      <p className="text-gray-800 text-lg mb-2">Bodypart: {bodypart}</p>
+      <p className="text-gray-700 text-base mb-4">Target: {target0}</p>
       <p className="text-sm text-gray-500">Equipment: {equipment}</p>
       <div className="mt-4">
         <button className="transition-all bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">

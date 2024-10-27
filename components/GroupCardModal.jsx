@@ -15,7 +15,7 @@ export default function GroupModalCard({ exercise, onClose, isOpen }) {
 
   useEffect(() => {
     const fetchGroups = async () => {
-     
+     if(status === 'authenticated'){
         try {
           console.log('trying')
           const res = await fetch(`/api/group?userId=${session?.user.id}`);
@@ -24,20 +24,49 @@ export default function GroupModalCard({ exercise, onClose, isOpen }) {
         } catch (error) {
           console.error("Error fetching groups:", error);
         }
-      
+     }
     };
 
     fetchGroups();
   }, [session?.user.id]);
 
-  const handleClose = (e) => {
-    e.stopPropagation(); 
+  const handleClose = () => {
     onClose();
   };
 
   const handleModalClick = (e) => {
     e.stopPropagation(); 
   };
+  const handleClick = async(groupId) => {
+    console.log(exercise)
+    if(status === "authenticated"){
+      try {
+        let name = exercise?.name;
+        let equipment = exercise?.equipment;
+        let gifUrl = exercise?.gifUrl;
+        let target = exercise?.target;
+        let bodyPart = exercise?.bodyPart;
+        let instructions = exercise?.instructions
+        let secondaryMuscles = exercise?.secondaryMuscles
+        let id = exercise?.id
+        
+        
+
+
+        const req = await fetch(`/api/catalog`,{
+          headers: {'Content-Type' : 'application/json'},
+          method: 'POST',
+          body: JSON.stringify({name,equipment,gifUrl,target,bodyPart,instructions,secondaryMuscles,id,groupId})
+        })
+        if(req.ok){
+          handleClose()
+        }
+      } catch (error) {
+        
+      }
+    }
+    
+  }
 
   return (
     <div
@@ -64,7 +93,11 @@ export default function GroupModalCard({ exercise, onClose, isOpen }) {
           {groups?.length > 0 ? (
             <ul className="space-y-2">
                 {groups.map((group) => (
-                    <li key={group.id} className="p-3 border rounded hover:bg-gray-50 cursor-pointer transition-colors">{group.name}</li>
+                  
+                   <li key={group.id} className="p-3 border rounded hover:bg-gray-50 cursor-pointer transition-colors" onClick={() => handleClick(group.id)}>{group.name}</li>
+          
+                 
+                   
                 ))}
             </ul>
           ) : (
