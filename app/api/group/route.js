@@ -71,14 +71,14 @@ export async function DELETE(req) {
         id: groupId,
       },
     });
-    // all ok so we return code 200
-    return new Response(
-      JSON.stringify({ message: "Succesfuly deleted group" }),
-      {
-        status: 200,
-        headers: { "Content-Type": "application/json" },
+    const exercise = await prisma.exercise.deleteMany({
+      where:{
+        groupId: groupId
       }
-    );
+    })
+    
+    // all ok so we return code 200
+    return NextResponse.json({ message: "Group and associated exercises deleted successfully" }, { status: 200 });
   } catch (error) {
     // if error occures then consoling that
     console.error(error);

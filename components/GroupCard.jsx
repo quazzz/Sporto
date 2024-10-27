@@ -1,7 +1,10 @@
-import { useState } from "react";
+"use client"
+import { useEffect, useState } from "react";
+import ExerciseCardDashboard from '@/components/ExerciseCardDashboard'
 export default function GroupCard({ group }) {
   const [nameVisible, setNameVisible] = useState(true);
   const [newName, setNewName] = useState("");
+  const [exercises,setExercises] = useState([])
   const handleDelete = async () => {
     try {
       const groupid = group.id;
@@ -37,6 +40,21 @@ export default function GroupCard({ group }) {
       console.error(error);
     }
   };
+  useEffect(() => {
+    const fetchGroups = async () => {
+      try {
+        const res = await fetch(`/api/exercises?groupId=${group.id}`);
+        const data = await res.json();
+        console.log(data);
+        setExercises(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    
+      fetchGroups();
+    
+  }, []);
   return (
     <div className="max-w-sm rounded-lg flex flex-col items-center overflow-hidden shadow-lg bg-white p-14 m-4 text-center">
       {nameVisible ? (
@@ -66,6 +84,16 @@ export default function GroupCard({ group }) {
         >
           Delete
         </button>
+      </div>
+      <div className="mt-4">
+         {exercises && exercises.map((exercise) => (
+         <ExerciseCardDashboard key={exercise.id} 
+         name={exercise.name}
+         gifUrl={exercise.gifUrl}
+         bodypart={exercise.bodypart}
+         target={exercise.target}
+         equipment={exercise.equipment}/>
+      ))}
       </div>
     </div>
   );
