@@ -1,9 +1,9 @@
 "use client"
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useState } from 'react'
 import { useSession } from 'next-auth/react'
 export default function GroupCard() {
-  const {data: session,status} = useSession()
+  const {data: session} = useSession()
   const [namer,setName] = useState('')
   const handleSubmit = async(e) => {
     e.preventDefault()

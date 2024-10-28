@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 import { NextResponse } from "next/server";
-export async function GET(req, res) {
+export async function GET() {
   // preparing for fetch, adding options and url
   const url = "https://exercisedb.p.rapidapi.com/exercises?limit=1000";
   const options = {
@@ -42,7 +42,7 @@ export async function POST(req){
       reps: reps
     }
   })
-  console.log(sets,reps)
+  console.log(newex)
   return new NextResponse('All good')
 
 }

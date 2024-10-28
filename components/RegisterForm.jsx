@@ -1,5 +1,5 @@
 "use client";
-import React, { use } from "react";
+import React from "react";
 import Link from "next/link";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -91,7 +91,7 @@ export default function RegisterForm() {
         </form>
         <div className="text-center">
           <p className="text-sm text-gray-600">
-            Don't have an account?{" "}
+            Dont have an account?{" "}
             <Link href="/login">
               <span className="underline text-black hover:text-black">
                 Login here

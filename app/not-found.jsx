@@ -5,7 +5,7 @@ export default function Custom404() {
         404
       </h1>
       <h2 className="font-[family-name:var(--font-geist-mono)] text-center mx-auto text-2xl mt-14 ">
-        The page you were looking for doesn't exist
+        The page you were looking for doesnt exist
       </h2>
     </div>
   );

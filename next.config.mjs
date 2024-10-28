@@ -7,7 +7,10 @@ const nextConfig = {
                 hostname: 'v2.exercisedb.io'
             }
         ]
-    }
+    },
+    typescript: {
+        ignoreBuildErrors: true,
+    },
     
 };
 

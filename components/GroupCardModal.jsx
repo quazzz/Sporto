@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 
 
-export default function GroupModalCard({ exercise, onClose, isOpen }) {
+export default function GroupModalCard({ exercise, onClose }) {
   const { data: session, status } = useSession();
   const [groups, setGroups] = useState([]);
   const [open,setOpen] = useState(false)
@@ -24,7 +24,7 @@ export default function GroupModalCard({ exercise, onClose, isOpen }) {
     };
 
     fetchGroups();
-  }, [session?.user.id]);
+  }, []);
 
   const handleClose = () => {
     onClose();
@@ -55,6 +55,7 @@ export default function GroupModalCard({ exercise, onClose, isOpen }) {
           handleClose()
         }
       } catch (error) {
+        console.error(error)
       }
     }
   }

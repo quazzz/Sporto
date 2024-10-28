@@ -21,6 +21,7 @@ export async function POST(req) {
       userId: id,
     },
   });
+  console.log(group)
   // all ok so we return code 200
   return new Response(JSON.stringify({ message: "All ok" }), {
     status: 200,
@@ -71,11 +72,13 @@ export async function DELETE(req) {
         id: groupId,
       },
     });
+    console.log(group)
     const exercise = await prisma.exercise.deleteMany({
       where:{
         groupId: groupId
       }
     })
+    console.log(exercise)
     
     // all ok so we return code 200
     return NextResponse.json({ message: "Group and associated exercises deleted successfully" }, { status: 200 });
@@ -102,6 +105,7 @@ export async function PUT(req){
       name: name
     }
   })
+  console.log(newgroup)
   return new Response(JSON.stringify({message: 'Group succesfuly updated'}),{
     status: 200,
     headers: {'Content-Type' : 'application/json'}

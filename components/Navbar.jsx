@@ -9,9 +9,9 @@ import clsx from "clsx";
 export default function Navbar() {
   const pathname = usePathname();
   // get session
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
   // get loading status
-  const loading = status === "loading";
+  
   // logout handler
   const handleClick = async () => {
     // deleting session
