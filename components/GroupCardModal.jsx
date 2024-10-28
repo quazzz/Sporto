@@ -6,13 +6,9 @@ import { useSession } from "next-auth/react";
 export default function GroupModalCard({ exercise, onClose, isOpen }) {
   const { data: session, status } = useSession();
   const [groups, setGroups] = useState([]);
-
-  // Add console log to track component mounting
-  useEffect(() => {
-    console.log("GroupModalCard mounted");
-    return () => console.log("GroupModalCard unmounted");
-  }, []);
-
+  const [open,setOpen] = useState(false)
+  const [sets,setSets] = useState()
+  const [reps,setReps] = useState()
   useEffect(() => {
     const fetchGroups = async () => {
      if(status === 'authenticated'){
@@ -39,7 +35,7 @@ export default function GroupModalCard({ exercise, onClose, isOpen }) {
   };
   const handleClick = async(groupId) => {
     console.log(exercise)
-    if(status === "authenticated"){
+    if(status === "authenticated" && sets && reps){
       try {
         let name = exercise?.name;
         let equipment = exercise?.equipment;
@@ -49,23 +45,18 @@ export default function GroupModalCard({ exercise, onClose, isOpen }) {
         let instructions = exercise?.instructions
         let secondaryMuscles = exercise?.secondaryMuscles
         let id = exercise?.id
-        
-        
-
-
         const req = await fetch(`/api/catalog`,{
           headers: {'Content-Type' : 'application/json'},
           method: 'POST',
-          body: JSON.stringify({name,equipment,gifUrl,target,bodyPart,instructions,secondaryMuscles,id,groupId})
+          body: JSON.stringify({name,equipment,gifUrl,target,bodyPart,instructions,secondaryMuscles,id,groupId,sets,reps})
         })
         if(req.ok){
+          setOpen(false)
           handleClose()
         }
       } catch (error) {
-        
       }
     }
-    
   }
 
   return (
@@ -93,11 +84,17 @@ export default function GroupModalCard({ exercise, onClose, isOpen }) {
           {groups?.length > 0 ? (
             <ul className="space-y-2">
                 {groups.map((group) => (
-                  
-                   <li key={group.id} className="p-3 border rounded hover:bg-gray-50 cursor-pointer transition-colors" onClick={() => handleClick(group.id)}>{group.name}</li>
-          
+                  <>
+                    <li key={group.id} onClick={() => setOpen(true)} className="p-3 border rounded hover:bg-gray-50 cursor-pointer transition-colors">{group.name}</li>
+                    {open ? 
+                    <>
+                    <input value={sets} onChange={(e) => setSets(e.target.value)} type="text" placeholder="Sets" />
+                    <input value={reps} onChange={(e) => setReps(e.target.value)} type="text" placeholder="Reps" />
+                    <button onClick={() => handleClick(group.id)}>Add</button>
+                    </>
+                    : ''}
+                  </>
                  
-                   
                 ))}
             </ul>
           ) : (

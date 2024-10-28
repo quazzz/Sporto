@@ -1,5 +1,5 @@
 import Image from "next/image"
-export default function ExerciseCardDashboard({ name, gifUrl, bodypart, target, equipment }) {
+export default function ExerciseCardDashboard({ name, gifUrl, bodypart, target, equipment, reps, sets }) {
 
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white p-4 m-4 text-center">
@@ -13,6 +13,8 @@ export default function ExerciseCardDashboard({ name, gifUrl, bodypart, target, 
         alt="Gif of workout"
       />
       <p className="text-gray-800 text-lg mb-2">Bodypart: {bodypart}</p>
+      <p className="text-gray-800 text-lg mb-2">Sets: {sets}</p>
+      <p className="text-gray-800 text-lg mb-2">Reps: {reps}</p>
       <p className="text-gray-700 text-base mb-4">Target: {target}</p>
       <p className="text-sm text-gray-500">Equipment: {equipment}</p>
     </div>

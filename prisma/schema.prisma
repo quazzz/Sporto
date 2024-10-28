@@ -26,7 +26,6 @@ model Group {
 model Exercise {
   id      String   @id @default(auto()) @map("_id") @db.ObjectId
   groupId String     @db.ObjectId
-  
   name String
   gifUrl String
   target String
@@ -34,4 +33,6 @@ model Exercise {
   bodyPart String
   instructions String[]
   secondaryMuscles String[]
+  reps String
+  sets String
 }

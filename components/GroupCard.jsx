@@ -92,7 +92,10 @@ export default function GroupCard({ group }) {
          gifUrl={exercise.gifUrl}
          bodypart={exercise.bodypart}
          target={exercise.target}
-         equipment={exercise.equipment}/>
+         equipment={exercise.equipment}
+         sets = {exercise.sets}
+         reps = {exercise.reps}
+         />
       ))}
       </div>
     </div>
