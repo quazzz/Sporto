@@ -26,13 +26,13 @@ export default function ExerciseCard({ workout, onPlusClick }) {
       <p className="text-gray-700 text-base mb-4">Target: {target0}</p>
       <p className="text-sm text-gray-500">Equipment: {equipment}</p>
       <div className="mt-4">
-        <button className="transition-all bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        <button className="transition-all bg-black hover:bg-gray-900 text-white font-bold py-2 px-4 rounded">
           View Details
         </button>
         <button
           type="button"
           onClick={onPlusClick}
-          className="transition-all bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full ml-3"
+          className="transition-all bg-black hover:bg-gray-900 text-white font-bold py-2 px-4 rounded-full ml-3"
         >
           +
         </button>

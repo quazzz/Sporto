@@ -23,13 +23,21 @@ export default function GroupPage({ userId }) {
   }, [userId]);
 
   return (
-    <div className="min-h-screen text-gray-900 flex items-center justify-center py-12 bg-custom-lines font-[family-name:var(--font-geist-sans)]">
-      {groups.length > 0 ? (
-        groups.map((group) => <GroupCard key={group.id} group={group} />)
-      ) : (
-        <p>No groups found</p>
-      )}
+    <div className="min-h-screen flex flex-row items-center justify-center bg-custom-lines font-[family-name:var(--font-geist-sans)] py-12">
+    <div className="w-full max-w-md">
       <GroupForm />
     </div>
+    <div className="mt-8 w-full max-w-md">
+      {groups.length > 0 ? (
+        groups.map((group) => (
+          <GroupCard key={group.id} group={group} />
+        ))
+      ) : (
+        <div className="flex items-center justify-center min-h-[200px]">
+          <p className="text-center text-gray-600">No groups found</p>
+        </div>
+      )}
+    </div>
+  </div>
   );
 }

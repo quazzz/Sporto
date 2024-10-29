@@ -1,14 +1,15 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
-
+import Link from "next/link";
 
 export default function GroupModalCard({ exercise, onClose }) {
   const { data: session, status } = useSession();
   const [groups, setGroups] = useState([]);
-  const [open,setOpen] = useState(false)
+  const [selectedGroup, setSelectedGroup] = useState(null)
   const [sets,setSets] = useState()
   const [reps,setReps] = useState()
+  
   useEffect(() => {
     const fetchGroups = async () => {
      if(status === 'authenticated'){
@@ -26,8 +27,9 @@ export default function GroupModalCard({ exercise, onClose }) {
     fetchGroups();
   }, []);
 
-  const handleClose = () => {
+  const handleClose = (e) => {
     onClose();
+    e.stopPropagation()
   };
 
   const handleModalClick = (e) => {
@@ -50,10 +52,10 @@ export default function GroupModalCard({ exercise, onClose }) {
           method: 'POST',
           body: JSON.stringify({name,equipment,gifUrl,target,bodyPart,instructions,secondaryMuscles,id,groupId,sets,reps})
         })
-        if(req.ok){
-          setOpen(false)
+        
+          setSelectedGroup(null)
           handleClose()
-        }
+        
       } catch (error) {
         console.error(error)
       }
@@ -86,20 +88,30 @@ export default function GroupModalCard({ exercise, onClose }) {
             <ul className="space-y-2">
                 {groups.map((group) => (
                   <>
-                    <li key={group.id} onClick={() => setOpen(true)} className="p-3 border rounded hover:bg-gray-50 cursor-pointer transition-colors">{group.name}</li>
-                    {open ? 
+                    <li key={group.id} onClick={() => setSelectedGroup(group.id)} className="p-3 border rounded hover:bg-gray-50 cursor-pointer transition-colors">{group.name}</li>
+                    {selectedGroup === group.id &&
                     <>
-                    <input value={sets} onChange={(e) => setSets(e.target.value)} type="text" placeholder="Sets" />
-                    <input value={reps} onChange={(e) => setReps(e.target.value)} type="text" placeholder="Reps" />
-                    <button onClick={() => handleClick(group.id)}>Add</button>
+                    <input className="border p-1 rounded text-l  text-gray-900 mb-4" value={sets} onChange={(e) => setSets(e.target.value)} type="text" placeholder="Sets" />
+                    <input className="border p-1 rounded text-l  text-gray-900 mb-4" value={reps} onChange={(e) => setReps(e.target.value)} type="text" placeholder="Reps" />
+                    <button className="ml-5 transition-all duration-300 ease-in-out py-2 px-5 bg-black text-white text-lg  rounded shadow-lg hover:bg-gray-800 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-gray-400 focus:ring-offset-2" onClick={() => handleClick(group.id)}>Add</button>
                     </>
-                    : ''}
+                    }
                   </>
                  
                 ))}
+                <div className="text-center">
+                <p className="text-center">Or</p>
+                <Link href="/dashboard" className="underline text-center">Create new group</Link>
+                </div>
+              
+
             </ul>
           ) : (
-            <p className="text-gray-600 text-center">No groups found</p>
+            <>
+             <p className="text-gray-600 text-center">No groups found</p>
+            
+            </>
+           
           )}
         </div>
       </div>

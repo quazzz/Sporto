@@ -64,11 +64,11 @@ export default function GroupCard({ group }) {
           type="text"
           value={newName}
           onChange={(e) => setNewName(e.target.value)}
-          className="border p-2 rounded text-l font-semibold text-gray-900 mb-4 "
+          className="border p-1 rounded text-l font-semibold text-gray-900 mb-4 "
         />
       )}
       <button
-        className="transition-all duration-300 ease-in-out py-3 px-10 bg-black text-white text-lg  rounded shadow-lg hover:bg-gray-800 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-gray-400 focus:ring-offset-2"
+        className="transition-all duration-300 ease-in-out py-2 px-5 bg-black text-white text-lg  rounded shadow-lg hover:bg-gray-800 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-gray-400 focus:ring-offset-2"
         onClick={() =>
           nameVisible ? setNameVisible(false) : handleChangeName()
         }
@@ -80,7 +80,7 @@ export default function GroupCard({ group }) {
         <button
           type="button"
           onClick={handleDelete}
-          className="transition-all duration-300 ease-in-out py-3 px-10 bg-black text-white text-lg  rounded shadow-lg hover:bg-gray-800 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-gray-400 focus:ring-offset-2"
+          className="transition-all duration-300 ease-in-out py-2 px-5 bg-black text-white text-lg  rounded shadow-lg hover:bg-gray-800 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-gray-400 focus:ring-offset-2"
         >
           Delete
         </button>
