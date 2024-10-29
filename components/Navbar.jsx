@@ -4,6 +4,7 @@ import React from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
+
 import { useSession } from "next-auth/react";
 import clsx from "clsx";
 export default function Navbar() {
@@ -25,6 +26,10 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto flex justify-between items-center px-6">
         <div className="text-xl font-semibold text-gray-800">
           <Link href="/">Sporto</Link>
+        
+        </div>
+        <div className="flex content-center">
+          <span className="font-bold text-xl text-gray-700">Hello, {session?.user.name}</span>
         </div>
         <div className="space-x-4">
           {session ? ( // if session is true then return logout button
@@ -49,6 +54,7 @@ export default function Navbar() {
                   Catalog
                 </span>
               </Link>
+             
               <button
                 className="text-gray-700 hover:text-indigo-600 transition-colors duration-300"
                 onClick={handleClick}
