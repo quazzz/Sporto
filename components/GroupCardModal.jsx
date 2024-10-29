@@ -52,6 +52,7 @@ export default function GroupModalCard({ exercise, onClose }) {
           method: 'POST',
           body: JSON.stringify({name,equipment,gifUrl,target,bodyPart,instructions,secondaryMuscles,id,groupId,sets,reps})
         })
+        console.log(req)
         
           setSelectedGroup(null)
           handleClose()

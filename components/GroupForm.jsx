@@ -2,12 +2,12 @@
 import React from 'react'
 import { useState } from 'react'
 import { useSession } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
+
 import toast from 'react-hot-toast'
 export default function GroupCard() {
   const {data: session} = useSession()
   const [namer,setName] = useState('')
-  const router = useRouter()
+  
   const handleSubmit = async(e) => {
     e.preventDefault()
     const id  = await session.user.id
