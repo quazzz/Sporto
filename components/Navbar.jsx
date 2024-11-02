@@ -4,9 +4,17 @@ import React from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
-
 import { useSession } from "next-auth/react";
 import clsx from "clsx";
+
+class PageConfig {
+  home = '/';
+  dashboard = '/dashboard';
+  catalog = '/dashboard/catalog';
+  login = '/login';
+  register = '/register';
+}
+export const pageConfig = new PageConfig()
 export default function Navbar() {
   const pathname = usePathname();
   // get session
@@ -25,16 +33,17 @@ export default function Navbar() {
     <nav className="bg-slate-50 shadow-md py-4 z-10 font-[family-name:var(--font-geist-sans)]">
       <div className="max-w-7xl mx-auto flex justify-between items-center px-6">
         <div className="text-xl font-semibold text-gray-800">
-          <Link href="/">Sporto</Link>
+          <Link href={pageConfig.home}>Sporto</Link>
         
         </div>
-        <div className="flex content-center">
-          <span className="font-bold text-xl text-gray-700">Hello, {session?.user.name}</span>
-        </div>
+        
         <div className="space-x-4">
           {session ? ( // if session is true then return logout button
             <>
-              <Link href="/dashboard">
+            <div className="flex content-center">
+              <span className="font-bold text-xl text-gray-700">Hello, {session?.user.name}</span>
+            </div>
+              <Link href={pageConfig.dashboard}>
                 <span
                   className={clsx(
                     "text-gray-700 hover:text-indigo-600 transition-colors duration-300",
@@ -44,7 +53,7 @@ export default function Navbar() {
                   Dashboard
                 </span>
               </Link>
-              <Link href="/dashboard/catalog">
+              <Link href={pageConfig.catalog}>
                 <span
                   className={clsx(
                     "text-gray-700 hover:text-indigo-600 transition-colors duration-300",
@@ -65,7 +74,7 @@ export default function Navbar() {
           ) : (
             // and if its false -> session not registered then return login and register ubttons
             <>
-              <Link href="/login">
+              <Link href={pageConfig.login}>
                 <span
                   className={clsx(
                     "text-gray-700 hover:text-indigo-600 transition-colors duration-300",
@@ -75,7 +84,7 @@ export default function Navbar() {
                   Login
                 </span>
               </Link>
-              <Link href="/register">
+              <Link href={pageConfig.register}>
                 <span
                   className={clsx(
                     "text-gray-700 hover:text-indigo-600 transition-colors duration-300",
