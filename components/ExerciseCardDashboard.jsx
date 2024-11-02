@@ -7,7 +7,11 @@ export default function ExerciseCardDashboard({ name, gifUrl, bodypart, target, 
         headers: {'Content-Type' : 'application/json'},
         body: JSON.stringify({id})
       })
-      const a = req.json()
+      if(!req.ok){
+        console.error('Error deleting the exercise')
+        return 0 
+      }
+      
       window.location.reload()
     } catch (error) {
       console.error(error)
