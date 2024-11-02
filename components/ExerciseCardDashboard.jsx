@@ -7,6 +7,7 @@ export default function ExerciseCardDashboard({ name, gifUrl, bodypart, target, 
         headers: {'Content-Type' : 'application/json'},
         body: JSON.stringify({id})
       })
+      const a = req.json()
       window.location.reload()
     } catch (error) {
       console.error(error)
