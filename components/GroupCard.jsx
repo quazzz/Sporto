@@ -56,48 +56,49 @@ export default function GroupCard({ group }) {
     
   }, []);
   return (
-    <div className="max-w-sm rounded-lg flex flex-col items-center overflow-hidden shadow-lg bg-white p-14 m-4 text-center">
-      {nameVisible ? (
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">{group.name}</h2>
-      ) : (
-        <input
-          type="text"
-          value={newName}
-          onChange={(e) => setNewName(e.target.value)}
-          className="border p-1 rounded text-l font-semibold text-gray-900 mb-4 "
+    <div className="w-64 max-w-xs sm:max-w-sm md:max-w-md rounded-lg overflow-hidden shadow-md bg-white p-4 m-5 text-center">
+  {nameVisible ? (
+    <h2 className="text-lg font-semibold text-gray-900 mb-3">{group.name}</h2>
+  ) : (
+    <input
+      type="text"
+      value={newName}
+      onChange={(e) => setNewName(e.target.value)}
+      className="border p-2 rounded text-sm font-semibold text-gray-900 mb-3 w-full"
+    />
+  )}
+  <button
+    className="transition-all duration-300 ease-in-out py-2 px-4 bg-black text-white text-sm rounded shadow-md hover:bg-gray-700 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-1"
+    onClick={() => (nameVisible ? setNameVisible(false) : handleChangeName())}
+  >
+    {nameVisible ? "Change" : "Save"}
+  </button>
+  <div className="mt-3">
+    <button
+      type="button"
+      onClick={handleDelete}
+      className="transition-all duration-300 ease-in-out py-2 px-4 bg-black text-white text-sm rounded shadow-md hover:bg-gray-700 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-1"
+    >
+      Delete
+    </button>
+  </div>
+  <div className="mt-3 space-y-2">
+    {exercises &&
+      exercises.map((exercise) => (
+        <ExerciseCardDashboard
+          key={exercise.id}
+          name={exercise.name}
+          gifUrl={exercise.gifUrl}
+          bodypart={exercise.bodypart}
+          target={exercise.target}
+          equipment={exercise.equipment}
+          sets={exercise.sets}
+          reps={exercise.reps}
+          id={exercise.id}
         />
-      )}
-      <button
-        className="transition-all duration-300 ease-in-out py-2 px-5 bg-black text-white text-lg  rounded shadow-lg hover:bg-gray-800 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-gray-400 focus:ring-offset-2"
-        onClick={() =>
-          nameVisible ? setNameVisible(false) : handleChangeName()
-        }
-      >
-        {nameVisible ? "Change" : "Save"}
-      </button>
-
-      <div className="mt-4">
-        <button
-          type="button"
-          onClick={handleDelete}
-          className="transition-all duration-300 ease-in-out py-2 px-5 bg-black text-white text-lg  rounded shadow-lg hover:bg-gray-800 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-gray-400 focus:ring-offset-2"
-        >
-          Delete
-        </button>
-      </div>
-      <div className="mt-4">
-         {exercises && exercises.map((exercise) => (
-         <ExerciseCardDashboard key={exercise.id} 
-         name={exercise.name}
-         gifUrl={exercise.gifUrl}
-         bodypart={exercise.bodypart}
-         target={exercise.target}
-         equipment={exercise.equipment}
-         sets = {exercise.sets}
-         reps = {exercise.reps}
-         />
       ))}
-      </div>
-    </div>
+  </div>
+</div>
+
   );
 }

@@ -69,7 +69,7 @@ export default function RegisterForm() {
           </div>
           <div className="mb-6">
             <label className="block text-sm font-medium text-gray-700">
-              Your Password
+              Your New Password
             </label>
             <input
               minLength={8}

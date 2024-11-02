@@ -23,11 +23,11 @@ export default function GroupPage({ userId }) {
   }, [userId]);
 
   return (
-    <div className="min-h-screen flex flex-row items-center justify-center bg-custom-lines font-[family-name:var(--font-geist-sans)] py-12">
-    <div className="w-full max-w-md">
+    <div className="min-h-screen flex flex-col lg:flex-row items-center justify-center bg-custom-lines font-[family-name:var(--font-geist-sans)] py-12">
+    <div className="w-full max-w-md px-4">
       <GroupForm />
     </div>
-    <div className="mt-8 w-full max-w-md">
+    <div className="mt-8 w-full max-w-md px-4">
       {groups.length > 0 ? (
         groups.map((group) => (
           <GroupCard key={group.id} group={group} />

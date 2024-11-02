@@ -80,7 +80,7 @@ export default function LoginForm() {
             Dont have an account?
             <Link href="/register">
               <span className="underline text-black hover:text-black">
-                Sign up here
+                {} Sign up here
               </span>
             </Link>
           </p>
