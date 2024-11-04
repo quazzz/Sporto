@@ -41,7 +41,7 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center md:hidden">
-          {/* Hamburger Menu Icon */}
+          
           <button onClick={toggleMenu} className="text-gray-700 focus:outline-none">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -55,7 +55,7 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Desktop Menu */}
+        
         <div className="hidden md:flex items-center space-x-4">
           {session ? (
             <>

@@ -1,10 +1,11 @@
-"use client"
+"use client";
 import { useEffect, useState } from "react";
-import ExerciseCardDashboard from '@/components/ExerciseCardDashboard'
+import Link from "next/link";
+import ExerciseCardDashboard from "@/components/ExerciseCardDashboard";
 export default function GroupCard({ group }) {
   const [nameVisible, setNameVisible] = useState(true);
   const [newName, setNewName] = useState("");
-  const [exercises,setExercises] = useState([])
+  const [exercises, setExercises] = useState([]);
   const handleDelete = async () => {
     try {
       const groupid = group.id;
@@ -51,55 +52,60 @@ export default function GroupCard({ group }) {
         console.error(error);
       }
     };
-    
-      fetchGroups();
-    
+
+    fetchGroups();
   }, []);
   return (
     <div className="w-64 max-w-xs sm:max-w-sm md:max-w-md rounded-lg overflow-hidden shadow-md bg-white p-4 m-5 text-center">
-  {nameVisible ? (
-    <h2 className="text-lg font-semibold text-gray-900 mb-3">{group.name}</h2>
-  ) : (
-    <input
-      type="text"
-      value={newName}
-      onChange={(e) => setNewName(e.target.value)}
-      className="border p-2 rounded text-sm font-semibold text-gray-900 mb-3 w-full"
-    />
-  )}
-  <button
-    className="transition-all duration-300 ease-in-out py-2 px-4 bg-black text-white text-sm rounded shadow-md hover:bg-gray-700 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-1"
-    onClick={() => (nameVisible ? setNameVisible(false) : handleChangeName())}
-  >
-    {nameVisible ? "Change" : "Save"}
-  </button>
-  <div className="mt-3">
-    <button
-      type="button"
-      onClick={handleDelete}
-      className="transition-all duration-300 ease-in-out py-2 px-4 bg-black text-white text-sm rounded shadow-md hover:bg-gray-700 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-1"
-    >
-      Delete
-    </button>
-  </div>
-  <div className="mt-3 space-y-2">
-    {exercises &&
-      exercises.map((exercise) => (
-        <ExerciseCardDashboard
-          key={exercise.id}
-          name={exercise.name}
-          gifUrl={exercise.gifUrl}
-          bodypart={exercise.bodypart}
-          target={exercise.target}
-          equipment={exercise.equipment}
-          sets={exercise.sets}
-          reps={exercise.reps}
-          id={exercise.id}
-          kg={exercise.kg}
+      {nameVisible ? (
+        <h2 className="text-lg font-semibold text-gray-900 mb-3">
+          {group.name}
+        </h2>
+      ) : (
+        <input
+          type="text"
+          value={newName}
+          onChange={(e) => setNewName(e.target.value)}
+          className="border p-2 rounded text-sm font-semibold text-gray-900 mb-3 w-full"
         />
-      ))}
-  </div>
-</div>
-
+      )}
+      <button
+        className="transition-all duration-300 ease-in-out py-2 px-4 bg-black text-white text-sm rounded shadow-md hover:bg-gray-700 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-1"
+        onClick={() =>
+          nameVisible ? setNameVisible(false) : handleChangeName()
+        }
+      >
+        {nameVisible ? "Change" : "Save"}
+      </button>
+      <div className="mt-3">
+        <button
+          type="button"
+          onClick={handleDelete}
+          className="transition-all duration-300 ease-in-out py-2 px-4 bg-black text-white text-sm rounded shadow-md hover:bg-gray-700 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-1"
+        >
+          Delete
+        </button>
+      </div>
+      <div className="mt-3 space-y-2">
+        {Array.isArray(exercises) && exercises.length > 0 ? (
+          exercises.map((exercise) => (
+            <ExerciseCardDashboard
+              key={exercise.id}
+              name={exercise.name}
+              gifUrl={exercise.gifUrl}
+              bodypart={exercise.bodypart}
+              target={exercise.target}
+              equipment={exercise.equipment}
+              sets={exercise.sets}
+              reps={exercise.reps}
+              id={exercise.id}
+              kg={exercise.kg}
+            />
+          ))
+        ) : (
+          <h1>No exercises found? Find new in <Link href = "/dashboard/catalog" className="underline">catalog</Link></h1>
+        )}
+      </div>
+    </div>
   );
 }
