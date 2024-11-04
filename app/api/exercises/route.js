@@ -17,8 +17,9 @@ export async function GET(req){
     })
 }
 export async function DELETE(req){
-    const {id} = await req.json()
-    if(!id){
+    const { searchParams } = new URL(req.url)
+    const exerciseId = searchParams.get('exerciseId')
+    if(!exerciseId){
         return new NextResponse('Id is missing',{
             status: 400,
             headers: {
@@ -28,11 +29,11 @@ export async function DELETE(req){
     }
     const deleteExercise = await prisma.exercise.delete({
         where: {
-            id: id
+            id: exerciseId
         }
     })
     if(!deleteExercise){
-        return new NextResponse(JSON.stringify(exercises),{
+        return new NextResponse(JSON.stringify('No exercise with that id'),{
             status: 400,
             headers: {
                 'Content-Type' : 'application/json'

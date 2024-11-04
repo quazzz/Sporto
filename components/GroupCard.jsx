@@ -95,6 +95,7 @@ export default function GroupCard({ group }) {
           sets={exercise.sets}
           reps={exercise.reps}
           id={exercise.id}
+          kg={exercise.kg}
         />
       ))}
   </div>

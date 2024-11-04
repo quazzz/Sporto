@@ -35,4 +35,5 @@ model Exercise {
   secondaryMuscles String[]
   reps String
   sets String
+  kg String
 }

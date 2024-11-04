@@ -9,7 +9,7 @@ export default function GroupModalCard({ exercise, onClose }) {
   const [selectedGroup, setSelectedGroup] = useState(null)
   const [sets,setSets] = useState()
   const [reps,setReps] = useState()
-  
+  const [kg, setKg] = useState()
   useEffect(() => {
     const fetchGroups = async () => {
      if(status === 'authenticated'){
@@ -50,7 +50,7 @@ export default function GroupModalCard({ exercise, onClose }) {
         const req = await fetch(`/api/catalog`,{
           headers: {'Content-Type' : 'application/json'},
           method: 'POST',
-          body: JSON.stringify({name,equipment,gifUrl,target,bodyPart,instructions,secondaryMuscles,id,groupId,sets,reps})
+          body: JSON.stringify({name,equipment,gifUrl,target,bodyPart,instructions,secondaryMuscles,id,groupId,sets,reps,kg})
         })
         console.log(req)
         
@@ -94,6 +94,7 @@ export default function GroupModalCard({ exercise, onClose }) {
                     <>
                     <input className="border p-1 rounded text-l  text-gray-900 mb-4" value={sets} onChange={(e) => setSets(e.target.value)} type="text" placeholder="Sets" />
                     <input className="border p-1 rounded text-l  text-gray-900 mb-4" value={reps} onChange={(e) => setReps(e.target.value)} type="text" placeholder="Reps" />
+                    <input className="border p-1 rounded text-l  text-gray-900 mb-4" value={kg} onChange={(e) => setKg(e.target.value)} type="text" placeholder="Weight" />
                     <button className="ml-5 transition-all duration-300 ease-in-out py-2 px-5 bg-black text-white text-lg  rounded shadow-lg hover:bg-gray-800 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-gray-400 focus:ring-offset-2" onClick={() => handleClick(group.id)}>Add</button>
                     </>
                     }

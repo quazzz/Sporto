@@ -27,7 +27,7 @@ export async function GET() {
   }
 }
 export async function POST(req){
-  const {name,equipment,gifUrl,target,bodyPart,instructions,secondaryMuscles,groupId,sets,reps} = await req.json()
+  const {name,equipment,gifUrl,target,bodyPart,instructions,secondaryMuscles,groupId,sets,reps,kg} = await req.json()
   const newex = await prisma.exercise.create({
     data: {
       name: name,
@@ -39,7 +39,8 @@ export async function POST(req){
       secondaryMuscles: secondaryMuscles,
       groupId: groupId,
       sets: sets,
-      reps: reps
+      reps: reps,
+      kg: kg
     }
   })
   console.log(newex)
