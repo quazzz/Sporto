@@ -34,7 +34,7 @@ export default function Navbar() {
     setIsMenuOpen(!isMenuOpen)
   }
   return (
-    <nav className="bg-slate-50 shadow-md py-4 z-10 font-[family-name:var(--font-geist-sans)]">
+    <nav className="bg-slate-50 shadow-md py-4 z-10 font-[family-name:var(--font-geist-sans)] fixed w-full">
       <div className="max-w-7xl mx-auto flex justify-between items-center px-6">
         <div className="text-xl font-semibold text-gray-800">
           <Link href={pageConfig.home}>Sporto</Link>
