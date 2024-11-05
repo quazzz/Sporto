@@ -59,9 +59,9 @@ export default function Navbar() {
         <div className="hidden md:flex items-center space-x-4">
           {session ? (
             <>
-              <div className="flex-1 flex justify-center">
+              <div className="flex-1 flex justify-center text-center items-center">
                 <span className="font-bold text-xl text-gray-700">
-                  Hello, {session.user.name}
+                  Hello, {session.user.name}!
                 </span>
               </div>
 

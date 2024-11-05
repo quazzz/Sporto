@@ -18,7 +18,7 @@ export default function ExerciseCardDashboard({ name, gifUrl, bodypart, target, 
   }
   return (
     <div className="max-w-xs sm:max-w-sm rounded overflow-hidden shadow-lg bg-white p-4 m-4 text-center relative">
-      <button onClick={handleDelete} className="absolute top-2 right-2 bg-black text-white w-5 h-5 rounded-full flex items-center justify-center font-semibold hover:bg-gray-800 transition duration-300 ease-in-out transform hover:scale-105 shadow-lg">
+      <button onClick={handleDelete} className="absolute top-2 right-2 bg-black text-white w-7 h-7 rounded-full flex items-center justify-center font-semibold hover:bg-gray-800 transition duration-300 ease-in-out transform hover:scale-105 shadow-lg">
         ✕
       </button>
       <h2 className="text-lg sm:text-xl font-bold mb-2 text-gray-800 ">{name}</h2>

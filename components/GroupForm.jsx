@@ -49,12 +49,13 @@ export default function GroupCard() {
             onChange={(e) => setName(e.target.value)}
             type="text"
             className="transition w-full px-4 py-3 mt-1 rounded-lg font-medium bg-gray-50 border border-gray-300 placeholder-gray-400 text-gray-900 focus:outline-none focus:border-gray-600 focus:bg-white"
-            placeholder="Enter a name"
+            placeholder="Enter name for new group"
           />
         </div>
         <div className="flex items-center justify-between">
           <button
             type="submit"
+            title='Create new group'
             onClick={handleSubmit}
             className="transition w-full py-3 bg-black text-white font-semibold rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600"
           >

@@ -6,7 +6,7 @@ import GroupModalCard from "@/components/GroupCardModal";
 
 export default function Page() {
   const [exercises, setExercises] = useState([]);
-  const [options, setOptions] = useState([]);
+  const [options, setOptions] = useState('');
   const [modalOpen, setModalOpen] = useState(false); 
   const [selectedExercise, setSelectedExercise] = useState(null);
   const [isModalOpen,setIsModalOpen] = useState(false)
@@ -15,12 +15,8 @@ export default function Page() {
     console.log(`Selected ex is ${selectedExercise}`)
   },[modalOpen,selectedExercise])
   const handleCheckboxChange = (e) => {
-    const { value, checked } = e.target;
-    if (checked) {
-      setOptions((prev) => [...prev, value]);
-    } else {
-      setOptions((prev) => prev.filter((option) => option !== value));
-    }
+    const {value} = e.target
+    setOptions(value)
   };
 
   const openModal = (exercise) => {
@@ -52,7 +48,9 @@ export default function Page() {
   }, []);
 
   const filteredExercises = exercises.filter((exercise) => {
-    return options.length === 0 || options.some((option) => exercise.bodyPart.includes(option));
+    return (
+      options === "" || exercise.bodyPart.includes(options)
+    );
   });
 
   const checkboxOptions = [
@@ -70,14 +68,15 @@ export default function Page() {
   return (
     <>
       <div className="min-h-screen text-gray-900 flex flex-col items-center justify-center py-12 bg-custom-lines font-[family-name:var(--font-geist-sans)]">
-        <div className="flex flex-wrap gap-4 justify-center">
+        <div className="flex flex-wrap gap-4 justify-center mt-20">
           {checkboxOptions.map((option) => (
             <div className="flex items-center" key={option.id}>
               <input
                 className="mr-2 cursor-pointer"
-                type="checkbox"
+                type="radio"
                 id={option.id}
                 value={option.id}
+                name="options"
                 onChange={handleCheckboxChange}
               />
               <label
@@ -93,7 +92,7 @@ export default function Page() {
         <p className="mt-6 text-lg font-medium">
           Selected muscles:{" "}
           <span className="font-semibold text-blue-600">
-            {options.length > 0 ? options.join(", ") : "None"}
+            {options.length > 0 ? options : "None"}
           </span>
         </p>
 
