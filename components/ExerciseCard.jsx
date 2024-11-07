@@ -1,5 +1,5 @@
 import Image from "next/image";
-export default function ExerciseCard({ workout, onPlusClick }) {
+export default function ExerciseCard({ workout, onPlusClick, onViewDetailsClick }) {
   const name0 = workout.name;
   const gifurl0 = workout.gifUrl;
   const bodypart = workout.bodyPart
@@ -26,7 +26,7 @@ export default function ExerciseCard({ workout, onPlusClick }) {
       <p className="text-gray-700 text-base mb-4">Target: {target0}</p>
       <p className="text-sm text-gray-500">Equipment: {equipment}</p>
       <div className="mt-4">
-        <button className="transition-all bg-black hover:bg-gray-900 text-white font-bold py-2 px-4 rounded">
+        <button onClick={() => onViewDetailsClick(workout)} className="transition-all bg-black hover:bg-gray-900 text-white font-bold py-2 px-4 rounded">
           View Details
         </button>
         <button

@@ -3,21 +3,22 @@
 import React, { useEffect, useState } from "react";
 import ExerciseCard from "@/components/ExerciseCard";
 import GroupModalCard from "@/components/GroupCardModal";
-
+import CatalogDetailsModal from '@/components/CatalogDetailsModal';
 export default function Page() {
   const [exercises, setExercises] = useState([]);
   const [options, setOptions] = useState('');
   const [modalOpen, setModalOpen] = useState(false); 
   const [selectedExercise, setSelectedExercise] = useState(null);
   const [isModalOpen,setIsModalOpen] = useState(false)
-  useEffect(() => {
-    console.log(`Modal state changed ${modalOpen}`)
-    console.log(`Selected ex is ${selectedExercise}`)
-  },[modalOpen,selectedExercise])
+  
+  const [detailModalOpen, setDetailModalOpen] = useState(false)
   const handleCheckboxChange = (e) => {
     const {value} = e.target
     setOptions(value)
   };
+  useEffect(() => {
+    console.log(selectedExercise)
+  },[selectedExercise])
 
   const openModal = (exercise) => {
     if(isModalOpen) return;
@@ -33,6 +34,14 @@ export default function Page() {
     setModalOpen(false);
     setIsModalOpen(false)
   };
+  const openDetails = (exercise) => {
+    setDetailModalOpen(true)
+    setSelectedExercise(exercise)
+  }
+  const closeDetails = () => {
+    setDetailModalOpen(false)
+    setSelectedExercise(null)
+  }
 
   useEffect(() => {
     const fetchWorkouts = async () => {
@@ -99,7 +108,7 @@ export default function Page() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 mb-8">
           {filteredExercises.length > 0 ? (
             filteredExercises.map((exercise) => (
-              <ExerciseCard key={exercise.id} workout={exercise} onPlusClick={() => openModal(exercise)} />
+              <ExerciseCard  onViewDetailsClick={openDetails} key={exercise.id} workout={exercise} onPlusClick={() => openModal(exercise)} />
             ))
           ) : (
             <p>No workouts found</p>
@@ -107,9 +116,14 @@ export default function Page() {
         </div>
 
         {modalOpen && (
-          
+        
             <GroupModalCard exercise={selectedExercise} key={selectedExercise.id} onClose={closeModal} modalOpen={modalOpen} />
-          
+        )}
+        {detailModalOpen && (
+          <CatalogDetailsModal 
+            exercise={selectedExercise} 
+            onClose={closeDetails} 
+          />
         )}
       </div>
     </>

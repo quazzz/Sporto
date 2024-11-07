@@ -6,22 +6,22 @@ import Link from "next/link";
 export default function GroupModalCard({ exercise, onClose }) {
   const { data: session, status } = useSession();
   const [groups, setGroups] = useState([]);
-  const [selectedGroup, setSelectedGroup] = useState(null)
-  const [sets,setSets] = useState()
-  const [reps,setReps] = useState()
-  const [kg, setKg] = useState()
+  const [selectedGroup, setSelectedGroup] = useState(null);
+  const [sets, setSets] = useState();
+  const [reps, setReps] = useState();
+  const [kg, setKg] = useState();
   useEffect(() => {
     const fetchGroups = async () => {
-     if(status === 'authenticated'){
+      if (status === "authenticated") {
         try {
-          console.log('trying')
+          console.log("trying");
           const res = await fetch(`/api/group?userId=${session?.user.id}`);
           const json = await res.json();
           setGroups(json);
         } catch (error) {
           console.error("Error fetching groups:", error);
         }
-     }
+      }
     };
 
     fetchGroups();
@@ -29,46 +29,58 @@ export default function GroupModalCard({ exercise, onClose }) {
 
   const handleClose = (e) => {
     onClose();
-    e.stopPropagation()
+    e.stopPropagation();
   };
 
   const handleModalClick = (e) => {
-    e.stopPropagation(); 
+    e.stopPropagation();
   };
-  const handleClick = async(groupId) => {
-    console.log(exercise)
-    if(status === "authenticated" && sets && reps){
+  const handleClick = async (groupId) => {
+    console.log(exercise);
+    if (status === "authenticated" && sets && reps) {
       try {
         let name = exercise?.name;
         let equipment = exercise?.equipment;
         let gifUrl = exercise?.gifUrl;
         let target = exercise?.target;
         let bodyPart = exercise?.bodyPart;
-        let instructions = exercise?.instructions
-        let secondaryMuscles = exercise?.secondaryMuscles
-        let id = exercise?.id
-        const req = await fetch(`/api/catalog`,{
-          headers: {'Content-Type' : 'application/json'},
-          method: 'POST',
-          body: JSON.stringify({name,equipment,gifUrl,target,bodyPart,instructions,secondaryMuscles,id,groupId,sets,reps,kg})
-        })
-        console.log(req)
-        
-          setSelectedGroup(null)
-          handleClose()
-        
+        let instructions = exercise?.instructions;
+        let secondaryMuscles = exercise?.secondaryMuscles;
+        let id = exercise?.id;
+        const req = await fetch(`/api/catalog`, {
+          headers: { "Content-Type": "application/json" },
+          method: "POST",
+          body: JSON.stringify({
+            name,
+            equipment,
+            gifUrl,
+            target,
+            bodyPart,
+            instructions,
+            secondaryMuscles,
+            id,
+            groupId,
+            sets,
+            reps,
+            kg,
+          }),
+        });
+        console.log(req);
+
+        setSelectedGroup(null);
+        handleClose();
       } catch (error) {
-        console.error(error)
+        console.error(error);
       }
     }
-  }
+  };
 
   return (
     <div
       className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
       onClick={handleClose}
     >
-      <div 
+      <div
         className="bg-white p-6 rounded-lg shadow-xl max-w-md w-full m-4"
         onClick={handleModalClick}
       >
@@ -87,33 +99,63 @@ export default function GroupModalCard({ exercise, onClose }) {
         <div className="mt-4">
           {groups?.length > 0 ? (
             <ul className="space-y-2">
-                {groups.map((group) => (
-                  <>
-                    <li key={group.id} onClick={() => setSelectedGroup(group.id)} className="p-3 border rounded hover:bg-gray-50 cursor-pointer transition-colors">{group.name}</li>
-                    {selectedGroup === group.id &&
+              {groups.map((group) => (
+                <>
+                  <li
+                    key={group.id}
+                    onClick={() => setSelectedGroup(group.id)}
+                    className="p-3 border rounded hover:bg-gray-50 cursor-pointer transition-colors"
+                  >
+                    {group.name}
+                  </li>
+                  {selectedGroup === group.id && (
                     <>
-                    <input className="border p-1 rounded text-l  text-gray-900 mb-4" value={sets} onChange={(e) => setSets(e.target.value)} type="text" placeholder="Sets" />
-                    <input className="border p-1 rounded text-l  text-gray-900 mb-4" value={reps} onChange={(e) => setReps(e.target.value)} type="text" placeholder="Reps" />
-                    <input className="border p-1 rounded text-l  text-gray-900 mb-4" value={kg} onChange={(e) => setKg(e.target.value)} type="text" placeholder="Weight" />
-                    <button className="ml-5 transition-all duration-300 ease-in-out py-2 px-5 bg-black text-white text-lg  rounded shadow-lg hover:bg-gray-800 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-gray-400 focus:ring-offset-2" onClick={() => handleClick(group.id)}>Add</button>
+                      <input
+                        className="border p-1 rounded text-l  text-gray-900 mb-4"
+                        value={sets}
+                        onChange={(e) => setSets(e.target.value)}
+                        type="text"
+                        placeholder="Sets"
+                      />
+                      <input
+                        className="border p-1 rounded text-l  text-gray-900 mb-4"
+                        value={reps}
+                        onChange={(e) => setReps(e.target.value)}
+                        type="text"
+                        placeholder="Reps"
+                      />
+                      <input
+                        className="border p-1 rounded text-l  text-gray-900 mb-4"
+                        value={kg}
+                        onChange={(e) => setKg(e.target.value)}
+                        type="text"
+                        placeholder="Weight"
+                      />
+                      <br></br>
+                      <div className="text-center">
+                      <button
+                        className=" py-2 px-4 bg-black text-white text-base rounded focus:outline-none focus:ring-2 focus:ring-gray-300"
+                        onClick={() => handleClick(group.id)}
+                      >
+                        +
+                      </button>{" "}
+                      </div>
+                      
                     </>
-                    }
-                  </>
-                 
-                ))}
-                <div className="text-center">
+                  )}
+                </>
+              ))}
+              <div className="text-center">
                 <p className="text-center">Or</p>
-                <Link href="/dashboard" className="underline text-center">Create new group</Link>
-                </div>
-              
-
+                <Link href="/dashboard" className="underline text-center">
+                  Create new group
+                </Link>
+              </div>
             </ul>
           ) : (
             <>
-             <p className="text-gray-600 text-center">No groups found</p>
-            
+              <p className="text-gray-600 text-center">No groups found</p>
             </>
-           
           )}
         </div>
       </div>
