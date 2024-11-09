@@ -57,7 +57,7 @@ export default function GroupCard({ group }) {
   }, []);
   return (
     <div className="w-64 max-w-xs sm:max-w-sm md:max-w-md rounded-lg overflow-hidden shadow-md bg-white p-4 m-5 text-center">
-  {/* Delete button */}
+  
   <div
     className="border w-max rounded-full cursor-pointer p-2 transition-all duration-300 hover:bg-red-500 hover:text-white hover:shadow-lg inline-flex items-center justify-center"
     onClick={handleDelete}
@@ -83,7 +83,7 @@ export default function GroupCard({ group }) {
     </svg>
   </div>
 
-  {/* Edit button and name display */}
+ 
   {nameVisible ? (
     <>
       <div
@@ -161,6 +161,7 @@ export default function GroupCard({ group }) {
           reps={exercise.reps}
           id={exercise.id}
           kg={exercise.kg}
+          instructions={exercise.instructions}
         />
       ))
     ) : (

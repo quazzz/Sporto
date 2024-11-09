@@ -121,7 +121,13 @@ export default function Page() {
         )}
         {detailModalOpen && (
           <CatalogDetailsModal 
-            exercise={selectedExercise} 
+            name={selectedExercise.name}
+            target={selectedExercise.target}
+            bodyPart={selectedExercise.bodyPart}
+            secondaryMuscles={selectedExercise.secondaryMuscles}
+            gifUrl={selectedExercise.gifUrl}
+            equipment={selectedExercise.equipment}
+            instructions={selectedExercise.instructions}
             onClose={closeDetails} 
           />
         )}
