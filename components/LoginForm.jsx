@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { signIn, getCsrfToken } from "next-auth/react";
 import { toast } from "react-hot-toast";
-import Image from "next/image";
+
 export default function LoginForm() {
   // setting states for future POST req
   const [email, setEmail] = useState("");
