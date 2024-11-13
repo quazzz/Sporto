@@ -96,7 +96,7 @@ export default function LoginForm() {
 
           <button
             type="button"
-            onClick={async () => signIn("google", { callbackUrl: "http://localhost:3000/dashboard" })}
+            onClick={async () => signIn("google", { callbackUrl: "https://loovtoo.onrender.com/dashboard" })}
             className="w-full py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none"
           >
             Login with Google
