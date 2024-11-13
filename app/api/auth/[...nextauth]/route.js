@@ -1,71 +1,104 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google";
 import bcrypt from "bcryptjs";
+import { ObjectId } from "mongodb";
 import { PrismaClient } from "@prisma/client";
+
 const prisma = new PrismaClient();
 
 export const authOptions = {
+  
   providers: [
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      async profile(profile) {
+        const existingUser = await prisma.user.findUnique({
+          where: { email: profile.email },
+        });
+
+        
+        if (!existingUser) {
+          const aov = new ObjectId()
+          const random = Math.random().toString(36).slice(-8)
+          const hashed = await bcrypt.hash(random,10)
+          const newUser = await prisma.user.create({
+            data: {
+              email: profile.email,
+              name: profile.name,
+              id: aov,
+              password: hashed
+            },
+          });
+          return {
+            id: newUser.id.toString(),
+            email: newUser.email,
+            name: newUser.name,
+         
+          };
+        }
+
+        return {
+          id: existingUser.id.toString(),
+          email: existingUser.email,
+          name: existingUser.name,
+          image: existingUser.image,
+        };
+      },
+    }),
+
     CredentialsProvider({
       name: "credentials",
       credentials: {},
       async authorize(credentials) {
-        const { email, password } = credentials;
-        // if we dont have any data then return error
-        if (!credentials) {
-          throw new Error("Please fill out all the fields");
+        if (!credentials.email || !credentials.password) {
+          throw new Error("Please fill out all fields");
         }
+        const { email, password } = credentials;
+
         try {
-          // finding user
           const user = await prisma.user.findUnique({
-            where: {
-              email: email,
-            },
+            where: { email },
           });
-          // if user doesnt exist then throw an error
+
           if (!user) {
             throw new Error("User does not exist");
           }
-          // check for password
+
           const passwordMatch = await bcrypt.compare(password, user.password);
-          // if password is invalid then throw an error
           if (!passwordMatch) {
             throw new Error("Password does not match");
           }
-          // return id,email,name
+
           return { id: user.id.toString(), email: user.email, name: user.name };
         } catch (error) {
-          // if error occures then return it to client-side
-          console.log("Error", error);
-          throw new Error(error);
+          console.log("Error in authorization:", error);
+          throw new Error("User doesn't exist or password mismatch");
         }
       },
     }),
   ],
   session: {
-    // adding stratergy (jsonwebtoken)
     strategy: "jwt",
   },
   callbacks: {
-    // returning token
     async jwt({ token, user }) {
       if (user) {
-        token.id = user.id;
+        token.id = user.id;  
       }
       return token;
     },
-    // adding session
     async session({ session, token }) {
-      session.user.id = token.id;
+      session.user.id = token.id; 
       return session;
     },
-    // config secret
-    secret: process.env.NEXTAUTH_SECRET,
-    // custom login page
-    pages: {
-      signIn: "/",
-    },
+  },
+  secret: process.env.NEXTAUTH_SECRET,
+  pages: {
+    signIn: "/login", 
   },
 };
+
 const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };

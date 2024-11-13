@@ -77,7 +77,7 @@ export default function Page() {
   return (
     <>
       <div className="min-h-screen text-gray-900 flex flex-col items-center justify-center py-12 bg-custom-lines font-[family-name:var(--font-geist-sans)]">
-        <div className="flex flex-wrap gap-4 justify-center mt-20">
+        <div className="flex flex-wrap gap-4 justify-center mt-20 shadow-lg bg-white p-4 rounded">
           {checkboxOptions.map((option) => (
             <div className="flex items-center" key={option.id}>
               <input

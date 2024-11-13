@@ -133,14 +133,13 @@ export default function GroupModalCard({ exercise, onClose }) {
                       />
                       <br></br>
                       <div className="text-center">
-                      <button
-                        className=" py-2 px-4 bg-black text-white text-base rounded focus:outline-none focus:ring-2 focus:ring-gray-300"
-                        onClick={() => handleClick(group.id)}
-                      >
-                        +
-                      </button>{" "}
+                        <button
+                          className=" py-2 px-4 bg-black text-white text-base rounded focus:outline-none focus:ring-2 focus:ring-gray-300"
+                          onClick={() => handleClick(group.id)}
+                        >
+                          +
+                        </button>{" "}
                       </div>
-                      
                     </>
                   )}
                 </>
@@ -154,7 +153,12 @@ export default function GroupModalCard({ exercise, onClose }) {
             </ul>
           ) : (
             <>
-              <p className="text-gray-600 text-center">No groups found</p>
+              <p className="text-gray-600 text-center">
+                No groups found?{" "}
+                <Link href="/dashboard" className="underline text-center">
+                  Create new group
+                </Link>
+              </p>
             </>
           )}
         </div>
