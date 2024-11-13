@@ -5,6 +5,10 @@ const nextConfig = {
             {
                 protocol: 'https',
                 hostname: 'v2.exercisedb.io'
+            },
+            {
+                protocol: 'https',
+                hostname: 'similarpng.com'
             }
         ]
     },
