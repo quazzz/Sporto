@@ -165,8 +165,8 @@ export default function GroupCard({ group }) {
         />
       ))
     ) : (
-      <h1>
-        No exercises found? Find new in{" "}
+      <h1 className="text-sm text-gray-500">
+        No exercises found. Find new in{" "}
         <Link href="/dashboard/catalog" className="underline">
           catalog
         </Link>

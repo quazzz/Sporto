@@ -8,7 +8,7 @@ datasource db {
 }
 
 model User {
-  id        String   @id @map("_id") @db.ObjectId  // Automatically generates ObjectId for MongoDB
+  id        String   @id @map("_id") @db.ObjectId @default(auto())  // Automatically generates ObjectId for MongoDB
   name      String
   email     String   @unique
   password  String

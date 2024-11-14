@@ -58,7 +58,7 @@ export default function LoginForm() {
     <div className="min-h-screen text-gray-900 flex items-center justify-center py-12 bg-custom-lines font-[family-name:var(--font-geist-sans)]">
       <div className="max-w-md w-full space-y-8">
         <div className="text-center">
-          <h1 className="text-3xl font-bold">Welcome Back!</h1>
+          <h1 className="text-4xl font-bold">Welcome Back!</h1>
         </div>
         <form
           onSubmit={handleSubmit}
@@ -72,7 +72,7 @@ export default function LoginForm() {
             </label>
             <input
               onChange={(e) => setEmail(e.target.value)}
-              type="email"
+              
               className="transition w-full px-4 py-3 mt-1 rounded-lg font-medium bg-gray-100 border border-gray-300 placeholder-gray-500 text-sm focus:outline-none focus:border-black focus:bg-white"
               placeholder="Email"
             />
@@ -93,20 +93,20 @@ export default function LoginForm() {
           <div className="flex items-center justify-between">
             <button
               type="submit"
-              className="transition w-full py-3 bg-black text-white font-semibold rounded-lg hover:bg-black focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2"
+              className="transition w-full py-2 bg-black text-white font-semibold rounded-lg hover:bg-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2"
             >
               Log in
             </button>
           </div>
 
-          <h2 className="text-center my-5 ">Or</h2>
-          <div className="mx-auto text-center cursor-pointer w-max  " onClick={async() => signIn('google',{callbackUrl: 'http://localhost:3000/dashboard'})}>
+          <h2 className="text-sm text-gray-600 text-center mt-4 ">or you can login with</h2>
+          <div className="mx-auto text-center cursor-pointer w-max mt-2 border rounded-full" onClick={async() => signIn('google',{callbackUrl: 'http://localhost:3000/dashboard'})}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             x="0px"
             y="0px"
-            width="40"
-            height="40"
+            width="30"
+            height="30"
             viewBox="0 0 48 48"
           >
             <path
