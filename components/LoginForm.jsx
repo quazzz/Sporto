@@ -100,7 +100,7 @@ export default function LoginForm() {
           </div>
 
           <h2 className="text-sm text-gray-600 text-center mt-4 ">or you can login with</h2>
-          <div className="mx-auto text-center cursor-pointer w-max mt-2 border rounded-full" onClick={async() => signIn('google',{callbackUrl: 'http://localhost:3000/dashboard'})}>
+          <div className="mx-auto text-center cursor-pointer w-max mt-2 border rounded-full" onClick={async() => signIn('google',{callbackUrl: 'https://loovtoo.onrender/dashboard'})}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             x="0px"
