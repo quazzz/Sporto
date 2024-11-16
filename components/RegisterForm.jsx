@@ -101,7 +101,7 @@ export default function RegisterForm() {
             className="mx-auto text-center cursor-pointer w-max mt-2 border rounded-full"
             onClick={async () =>
               signIn("google", {
-                callbackUrl: "http://localhost:3000/dashboard",
+                callbackUrl: "https://loovtoo.onrender/dashboard",
               })
             }
           >
