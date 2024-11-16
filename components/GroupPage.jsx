@@ -3,9 +3,10 @@ import { useState, useEffect } from "react";
 import GroupCard from '@/components/GroupCard'
 import GroupForm from "@/components/GroupForm"
 
+import { useRouter } from "next/navigation";
 export default function GroupPage({ userId }) {
   const [groups, setGroups] = useState([]);
-
+  const router = useRouter()
   useEffect(() => {
     const fetchGroups = async () => {
       try {
@@ -21,7 +22,9 @@ export default function GroupPage({ userId }) {
       fetchGroups();
     }
   }, [userId]);
-
+  const handleStartWorkout = (groupId) => {
+    router.push(`/dashboard/${groupId}`);
+  };
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-custom-lines font-[family-name:var(--font-geist-sans)] py-12">
     <div className="w-full max-w-md px-4">
@@ -32,7 +35,7 @@ export default function GroupPage({ userId }) {
     <div className="mt-8 w-full flex flex-wrap gap-4 justify-center px-4">
       {groups.length > 0 ? (
         groups.map((group) => (
-          <GroupCard key={group.id} group={group} />
+          <GroupCard key={group.id} group={group} onStartWorkout={handleStartWorkout} />
         ))
       ) : (
         <div className="flex items-center justify-center min-h-[200px]">

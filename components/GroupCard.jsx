@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import ExerciseCardDashboard from "@/components/ExerciseCardDashboard";
-export default function GroupCard({ group }) {
+export default function GroupCard({ group, onStartWorkout }) {
   const [nameVisible, setNameVisible] = useState(true);
   const [newName, setNewName] = useState("");
   const [exercises, setExercises] = useState([]);
@@ -172,6 +172,9 @@ export default function GroupCard({ group }) {
         </Link>
       </h1>
     )}
+  </div>
+  <div>
+    <button onClick={() => onStartWorkout(group.id)}>Start workout</button>
   </div>
 </div>
 
