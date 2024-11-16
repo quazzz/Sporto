@@ -5,7 +5,7 @@ import Navbar from "@/components/Navbar";
 import { AuthProvider } from "./Providers";
 import { Toaster } from "react-hot-toast";
 import LoadingPage from "../app/loading";
-import { Raleway,Inter } from 'next/font/google'
+import { Raleway } from 'next/font/google'
 
 const raleway = Raleway({subsets: ['latin']})
 export const metadata = {

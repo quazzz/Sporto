@@ -17,7 +17,7 @@ export async function POST(req) {
       achievement: achievement,
     },
   });
-  return new NextResponse('Record succesfuly created!',{
+  return new NextResponse('Record succesfuly created!',newExercise,{
     status: 200
   })
   
@@ -40,7 +40,7 @@ export async function DELETE(req){
             id: recordId
         }
     })
-    return new NextResponse('All ok',{
+    return new NextResponse('All ok',record,{
         status: 200
     })
 }
