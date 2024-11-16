@@ -18,6 +18,7 @@ export default function RecordForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ recordName, achievement }),
       });
+      console.log(res)
       window.location.reload()
     } catch (error) {
       console.error(error);

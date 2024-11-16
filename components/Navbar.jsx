@@ -6,7 +6,7 @@ import Link from "next/link";
 import { signOut } from "next-auth/react";
 import { useSession } from "next-auth/react";
 import clsx from "clsx";
-import path from "path";
+
 
 class PageConfig {
   home = '/';
