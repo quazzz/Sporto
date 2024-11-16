@@ -4,7 +4,7 @@ import React, { Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import { AuthProvider } from "./Providers";
 import { Toaster } from "react-hot-toast";
-import LoadingPage from "../app/loading";
+import LoadingPage from "./loading";
 import { Raleway } from 'next/font/google'
 
 const raleway = Raleway({subsets: ['latin']})

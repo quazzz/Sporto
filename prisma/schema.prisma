@@ -37,3 +37,9 @@ model Exercise {
   sets String
   kg String
 }
+model Record {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String @db.ObjectId
+  recordName String
+  achievement String
+}
