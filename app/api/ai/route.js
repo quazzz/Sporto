@@ -16,8 +16,8 @@ export async function POST(req) {
         })
         const formattedMessages = [
             { role: 'system', content: "Hello dear ChatGPT! You're in my application, so you're like an assistant. Please act accordingly. This is workout management app, where you create groups, add exercises to it and start doing them, you can add your sport achievements and track the days you did workouts via calendar" },
-            ...messages, // User-provided messages
-            { role: 'system', content: `User groups: ${JSON.stringify(groups)}` }, // Additional context about user groups
+            ...messages, 
+            { role: 'system', content: `User groups: ${JSON.stringify(groups)}` }, 
         ];
         const response = await fetch('https://api.openai.com/v1/chat/completions', {
             method: 'POST',
@@ -45,8 +45,9 @@ export async function POST(req) {
     } catch (error) {
    
         return NextResponse.json(
-            { error: 'Something went wrong' },
+            { error: 'Something went wrong',error },
             { status: 500 }
         );
+       
     }
 }

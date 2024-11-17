@@ -30,6 +30,7 @@ export default function Chat() {
             }
         } catch (error) {
             setMessages([...newMessages, { role: 'assistant', content: 'Error generating response.' }]);
+            console.error(error)
         }
     };
 
