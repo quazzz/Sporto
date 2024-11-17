@@ -159,7 +159,7 @@ export default function GroupCard({ group, onStartWorkout }) {
         {Array.isArray(exercises) && exercises.length > 0 ? (
           
           exercises.map((exercise) => (
-            <>
+         
             
              <ExerciseCardDashboard
               key={exercise.id}
@@ -174,7 +174,7 @@ export default function GroupCard({ group, onStartWorkout }) {
               kg={exercise.kg}
               instructions={exercise.instructions}
             />
-            </>
+           
            
           ))
           

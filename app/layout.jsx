@@ -6,7 +6,7 @@ import { AuthProvider } from "./Providers";
 import { Toaster } from "react-hot-toast";
 import LoadingPage from "../app/loading";
 import { Raleway } from 'next/font/google'
-
+import Chat from '@/components/Chat'
 const raleway = Raleway({subsets: ['latin']})
 export const metadata = {
   title: "Sporto",
@@ -24,6 +24,7 @@ export default function RootLayout({ children }) {
           <AuthProvider>
             <Navbar></Navbar>
             {children}
+            <Chat></Chat>
           </AuthProvider>
         </body>
       </Suspense>

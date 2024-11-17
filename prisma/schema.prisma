@@ -8,11 +8,14 @@ datasource db {
 }
 
 model User {
-  id        String   @id @map("_id") @db.ObjectId @default(auto())  // Automatically generates ObjectId for MongoDB
+  id        String   @id @map("_id") @db.ObjectId @default(auto())  
   name      String
   email     String   @unique
   password  String
-  createdAt DateTime @default(now())               // Automatically sets the current time
+  createdAt DateTime @default(now())           
+  groups    Group[]
+  record Record[]
+  submittedWorkouts SubmittedWorkouts[]
 }
 
 
@@ -20,6 +23,8 @@ model Group {
   id        String     @id @default(auto()) @map("_id") @db.ObjectId
   name      String
   userId    String     @db.ObjectId
+  user User @relation(fields: [userId],references: [id])
+  exercises Exercise[]
   
 }
 
@@ -36,11 +41,13 @@ model Exercise {
   reps String
   sets String
   kg String
+  group Group @relation(fields: [groupId],references: [id])
 }
 model Record {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   userId String @db.ObjectId
   recordName String
+  user User @relation(fields: [userId],references: [id])
   achievement String
 }
 model SubmittedWorkouts{
@@ -48,4 +55,5 @@ model SubmittedWorkouts{
   userId String @db.ObjectId
   workoutDate String
   groupName String
+  user User @relation(fields: [userId],references: [id])
 }
