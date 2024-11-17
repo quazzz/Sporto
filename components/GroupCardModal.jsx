@@ -102,7 +102,7 @@ export default function GroupModalCard({ exercise, onClose }) {
               {groups.map((group) => (
                 <>
                   <li
-                    key={group.id}
+                    key= {group.id}
                     onClick={() => setSelectedGroup(group.id)}
                     className="p-3 border rounded hover:bg-gray-50 cursor-pointer transition-colors"
                   >

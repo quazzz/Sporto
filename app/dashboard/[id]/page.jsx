@@ -83,7 +83,7 @@ export default function Page() {
         {workoutCompleted ? (
           <>
             <p className="mt-6 text-xl font-semibold text-green-600">
-              Congratulations, you've completed the workout!
+              Congratulations, youve completed the workout!
             </p>
             <button
               onClick={handleSubmit}

@@ -98,7 +98,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile menu */}
+
       <div className={clsx("md:hidden", { "block": isMenuOpen, "hidden": !isMenuOpen })}>
         {session ? (
           <div className="flex flex-col items-center space-y-2 py-4">

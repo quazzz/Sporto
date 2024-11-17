@@ -36,10 +36,13 @@ export default function CalendarComponent() {
 
     const tileClassName = ({ date, view }) => {
         if (view === 'month') {
-            const dateStr = date.toISOString().split('T')[0];
+            const dateStr = new Date(date.getTime() - date.getTimezoneOffset() * 60000)
+                .toISOString()
+                .split('T')[0];
             return dates.includes(dateStr) ? 'highlight' : null;
         }
     };
+    
 
     if (loading) {
         return <div className="loader w-50 h-50"></div>;  
@@ -51,7 +54,7 @@ export default function CalendarComponent() {
 
     return (
         <>
-        <h1>Your workout timeline</h1>
+        <h1 className="text-center mb-5 bg-white p-3 shadow-lg rounded">Your workout timeline</h1>
         <Calendar locale="en" tileClassName={tileClassName} />
 
         </>

@@ -186,6 +186,7 @@ export default function GroupCard({ group, onStartWorkout }) {
             </Link>
           </h1>
         )}
+        <button onClick={() => onStartWorkout(group.id)}>Start workout</button>
       </div>
 
       
