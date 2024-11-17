@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import RecordForm from "./RecordForm";
 import { useSession } from "next-auth/react";
 import RecordCard from './RecordCard';
+import CalendarComponent from '@/components/calendar';
 
 export default function RecordsPage() {
   const { data: session } = useSession();
@@ -33,18 +34,30 @@ export default function RecordsPage() {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-custom-lines p-8 sm:p-20 ">
-      <RecordForm />
-      <div className="mt-8 w-full flex flex-wrap gap-4 justify-center px-4">
+    <div className="flex flex-col items-center justify-start min-h-screen  p-8 sm:p-16">
+      <div className="w-full max-w-4xl mb-8">
+        <RecordForm />
+      </div>
+      <div className="w-full flex flex-wrap gap-6 justify-center px-4">
         {records.length > 0 ? (
           records.map((record) => (
-            <RecordCard key={record.id} name={record.recordName} record={record.achievement} id={record.id} />
+            <RecordCard 
+              key={record.id} 
+              name={record.recordName} 
+              record={record.achievement} 
+              id={record.id} 
+            />
           ))
         ) : (
-          <div className="flex items-center justify-center min-h-[200px]">
+          <div className="flex items-center justify-center min-h-[200px] w-full">
             <p className="text-center text-gray-600">No records found</p>
           </div>
         )}
+        <div className="w-full sm:w-[350px] mt-8 sm:mt-0">
+          <CalendarComponent />
+        </div>
       </div>
+    </div>
     </div>
   );
 }

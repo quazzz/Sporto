@@ -4,12 +4,19 @@ const prisma = new PrismaClient()
 export async function GET(req){
     const { searchParams } = new URL(req.url);
     const groupId = searchParams.get("groupId");
+    const group = await prisma.group.findFirst({
+        where: {
+            id: groupId
+        }
+    })
+    const groupName = group.name
     const exercises = await prisma.exercise.findMany({
         where: {
             groupId: groupId
         }
     })
-    return new NextResponse(JSON.stringify(exercises),{
+    const data = {groupName,exercises}
+    return new NextResponse(JSON.stringify(data),{
         status: 200,
         headers: {
             'Content-Type' : 'application/json'

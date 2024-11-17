@@ -27,9 +27,9 @@ export default function GroupModalCard({ exercise, onClose }) {
     fetchGroups();
   }, []);
 
-  const handleClose = (e) => {
+  const handleClose = () => {
     onClose();
-    e.stopPropagation();
+    
   };
 
   const handleModalClick = (e) => {
@@ -109,25 +109,28 @@ export default function GroupModalCard({ exercise, onClose }) {
                     {group.name}
                   </li>
                   {selectedGroup === group.id && (
-                    <>
+                    <div className="text-center">
+                      <p>Number of sets</p>
                       <input
-                        className="border p-1 rounded text-l  text-gray-900 mb-4"
+                        className="border p-1 rounded text-l  text-gray-900 mb-4 w-full"
                         value={sets}
-                        onChange={(e) => setSets(e.target.value)}
+                        onChange={e => setSets(e.target.value)}
                         type="text"
                         placeholder="Sets"
                       />
+                      <p>Number of reps</p>
                       <input
-                        className="border p-1 rounded text-l  text-gray-900 mb-4"
+                        className="border p-1 rounded text-l  text-gray-900 mb-4 w-full"
                         value={reps}
-                        onChange={(e) => setReps(e.target.value)}
+                        onChange={e => setReps(e.target.value)}
                         type="text"
                         placeholder="Reps"
                       />
+                      <p>Weight</p>
                       <input
-                        className="border p-1 rounded text-l  text-gray-900 mb-4"
+                        className="border p-1 rounded text-l  text-gray-900 mb-4 w-full"
                         value={kg}
-                        onChange={(e) => setKg(e.target.value)}
+                        onChange={e => setKg(e.target.value)}
                         type="text"
                         placeholder="Weight"
                       />
@@ -140,7 +143,7 @@ export default function GroupModalCard({ exercise, onClose }) {
                           +
                         </button>{" "}
                       </div>
-                    </>
+                    </div>
                   )}
                 </>
               ))}

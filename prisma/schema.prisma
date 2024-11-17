@@ -43,3 +43,9 @@ model Record {
   recordName String
   achievement String
 }
+model SubmittedWorkouts{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String @db.ObjectId
+  workoutDate String
+  groupName String
+}
