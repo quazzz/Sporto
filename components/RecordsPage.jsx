@@ -33,7 +33,7 @@ export default function RecordsPage() {
   }, [session]);
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-custom-lines p-8 sm:p-20 ">
+ 
     <div className="flex flex-col items-center justify-start min-h-screen  p-8 sm:p-16">
       <div className="w-full max-w-4xl mb-8">
         <RecordForm />
@@ -58,6 +58,6 @@ export default function RecordsPage() {
         </div>
       </div>
     </div>
-    </div>
+   
   );
 }

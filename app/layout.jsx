@@ -7,13 +7,16 @@ import { Toaster } from "react-hot-toast";
 import LoadingPage from "../app/loading";
 import { Raleway } from 'next/font/google'
 import Chat from '@/components/Chat'
+import { getServerSession } from "next-auth";
+import { authOptions } from "./api/auth/[...nextauth]/route";
 const raleway = Raleway({subsets: ['latin']})
 export const metadata = {
   title: "Sporto",
   description: "Sporto application",
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const session = await getServerSession(authOptions);
   return (
     <html lang="en">
       <Suspense fallback={<LoadingPage />}>
@@ -22,9 +25,12 @@ export default function RootLayout({ children }) {
         >
           <Toaster position="bottom-center" />
           <AuthProvider>
-            <Navbar></Navbar>
+            <Navbar/>
+            <div className="min-h-screen text-gray-900 flex items-center justify-center py-12 bg-custom-lines font-[family-name:var(--font-geist-sans)]">
             {children}
-            <Chat></Chat>
+            {session &&  <Chat/>}
+          
+            </div>
           </AuthProvider>
         </body>
       </Suspense>

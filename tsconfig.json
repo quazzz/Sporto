@@ -34,9 +34,9 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "components/LoginForm.jsx",
-    "app/layout.jsx",
+    "app/layout.tsx",
     "app/loading.jsx"
-  ],
+, "app/api/auth/[...nextauth]/route.js"  ],
   "exclude": [
     "node_modules"
   ]

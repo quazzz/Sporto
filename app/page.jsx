@@ -11,12 +11,12 @@ import {
 } from "@/components/ui/accordion";
 
 export default async function Home() {
-
+ 
   const session = await getServerSession(authOptions);
   if (session) redirect("/dashboard");
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-custom-lines p-8 sm:p-20 ">
+    <div className="flex items-center justify-center min-h-screen  p-8 sm:p-20 ">
       <main className="flex flex-col items-center gap-8 max-w-lg text-center">
         <h1 className="text-5xl font-bold ">
            Complete platform for sport

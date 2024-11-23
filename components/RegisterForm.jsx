@@ -40,7 +40,7 @@ export default function RegisterForm() {
   };
 
   return (
-    <div className="min-h-screen  text-gray-900 flex items-center justify-center py-12 bg-custom-lines font-[family-name:var(--font-geist-sans)]">
+   
       <div className="max-w-md w-full space-y-8">
         <div className="text-center">
           <h1 className="text-4xl font-bold">Create your account</h1>
@@ -144,6 +144,6 @@ export default function RegisterForm() {
           </p>
         </div>
       </div>
-    </div>
+ 
   );
 }

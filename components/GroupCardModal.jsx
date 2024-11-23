@@ -97,64 +97,63 @@ export default function GroupModalCard({ exercise, onClose }) {
         </div>
 
         <div className="mt-4">
-          {groups?.length > 0 ? (
-            <ul className="space-y-2">
-              {groups.map((group) => (
-                <>
-                  <li
-                    key= {group.id}
-                    onClick={() => setSelectedGroup(group.id)}
-                    className="p-3 border rounded hover:bg-gray-50 cursor-pointer transition-colors"
-                  >
-                    {group.name}
-                  </li>
-                  {selectedGroup === group.id && (
-                    <div className="text-center">
-                      <p>Number of sets</p>
-                      <input
-                        className="border p-1 rounded text-l  text-gray-900 mb-4 w-full"
-                        value={sets}
-                        onChange={e => setSets(e.target.value)}
-                        type="text"
-                        placeholder="Sets"
-                      />
-                      <p>Number of reps</p>
-                      <input
-                        className="border p-1 rounded text-l  text-gray-900 mb-4 w-full"
-                        value={reps}
-                        onChange={e => setReps(e.target.value)}
-                        type="text"
-                        placeholder="Reps"
-                      />
-                      <p>Weight</p>
-                      <input
-                        className="border p-1 rounded text-l  text-gray-900 mb-4 w-full"
-                        value={kg}
-                        onChange={e => setKg(e.target.value)}
-                        type="text"
-                        placeholder="Weight"
-                      />
-                      <br></br>
-                      <div className="text-center">
-                        <button
-                          className=" py-2 px-4 bg-black text-white text-base rounded focus:outline-none focus:ring-2 focus:ring-gray-300"
-                          onClick={() => handleClick(group.id)}
-                        >
-                          +
-                        </button>{" "}
-                      </div>
-                    </div>
-                  )}
-                </>
-              ))}
-              <div className="text-center">
-                <p className="text-center">Or</p>
-                <Link href="/dashboard" className="underline text-center">
-                  Create new group
-                </Link>
-              </div>
-            </ul>
-          ) : (
+        {groups?.length > 0 ? (
+  <ul className="space-y-2">
+    {groups.map((group) => (
+      <li
+        key={group.id} 
+        onClick={() => setSelectedGroup(group.id)}
+        className="p-3 border rounded hover:bg-gray-50 cursor-pointer transition-colors"
+      >
+        {group.name}
+
+       
+        {selectedGroup === group.id && (
+          <div className="text-center mt-4">
+            <p>Number of sets</p>
+            <input
+              className="border p-1 rounded text-l text-gray-900 mb-4"
+              value={sets}
+              onChange={(e) => setSets(e.target.value)}
+              type="text"
+              placeholder="Sets"
+            />
+            <p>Number of reps</p>
+            <input
+              className="border p-1 rounded text-l text-gray-900 mb-4"
+              value={reps}
+              onChange={(e) => setReps(e.target.value)}
+              type="text"
+              placeholder="Reps"
+            />
+            <p>Weight</p>
+            <input
+              className="border p-1 rounded text-l text-gray-900 mb-4 "
+              value={kg}
+              onChange={(e) => setKg(e.target.value)}
+              type="text"
+              placeholder="Weight"
+            />
+            <div className="text-center ">
+              <button
+                className="py-2 px-4 bg-black text-white text-base rounded focus:outline-none focus:ring-2 focus:ring-gray-300"
+                onClick={() => handleClick(group.id)}
+              >
+                +
+              </button>
+            </div>
+          </div>
+        )}
+      </li>
+    ))}
+    <div className="text-center mt-4">
+      <p>Or</p>
+      <Link href="/dashboard" className="underline">
+        Create new group
+      </Link>
+    </div>
+  </ul>
+) : (
             <>
               <p className="text-gray-600 text-center">
                 No groups found?{" "}

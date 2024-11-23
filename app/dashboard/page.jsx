@@ -10,6 +10,5 @@ export default async function Page() {
   }
 
   const userId = session?.user?.id;
-  console.log(userId, "cookie rookie");
   return <GroupPage userId={userId} />;
 }

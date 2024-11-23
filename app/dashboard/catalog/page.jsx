@@ -76,7 +76,7 @@ export default function Page() {
 
   return (
     <>
-      <div className="min-h-screen text-gray-900 flex flex-col items-center justify-center py-12 bg-custom-lines font-[family-name:var(--font-geist-sans)]">
+      <div className=" flex flex-col items-center justify-center py-12 mx-auto text-center">
         <div className="flex flex-wrap gap-4 justify-center mt-20 shadow-lg bg-white p-4 rounded">
           {checkboxOptions.map((option) => (
             <div className="flex items-center" key={option.id}>
@@ -105,7 +105,7 @@ export default function Page() {
           </span>
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
           {filteredExercises.length > 0 ? (
             filteredExercises.map((exercise) => (
               <ExerciseCard  onViewDetailsClick={openDetails} key={exercise.id} workout={exercise} onPlusClick={() => openModal(exercise)} />

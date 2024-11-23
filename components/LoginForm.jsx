@@ -55,7 +55,7 @@ export default function LoginForm() {
   };
 
   return (
-    <div className="min-h-screen text-gray-900 flex items-center justify-center py-12 bg-custom-lines font-[family-name:var(--font-geist-sans)]">
+    
       <div className="max-w-md w-full space-y-8">
         <div className="text-center">
           <h1 className="text-4xl font-bold">Welcome Back!</h1>
@@ -142,6 +142,6 @@ export default function LoginForm() {
           </p>
         </div>
       </div>
-    </div>
+    
   );
 }

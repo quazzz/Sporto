@@ -78,16 +78,16 @@ export default function Page() {
   };
 
   return (
-    <div className="min-h-screen text-gray-900 flex items-center justify-center py-12 bg-custom-lines font-[family-name:var(--font-geist-sans)]">
+    <div>
       <div className="min-h-screen flex flex-col items-center justify-center py-12">
         {workoutCompleted ? (
           <>
-            <p className="mt-6 text-xl font-semibold text-green-600">
+            <p className="mt-6 text-xl font-semibold text-black">
               Congratulations, youve completed the workout!
             </p>
             <button
               onClick={handleSubmit}
-              className="mt-4 w-full bg-blue-500 text-white py-2 rounded-lg font-medium shadow-lg hover:bg-blue-600 transition duration-300 ease-in-out"
+              className="mt-4 w-full bg-black text-white py-2 rounded-lg font-medium shadow-lg hover:bg-gray-950 transition duration-300 ease-in-out"
             >
               Submit Workout
             </button>

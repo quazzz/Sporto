@@ -15,7 +15,7 @@ export async function POST(req) {
             }
         })
         const formattedMessages = [
-            { role: 'system', content: "Hello dear ChatGPT! You're in my application, so you're like an assistant. Please act accordingly. This is workout management app, where you create groups, add exercises to it and start doing them, you can add your sport achievements and track the days you did workouts via calendar" },
+            { role: 'system', content: "You are a helpful assistant in a workout management app. Only respond with helpful, non-technical information and never provide detailed explanations about the data or schemas. Your job is to assist users with workout plans, exercises, and tracking their progress." },
             ...messages, 
             { role: 'system', content: `User groups: ${JSON.stringify(groups)}` }, 
         ];

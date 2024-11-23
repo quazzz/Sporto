@@ -56,17 +56,16 @@ export default function GroupCard({ group, onStartWorkout }) {
     fetchGroups();
   }, []);
   return (
-    <div className="w-64 max-w-xs sm:max-w-sm md:max-w-md rounded-lg overflow-hidden shadow-lg bg-white p-6 m-5 text-center">
-
+    <div className="max-w-sm rounded-lg shadow-md bg-white p-4 m-4 text-center">
       <div
-        className="border w-max rounded-full cursor-pointer p-2 transition-all duration-300 hover:bg-red-500 hover:text-white hover:shadow-xl inline-flex items-center justify-center"
+        className="border rounded-full cursor-pointer p-1.5 transition-all duration-200 hover:bg-red-500 hover:text-white inline-flex items-center justify-center shadow-sm"
         onClick={handleDelete}
         title="Delete Group"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
+          width="16"
+          height="16"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -85,9 +84,8 @@ export default function GroupCard({ group, onStartWorkout }) {
 
       {nameVisible ? (
         <>
-       
           <div
-            className="border w-max rounded-full cursor-pointer p-2 transition-all duration-300 hover:bg-blue-500 hover:text-white hover:shadow-xl inline-flex items-center justify-center ml-2"
+            className="border rounded-full cursor-pointer p-1.5 transition-all duration-200 hover:bg-blue-500 hover:text-white inline-flex items-center justify-center ml-2 shadow-sm"
             onClick={() =>
               nameVisible ? setNameVisible(false) : handleChangeName()
             }
@@ -95,8 +93,8 @@ export default function GroupCard({ group, onStartWorkout }) {
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
+              width="16"
+              height="16"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -110,18 +108,16 @@ export default function GroupCard({ group, onStartWorkout }) {
             </svg>
           </div>
 
-        
-          <div className="mt-3">
-            <h2 className="text-lg font-semibold text-gray-900 mb-3 inline-block align-middle">
+          <div className="mt-2">
+            <h2 className="text-base font-medium text-gray-800">
               {group.name}
             </h2>
           </div>
         </>
       ) : (
         <>
-       
           <div
-            className="border w-max rounded-full cursor-pointer p-2 transition-all duration-300 hover:bg-green-500 hover:text-white hover:shadow-xl inline-flex items-center justify-center ml-2"
+            className="border rounded-full cursor-pointer p-1.5 transition-all duration-200 hover:bg-green-500 hover:text-white inline-flex items-center justify-center ml-2 shadow-sm"
             onClick={() =>
               nameVisible ? setNameVisible(false) : handleChangeName()
             }
@@ -129,8 +125,8 @@ export default function GroupCard({ group, onStartWorkout }) {
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
+              width="16"
+              height="16"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -143,25 +139,20 @@ export default function GroupCard({ group, onStartWorkout }) {
             </svg>
           </div>
 
-    
           <input
             type="text"
             value={newName}
             onChange={(e) => setNewName(e.target.value)}
-            className="border p-2 rounded text-sm text-gray-900 mb-3 w-full mt-3"
+            className="border-b p-1 text-sm text-gray-700 w-full mt-2 placeholder-gray-400 focus:outline-none focus:border-gray-800"
             placeholder="Enter new name"
           />
         </>
       )}
 
-      <div className="mt-5 space-y-4">
-        
+      <div className="mt-4 space-y-3">
         {Array.isArray(exercises) && exercises.length > 0 ? (
-          
           exercises.map((exercise) => (
-         
-            
-             <ExerciseCardDashboard
+            <ExerciseCardDashboard
               key={exercise.id}
               name={exercise.name}
               gifUrl={exercise.gifUrl}
@@ -174,22 +165,24 @@ export default function GroupCard({ group, onStartWorkout }) {
               kg={exercise.kg}
               instructions={exercise.instructions}
             />
-           
-           
           ))
-          
         ) : (
-          <h1 className="text-sm text-gray-500">
+          <p className="text-xs text-gray-500">
             No exercises found. Find new in{" "}
             <Link href="/dashboard/catalog" className="underline">
               catalog
             </Link>
-          </h1>
+          </p>
         )}
-        <button onClick={() => onStartWorkout(group.id)}>Start workout</button>
+        {exercises.length > 1 && (
+          <button
+            className="mt-2 px-3 py-1 text-sm text-white bg-black rounded-md hover:bg-gray-950 transition-all"
+            onClick={() => onStartWorkout(group.id)}
+          >
+            Start workout
+          </button>
+        )}
       </div>
-
-      
     </div>
   );
 }
