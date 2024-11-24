@@ -35,7 +35,7 @@ export async function GET(req){
 export async function DELETE(req){
     const {searchParams} = new URL(req.url)
     const recordId = searchParams.get('recordId')
-    const record = await prisma.record.delete({
+    await prisma.record.delete({
         where: {
             id: recordId
         }

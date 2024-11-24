@@ -69,12 +69,12 @@ export async function DELETE(req) {
       where: { groupId: groupId },
     });
 
-    const group = await prisma.group.delete({
+    await prisma.group.delete({
       where: {
         id: groupId,
       },
     });
-
+    
     return new Response(
       JSON.stringify({ message: "Group and exercises deleted successfully" }),
       { status: 200, headers: { "Content-Type": "application/json" } }
@@ -98,7 +98,7 @@ export async function PUT(req) {
       headers: { "Content-Type": "application/json" },
     });
   }
-  const newgroup = await prisma.group.update({
+  await prisma.group.update({
     where: {
       id: groupid,
     },
