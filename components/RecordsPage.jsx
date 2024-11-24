@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import RecordForm from "./RecordForm";
 import { useSession } from "next-auth/react";
 import RecordCard from './RecordCard';
-import CalendarComponent from '@/components/calendar';
 
 export default function RecordsPage() {
   const { data: session } = useSession();
