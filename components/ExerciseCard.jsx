@@ -22,7 +22,7 @@ export default function ExerciseCard({ workout, onPlusClick, onViewDetailsClick 
     height={100}
     alt="Gif of workout"
   />
-  <p className="text-gray-800 text-lg mb-2">Keha osa: {bodypart}</p>
+  <p className="text-gray-800 text-lg mb-2">Bodypart: {bodypart}</p>
   <p className="text-gray-700 text-base mb-4">Target: {target0}</p>
   <p className="text-sm text-gray-500">Equipment: {equipment}</p>
   <div className="mt-4">

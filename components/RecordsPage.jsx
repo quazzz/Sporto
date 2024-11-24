@@ -38,7 +38,7 @@ export default function RecordsPage() {
       <div className="w-full max-w-4xl mb-8">
         <RecordForm />
       </div>
-      <div className="w-full flex flex-wrap gap-6 justify-center px-4">
+      <div className="w-full   text-center mx-auto px-4">
         {records.length > 0 ? (
           records.map((record) => (
             <RecordCard 
@@ -53,9 +53,7 @@ export default function RecordsPage() {
             <p className="text-center text-gray-600">No records found</p>
           </div>
         )}
-        <div className="w-full sm:w-[350px] mt-8 sm:mt-0">
-          <CalendarComponent />
-        </div>
+       
       </div>
     </div>
    

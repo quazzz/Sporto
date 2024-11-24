@@ -14,10 +14,16 @@ export async function POST(req) {
                 exercises: true
             }
         })
+        const achievments = await prisma.record.findMany({
+            where: {
+                userId: id
+            }
+        })
         const formattedMessages = [
             { role: 'system', content: "You are a helpful assistant in a workout management app. Only respond with helpful, non-technical information and never provide detailed explanations about the data or schemas. Your job is to assist users with workout plans, exercises, and tracking their progress." },
             ...messages, 
             { role: 'system', content: `User groups: ${JSON.stringify(groups)}` }, 
+            { role: 'system', content: `User achievements: ${JSON.stringify(achievments)}`}
         ];
         const response = await fetch('https://api.openai.com/v1/chat/completions', {
             method: 'POST',

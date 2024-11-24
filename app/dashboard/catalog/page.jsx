@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import ExerciseCard from "@/components/ExerciseCard";
 import GroupModalCard from "@/components/GroupCardModal";
+import debounce from 'lodash/debounce'
 import CatalogDetailsModal from '@/components/CatalogDetailsModal';
 export default function Page() {
   const [exercises, setExercises] = useState([]);
@@ -10,26 +11,22 @@ export default function Page() {
   const [modalOpen, setModalOpen] = useState(false); 
   const [selectedExercise, setSelectedExercise] = useState(null);
   const [isModalOpen,setIsModalOpen] = useState(false)
-  
+  const [search,setSearch] = useState('')
   const [detailModalOpen, setDetailModalOpen] = useState(false)
   const handleCheckboxChange = (e) => {
     const {value} = e.target
     setOptions(value)
   };
-  useEffect(() => {
-    console.log(selectedExercise)
-  },[selectedExercise])
+  
 
   const openModal = (exercise) => {
     if(isModalOpen) return;
-    console.log('Opening modal for', exercise)
     setSelectedExercise(exercise);
     setModalOpen(true);
     setIsModalOpen(true)
   };
 
   const closeModal = () => {
-    console.log('Closing modal')
     setSelectedExercise(null);
     setModalOpen(false);
     setIsModalOpen(false)
@@ -55,12 +52,16 @@ export default function Page() {
     };
     fetchWorkouts();
   }, []);
-
-  const filteredExercises = exercises.filter((exercise) => {
-    return (
-      options === "" || exercise.bodyPart.includes(options)
-    );
-  });
+  const handleSearch = useCallback(
+    debounce((value) => setSearch(value),300),[]
+  )
+  const filteredExercises = useMemo(() => {
+    return exercises.filter((exercise) => {
+      const matchesoptions = options === "" || exercise.bodyPart.includes(options)
+      const matchessearch = exercise.name.toLowerCase().includes(search.toLowerCase())
+      return matchesoptions && matchessearch
+    })
+  })
 
   const checkboxOptions = [
     { id: "back", label: "Back" },
@@ -73,7 +74,7 @@ export default function Page() {
     { id: "upper legs", label: "Upper legs" },
     { id: "waist", label: "Waist" },
   ];
-
+ 
   return (
     <>
       <div className=" flex flex-col items-center justify-center py-12 mx-auto text-center">
@@ -82,8 +83,9 @@ export default function Page() {
             <div className="flex items-center" key={option.id}>
               <input
                 className="mr-2 cursor-pointer"
-                type="radio"
+                type="checkbox"
                 id={option.id}
+               
                 value={option.id}
                 name="options"
                 onChange={handleCheckboxChange}
@@ -103,7 +105,11 @@ export default function Page() {
           <span className="font-semibold text-blue-600">
             {options.length > 0 ? options : "None"}
           </span>
-        </p>
+        </p> 
+    
+        <div className="mx-auto">
+          <input onChange={(e) => handleSearch(e.target.value)}  type="text" placeholder='Search'className="transition w-full px-4 py-2 mt-1 rounded-lg font-medium  border border-gray-300 placeholder-gray-500 text-sm focus:outline-none focus:border-black focus:bg-white"/>
+        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
           {filteredExercises.length > 0 ? (

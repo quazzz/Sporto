@@ -3,7 +3,7 @@ import { useState } from "react"
 import { useSession } from "next-auth/react";
 export default function Chat() {
     const {data: session} = useSession()
-    const [open,setOpen] = useState(true)
+    const [open,setOpen] = useState(false)
     const [messages, setMessages] = useState([
         { role: 'assistant', content: 'Hi! How can I assist you today?' },
     ]);
