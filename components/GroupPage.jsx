@@ -27,23 +27,27 @@ export default function GroupPage({ userId }) {
     router.push(`/dashboard/${groupId}`);
   };
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center  font-[var(--font-geist-sans)] py-12">
-      <div className="w-full max-w-md px-6 md:px-8 py-6">
+    <div className="min-h-screen flex flex-col lg:flex-row items-center justify-center  font-[var(--font-geist-sans)] p-4 sm:p-8 lg:p-12">
+      <div className="w-full max-w-md p-8  rounded-lg  mb-10 lg:mb-0 lg:mr-10">
         <GroupForm />
       </div>
 
-      <div className="mt-8 w-full flex flex-wrap gap-6 justify-center px-4 md:px-8">
-        {groups.map((group) => (
-          <GroupCard
-            key={group.id}
-            group={group}
-            onStartWorkout={handleStartWorkout}
-            className="w-full sm:w-80 md:w-96 bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
-          />
-        ))}
-      </div>
-      <div className="w-full sm:w-[350px] mt-8 sm:mt-0 mx-auto">
-        <CalendarComponent />
+      <div className="flex flex-col w-full lg:w-3/5 space-y-10">
+        <div className="flex flex-wrap gap-6 justify-center px-4 md:px-8 items-start">
+          {groups.map((group) => (
+            <GroupCard
+              key={group.id}
+              group={group}
+              onStartWorkout={handleStartWorkout}
+              className="w-full sm:w-72 md:w-80 lg:w-72 bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300"
+              style={{ alignSelf: "flex-start" }}
+            />
+          ))}
+        </div>
+
+        <div className="w-full sm:w-[350px] lg:w-[400px] mx-auto mt-10">
+          <CalendarComponent />
+        </div>
       </div>
     </div>
   );

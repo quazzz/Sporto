@@ -33,7 +33,7 @@ export default function RecordsPage() {
 
   return (
  
-    <div className="flex flex-col items-center justify-start min-h-screen  p-8 sm:p-16">
+    <div className="flex flex-col  items-center lg:flex-row sm:flex-col justify-start min-h-screen  p-8 sm:p-16">
       <div className="w-full max-w-4xl mb-8">
         <RecordForm />
       </div>

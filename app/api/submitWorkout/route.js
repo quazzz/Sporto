@@ -41,9 +41,10 @@ export async function GET(req) {
     });
 
     console.log(workouts);
+    const names = workouts.map((workout) => workout.groupName)
     const dates = workouts.map((workout) => workout.workoutDate);
     console.log(dates)
-    return new NextResponse(JSON.stringify({ dates }), { status: 200 });
+    return new NextResponse(JSON.stringify({ dates,names }), { status: 200 });
   } catch (error) {
     console.log(error);
     return new NextResponse("Error occurred", { status: 500 });
