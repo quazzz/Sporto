@@ -22,6 +22,7 @@ export default function RecordsPage() {
         }
         const json = await res.json();
         setRecords(json);
+        console.log(json)
       } catch (error) {
         console.error("Error fetching records:", error);
         setRecords([]); 
@@ -33,12 +34,13 @@ export default function RecordsPage() {
 
   return (
  
-    <div className="flex flex-col  items-center lg:flex-row sm:flex-col justify-start min-h-screen  p-8 sm:p-16">
-      <div className="w-full max-w-4xl mb-8">
+    <div className="min-h-screen flex flex-col lg:flex-row items-center justify-center  font-[var(--font-geist-sans)] p-4 sm:p-8 lg:p-12">
+      <div className="w-full max-w-md p-8  rounded-lg  mb-10 lg:mb-0 lg:mr-10">
         <RecordForm />
       </div>
-      <div className="w-full   text-center mx-auto px-4">
-        {records.length > 0 ? (
+      <div className="flex flex-col w-full lg:w-3/5 space-y-10">
+      <div className="flex flex-wrap gap-6 justify-center px-4 md:px-8 items-start">
+          {records.length > 0 ? (
           records.map((record) => (
             <RecordCard 
               key={record.id} 
@@ -52,6 +54,8 @@ export default function RecordsPage() {
             <p className="text-center text-gray-600">No records found</p>
           </div>
         )}
+      </div>
+      
        
       </div>
     </div>

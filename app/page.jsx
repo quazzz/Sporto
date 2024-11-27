@@ -52,16 +52,17 @@ export default async function Home() {
             <AccordionTrigger>How do I start?</AccordionTrigger>
             <AccordionContent>
               Try creating a new group and then start adding exercises to it
-              from the catalog! Very easy.
+              from the catalog! You can also add records in sports in the achievements.
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-2">
             <AccordionTrigger>What features are available?</AccordionTrigger>
             <AccordionContent>
-              You can manage workouts with access to AI-powered suggestions
-              tailored to your goals.
+              You can manage your workouts with access to AI-powered suggestions
+              and submit your own achievements in sports!
             </AccordionContent>
           </AccordionItem>
+          
         </Accordion>
       </main>
     </div>

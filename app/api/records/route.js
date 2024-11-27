@@ -40,7 +40,7 @@ export async function DELETE(req){
             id: recordId
         }
     })
-    return new NextResponse('All ok',record,{
+    return new NextResponse('All ok',{
         status: 200
     })
 }
