@@ -41,100 +41,93 @@ export default function Navbar() {
  
 
   return (
-    <nav className="bg-slate-50 shadow-md py-4 z-10 font-[family-name:var(--font-geist-sans)] fixed w-full">
-      <div className="max-w-7xl mx-auto flex justify-between items-center px-6">
-        <div className="text-xl font-semibold text-gray-800">
-          <Link href={pageConfig.home}>Sporto</Link>
-        </div>
+    <nav className="bg-slate-50 shadow-md py-4 z-10 fixed w-full">
+  <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+    {/* Logo */}
+    <div className="text-2xl font-semibold text-black">
+      <Link href={pageConfig.home} className="hover:text-gray-900 transition-colors">
+        Sporto
+      </Link>
+    </div>
 
-        
-        
+    {/* Mobile Menu Toggle */}
+    <div className="md:hidden flex items-center">
+      <button onClick={toggleMenu} className="text-black focus:outline-none">
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+      </button>
+    </div>
 
-        <div className="flex items-center md:hidden">
-          <button onClick={toggleMenu} className="text-gray-700 focus:outline-none">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
-            </svg>
-          </button>
-        </div>
-
-        <div className="hidden md:flex items-center space-x-4">
-          {session ? (
-            <>
-              <div className="flex-1 flex justify-center text-center items-center">
-                <span className="font-bold text-xl text-gray-700">Hello, {session.user.name}!</span>
-              </div>
-              {[
-                { href: pageConfig.dashboard, label: "Dashboard", path: "/dashboard" },
-                { href: pageConfig.catalog, label: "Catalog", path: "/dashboard/catalog" },
-                { href: pageConfig.records, label: "Achievements", path: "/dashboard/records"}
-              ].map(({ href, label, path }) => (
-                <Link key={label} href={href}>
-                  <span className={clsx("text-gray-700 hover:text-indigo-600 transition-colors duration-300", { "text-black font-semibold": isActive(path) })}>
-                    {label}
-                  </span>
-                </Link>
-              ))}
-              <button className="text-gray-700 hover:text-indigo-600 transition-colors duration-300" onClick={handleClick}>
-                Logout
-              </button>
-            </>
-          ) : (
-            <>
-              <div className="flex items-center space-x-4">
-                {[
-                  { href: pageConfig.login, label: "Login", path: "/login" },
-                  { href: pageConfig.register, label: "Register", path: "/register" }
-                ].map(({ href, label, path }) => (
-                  <Link key={label} href={href}>
-                    <span className={clsx("text-gray-700 hover:text-indigo-600 transition-colors duration-300", { "text-black font-semibold": isActive(path) })}>
-                      {label}
-                    </span>
-                  </Link>
-                ))}
-              </div>
-            </>
-          )}
-        </div>
-      </div>
-
-
-      <div className={clsx("md:hidden", { "block": isMenuOpen, "hidden": !isMenuOpen })}>
-        {session ? (
-          <div className="flex flex-col items-center space-y-2 py-4">
-            <div className="flex-1">
-              <span className="font-bold text-xl text-gray-700">Hello, {session.user.name}</span>
-            </div>
-            {[
-              { href: pageConfig.dashboard, label: "Dashboard", path: "/dashboard" },
-              { href: pageConfig.catalog, label: "Catalog", path: "/dashboard/catalog" },
-              { href: pageConfig.records, label: "Achievements", path: "/dashboard/records"}
-            ].map(({ href, label, path }) => (
-              <Link key={label} href={href}>
-                <span className={clsx("text-gray-700 hover:text-indigo-600 transition-colors duration-300", { "text-black font-semibold": isActive(path) })}>
-                  {label}
-                </span>
-              </Link>
-            ))}
-            <button className="text-gray-700 hover:text-indigo-600 transition-colors duration-300" onClick={handleClick}>
-              Logout
-            </button>
+    {/* Desktop Links */}
+    <div className="hidden md:flex items-center space-x-8">
+      {session ? (
+        <>
+          <div className="flex-1 text-center text-black">
+            <span className="font-semibold text-xl">{`Hello, ${session.user.name}!`}</span>
           </div>
-        ) : (
-          <div className="flex flex-col items-center space-y-2 py-4">
+          {[
+            { href: pageConfig.dashboard, label: "Dashboard", path: "/dashboard" },
+            { href: pageConfig.catalog, label: "Catalog", path: "/dashboard/catalog" },
+            { href: pageConfig.records, label: "Achievements", path: "/dashboard/records" }
+          ].map(({ href, label, path }) => (
+            <Link key={label} href={href} className={clsx("text-black hover:text-gray-900 transition-colors duration-300", { "font-semibold": isActive(path) })}>
+              {label}
+            </Link>
+          ))}
+          <button onClick={handleClick} className="text-black hover:text-gray-900 transition-colors duration-300">
+            Logout
+          </button>
+        </>
+      ) : (
+        <>
+          <div className="flex items-center space-x-4">
             {[
               { href: pageConfig.login, label: "Login", path: "/login" },
               { href: pageConfig.register, label: "Register", path: "/register" }
             ].map(({ href, label, path }) => (
-              <Link key={label} href={href}>
-                <span className={clsx("text-gray-700 hover:text-indigo-600 transition-colors duration-300", { "text-black font-semibold": isActive(path) })}>
-                  {label}
-                </span>
+              <Link key={label} href={href} className={clsx("text-black hover:text-gray-900 transition-colors duration-300", { "font-semibold": isActive(path) })}>
+                {label}
               </Link>
             ))}
           </div>
-        )}
+        </>
+      )}
+    </div>
+  </div>
+
+  {/* Mobile Menu */}
+  <div className={clsx("md:hidden", { "block": isMenuOpen, "hidden": !isMenuOpen })}>
+    {session ? (
+      <div className="flex flex-col items-center space-y-4 py-4 bg-teal-700">
+        <span className="font-semibold text-black text-xl">{`Hello, ${session.user.name}`}</span>
+        {[
+          { href: pageConfig.dashboard, label: "Dashboard", path: "/dashboard" },
+          { href: pageConfig.catalog, label: "Catalog", path: "/dashboard/catalog" },
+          { href: pageConfig.records, label: "Achievements", path: "/dashboard/records" }
+        ].map(({ href, label, path }) => (
+          <Link key={label} href={href} className={clsx("text-black hover:text-gray-900 transition-colors duration-300", { "font-semibold": isActive(path) })}>
+            {label}
+          </Link>
+        ))}
+        <button onClick={handleClick} className="text-black hover:text-gray-900 transition-colors duration-300">
+          Logout
+        </button>
       </div>
-    </nav>
+    ) : (
+      <div className="flex flex-col items-center space-y-4 py-4 bg-teal-700">
+        {[
+          { href: pageConfig.login, label: "Login", path: "/login" },
+          { href: pageConfig.register, label: "Register", path: "/register" }
+        ].map(({ href, label, path }) => (
+          <Link key={label} href={href} className={clsx("text-black hover:text-gray-900 transition-colors duration-300", { "font-semibold": isActive(path) })}>
+            {label}
+          </Link>
+        ))}
+      </div>
+    )}
+  </div>
+</nav>
+
   );
 }

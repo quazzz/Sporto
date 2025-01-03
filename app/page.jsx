@@ -11,60 +11,49 @@ import {
 } from "@/components/ui/accordion";
 
 export default async function Home() {
- 
   const session = await getServerSession(authOptions);
   if (session) redirect("/dashboard");
 
   return (
-    <div className="flex items-center justify-center min-h-screen  p-8 sm:p-20 ">
-      <main className="flex flex-col items-center gap-8 max-w-lg text-center">
-        <h1 className="text-5xl font-bold ">
-           Complete platform for sport
+    <div className="flex flex-col items-center justify-between min-h-screen  text-gray-900 p-8 sm:p-20 h-screen overflow-hidden">
+      
+
+      <main className="flex flex-col items-center text-center max-w-3xl mt-16">
+        <h1 className="text-7xl font-bold text-black mb-6 drop-shadow-md">
+          Elevate Your Workouts
         </h1>
+        <p className="text-xl text-black mb-10">
+          Discover AI-powered tools to manage your workouts and track your progress, all in one place.
+        </p>
 
-        <div className="mt-4">
-          <ol className="text-lg space-y-4">
-            <li>
-              Sporto provides workout exercise management with AI integration.
-            </li>
-
-            <li>
-              Start by{" "}
-              <Link href="/register">
-                <span className="p-2 bg-black text-white rounded-full hover:underline">
-                  registering
-                </span>
-              </Link>
-            </li>
-            <li className=" mt-4">or</li>
-            <li>
-              Logging in to existing{" "}
-              <Link href="/login">
-                <span className="p-2 bg-black text-white rounded-full hover:underline">
-                  account
-                </span>
-              </Link>
-            </li>
-          </ol>
+        <div className="flex space-x-6 mb-12">
+          <Link href="/register">
+            <p className="px-8 py-4 bg-black text-white text-lg rounded-full shadow-xl hover:bg-gray-800 transition">Get Started</p>
+          </Link>
+          <Link href="/login">
+            <p className="px-8 py-4 bg-white text-black text-lg rounded-full shadow-xl hover:bg-gray-100 transition">Log In</p>
+          </Link>
         </div>
-        <Accordion type="single" collapsible className="w-full max-w-md">
+
+        <Accordion type="single" collapsible className="w-full max-w-2xl bg-white rounded-lg shadow-lg p-6">
           <AccordionItem value="item-1">
-            <AccordionTrigger>How do I start?</AccordionTrigger>
-            <AccordionContent>
-              Try creating a new group and then start adding exercises to it
-              from the catalog! You can also add records in sports in the achievements.
+            <AccordionTrigger className="text-lg font-semibold text-gray-800">How do I start?</AccordionTrigger>
+            <AccordionContent className="text-gray-700 mt-2">
+              Create a group, add exercises from our extensive catalog, and start tracking your achievements today!
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-2">
-            <AccordionTrigger>What features are available?</AccordionTrigger>
-            <AccordionContent>
-              You can manage your workouts with access to AI-powered suggestions
-              and submit your own achievements in sports!
+            <AccordionTrigger className="text-lg font-semibold text-gray-800">What features are available?</AccordionTrigger>
+            <AccordionContent className="text-gray-700 mt-2">
+              Manage workouts with AI-powered suggestions, track progress, and share achievements with a supportive community.
             </AccordionContent>
           </AccordionItem>
-          
         </Accordion>
       </main>
+
+      <footer className="text-center text-white mt-20">
+        <p>&copy; {new Date().getFullYear()} Sporto. All rights reserved.</p>
+      </footer>
     </div>
   );
 }

@@ -56,58 +56,60 @@ export default function LoginForm() {
 
   return (
     
-      <div className="max-w-md w-full space-y-8">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold">Welcome Back!</h1>
+    <div className="flex flex-col items-center justify-center min-h-screen p-8">
+    <div className="max-w-lg w-full bg-white shadow-lg rounded-xl p-8">
+      <div className="text-center">
+        <h1 className="text-4xl font-bold text-gray-800 mb-4">Welcome Back!</h1>
+        <p className="text-gray-600">Log in to continue your workout journey</p>
+      </div>
+      <form
+        onSubmit={handleSubmit}
+        className="space-y-6 mt-8"
+      >
+        <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
+  
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Email Address
+          </label>
+          <input
+            type="email"
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm bg-gray-100 focus:ring-2 focus:ring-gray-900 focus:outline-none transition"
+            placeholder="Enter your email"
+          />
         </div>
-        <form
-          onSubmit={handleSubmit}
-          className="bg-white shadow sm:rounded-lg px-8 py-10"
+  
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Password
+          </label>
+          <input
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm bg-gray-100 focus:ring-2 focus:ring-gray-900 focus:outline-none transition"
+            placeholder="Enter your password"
+          />
+        </div>
+  
+        <button
+          type="submit"
+          className="w-full py-3 bg-black text-white font-medium rounded-lg hover:bg-gray-900 transition focus:ring-2 focus:ring-purple-400 focus:outline-none"
         >
-          <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
-
-          <div className="mb-6">
-            <label className="block text-sm font-medium text-gray-700">
-              Your Email
-            </label>
-            <input
-              onChange={(e) => setEmail(e.target.value)}
-              
-              className="transition w-full px-4 py-3 mt-1 rounded-lg font-medium bg-gray-100 border border-gray-300 placeholder-gray-500 text-sm focus:outline-none focus:border-black focus:bg-white"
-              placeholder="Email"
-            />
-          </div>
-
-          <div className="mb-6">
-            <label className="block text-sm font-medium text-gray-700">
-              Password
-            </label>
-            <input
-              onChange={(e) => setPassword(e.target.value)}
-              type="password"
-              className="transition w-full px-4 py-3 mt-1 rounded-lg font-medium bg-gray-100 border border-gray-300 placeholder-gray-500 text-sm focus:outline-none focus:border-black focus:bg-white"
-              placeholder="Password"
-            />
-          </div>
-
-          <div className="flex items-center justify-between">
-            <button
-              type="submit"
-              className="transition w-full py-2 bg-black text-white font-semibold rounded-lg hover:bg-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2"
-            >
-              Log in
-            </button>
-          </div>
-
-          <h2 className="text-sm text-gray-600 text-center mt-4 ">or you can login with</h2>
-          <div className="mx-auto text-center cursor-pointer w-max mt-2 border rounded-full" onClick={async() => signIn('google',{callbackUrl: 'https://loovtoo.onrender/dashboard'})}>
+          Log In
+        </button>
+  
+        <div className="text-center text-sm text-gray-600 mt-4">or continue with</div>
+        <div
+          className="flex items-center justify-center mt-4 cursor-pointer bg-gray-100 rounded-lg px-4 py-2 shadow hover:bg-gray-200 transition"
+          onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            x="0px"
-            y="0px"
-            width="30"
-            height="30"
+            width="24"
+            height="24"
             viewBox="0 0 48 48"
+            className="mr-2"
           >
             <path
               fill="#FFC107"
@@ -126,22 +128,24 @@ export default function LoginForm() {
               d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"
             ></path>
           </svg>
-          </div>
-          
-          
-        </form>
-
-        <div className="text-center">
-          <p className="text-sm text-gray-600">
-            Dont have an account?{" "}
-            <Link href="/register">
-              <span className="underline text-black hover:text-black">
-                Sign up here
-              </span>
-            </Link>
-          </p>
+          <span className="font-medium text-gray-700">Continue with Google</span>
         </div>
+      </form>
+  
+      <div className="text-center mt-6">
+        <p className="text-sm text-gray-600">
+          Don't have an account?{" "}
+          </p>
+          <Link href="/register">
+            <p className="text-black font-medium hover:underline text-sm">
+              Sign up here
+            </p>
+          </Link>
+     
       </div>
+    </div>
+  </div>
+  
     
   );
 }
