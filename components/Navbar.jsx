@@ -43,14 +43,11 @@ export default function Navbar() {
   return (
     <nav className="bg-slate-50 shadow-md py-4 z-10 fixed w-full">
   <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-    {/* Logo */}
     <div className="text-2xl font-semibold text-black">
       <Link href={pageConfig.home} className="hover:text-gray-900 transition-colors">
         Sporto
       </Link>
     </div>
-
-    {/* Mobile Menu Toggle */}
     <div className="md:hidden flex items-center">
       <button onClick={toggleMenu} className="text-black focus:outline-none">
         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -58,8 +55,6 @@ export default function Navbar() {
         </svg>
       </button>
     </div>
-
-    {/* Desktop Links */}
     <div className="hidden md:flex items-center space-x-8">
       {session ? (
         <>
@@ -95,8 +90,6 @@ export default function Navbar() {
       )}
     </div>
   </div>
-
-  {/* Mobile Menu */}
   <div className={clsx("md:hidden", { "block": isMenuOpen, "hidden": !isMenuOpen })}>
     {session ? (
       <div className="flex flex-col items-center space-y-4 py-4 bg-teal-700">

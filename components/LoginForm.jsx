@@ -99,7 +99,7 @@ export default function LoginForm() {
           Log In
         </button>
   
-        <div className="text-center text-sm text-gray-600 mt-4">or continue with</div>
+        <div className="text-center text-sm text-gray-600 mt-4">or login with</div>
         <div
           className="flex items-center justify-center mt-4 cursor-pointer bg-gray-100 rounded-lg px-4 py-2 shadow hover:bg-gray-200 transition"
           onClick={() => signIn("google", { callbackUrl: "/dashboard" })}

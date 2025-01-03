@@ -62,7 +62,7 @@ export default function RegisterForm() {
   <div className="max-w-lg w-full bg-white shadow-lg rounded-xl p-8">
     <div className="text-center">
       <h1 className="text-4xl font-bold text-gray-800 mb-4">Create an Account</h1>
-      <p className="text-gray-600">Join us to elevate your fitness journey!</p>
+      <p className="text-gray-600">Join us to elevate your workout journey!</p>
     </div>
     <form onSubmit={handleSubmit} className="space-y-6 mt-8">
       <div>
@@ -116,7 +116,7 @@ export default function RegisterForm() {
         Sign Up
       </button>
 
-      <div className="text-center text-sm text-gray-600 mt-4">or continue with</div>
+      <div className="text-center text-sm text-gray-600 mt-4">or register with</div>
       <div
         className="flex items-center justify-center mt-4 cursor-pointer bg-gray-100 rounded-lg px-4 py-2 shadow hover:bg-gray-200 transition"
         onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
