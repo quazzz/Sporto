@@ -13,13 +13,10 @@ export default function RegisterForm() {
   const [confirm, setConfirm] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [valid, setValid] = useState(false);
+  
   //handle button click
   const handleSubmit = async (e) => {
-    if (!valid) {
-      toast("Email is not valid");
-      return;
-    }
+
     if (confirm != password) {
       toast("Passwords are not the same");
       return;
