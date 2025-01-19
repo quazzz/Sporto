@@ -9,6 +9,7 @@ export default function CalendarComponent() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [names, setNames] = useState([]);
+
   useEffect(() => {
     const fetchSubmitted = async () => {
       if (!session) return;
@@ -49,6 +50,7 @@ export default function CalendarComponent() {
       return dates.includes(dateStr) ? "highlight" : null;
     }
   };
+
   const tileContent = ({ date, view }) => {
     if (view === "month") {
       const dateStr = new Date(
@@ -60,8 +62,8 @@ export default function CalendarComponent() {
       if (idx > -1) {
         const name = names[idx];
         return (
-          <div title={name}>
-            <span title={name}></span>
+          <div className="text-center text-xs font-semibold text-white bg-green-500 rounded-full w-6 h-6 flex items-center justify-center mx-auto">
+            {name.slice(0, 2)}..
           </div>
         );
       }
@@ -69,23 +71,34 @@ export default function CalendarComponent() {
   };
 
   if (loading) {
-    return <div className="loader w-50 h-50"></div>;
+    return (
+      <div className="flex justify-center items-center h-full">
+        <div className="loader border-4 border-t-4 border-gray-500 rounded-full w-12 h-12 animate-spin"></div>
+      </div>
+    );
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return (
+      <div className="text-center text-red-500">
+        <p>Error: {error}</p>
+      </div>
+    );
   }
 
   return (
     <>
-      <h1 className="text-center mb-5 bg-white p-3 shadow-lg rounded">
+      <h1 className="text-center mb-5 bg-gradient-to-r from-blue-600 to-blue-800 p-3 text-white rounded shadow-lg">
         Your workout timeline
       </h1>
-      <Calendar
-        locale="en"
-        tileClassName={tileClassName}
-        tileContent={tileContent}
-      />
+      <div className="react-calendar-wrapper bg-gradient-to-b from-gray-900 to-black p-4 rounded-xl">
+        <Calendar
+          locale="en"
+          tileClassName={tileClassName}
+          tileContent={tileContent}
+          className="react-calendar rounded-xl shadow-md  bg-gradient-to-b from-gray-900 to-black text-white"
+        />
+      </div>
     </>
   );
 }

@@ -43,7 +43,6 @@ export async function POST(req){
       kg: kg
     }
   })
-  console.log(newex)
   return new NextResponse('All good')
 
 }

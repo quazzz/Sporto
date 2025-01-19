@@ -27,7 +27,6 @@ export async function POST(req) {
 export async function GET(req) {
   const { searchParams } = new URL(req.url);
   const userId = searchParams.get("userId");
-  console.log(userId);
 
   if (!userId) {
     return new NextResponse("No session", { status: 401 });
@@ -40,10 +39,8 @@ export async function GET(req) {
       },
     });
 
-    console.log(workouts);
     const names = workouts.map((workout) => workout.groupName)
     const dates = workouts.map((workout) => workout.workoutDate);
-    console.log(dates)
     return new NextResponse(JSON.stringify({ dates,names }), { status: 200 });
   } catch (error) {
     console.log(error);

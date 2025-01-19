@@ -18,7 +18,7 @@
     aspect-ratio: 1;
     border-radius: 50%;
     border: 8px solid;
-    border-color: #000 #0000;
+    border-color: white #e7f3ff ;
     animation: l1 1s infinite;
 }
 @keyframes l1 {to{transform: rotate(.5turn)}}
@@ -136,7 +136,7 @@
   transition: background-color 0.3s ease, transform 0.3s ease; 
 }
 .react-calendar__tile:hover {
-  background-color: #f0f0f0; 
+  
   transform: scale(1.05);
 }
 @media (max-width: 600px) {

@@ -51,7 +51,7 @@ export default function RecordsPage() {
           ))
         ) : (
           <div className="flex items-center justify-center min-h-[200px] w-full">
-            <p className="text-center text-gray-600">No records found</p>
+            <p className="text-center text-white">No records found</p>
           </div>
         )}
       </div>

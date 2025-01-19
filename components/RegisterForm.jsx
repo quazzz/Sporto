@@ -10,17 +10,11 @@ export default function RegisterForm() {
   const router = useRouter();
   //set states for fetching them in future
   const [name, setName] = useState("");
-  const [confirm, setConfirm] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   
   //handle button click
   const handleSubmit = async (e) => {
-
-    if (confirm != password) {
-      toast("Passwords are not the same");
-      return;
-    }
     // prevent page from reloading
     e.preventDefault();
     // check for fields
@@ -48,66 +42,56 @@ export default function RegisterForm() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-8">
-  <div className="max-w-lg w-full bg-white shadow-lg rounded-xl p-8">
+  <div className="max-w-lg w-full  bg-gradient-to-b from-gray-900 to-black shadow-lg rounded-xl p-8">
     <div className="text-center">
-      <h1 className="text-4xl font-bold text-gray-800 mb-4">Create an Account</h1>
-      <p className="text-gray-600">Join us to elevate your workout journey!</p>
+      <h1 className="text-4xl font-bold text-white mb-4">Create an Account</h1>
+      <p className="text-gray-400">Join us to elevate your workout journey!</p>
     </div>
     <form onSubmit={handleSubmit} className="space-y-6 mt-8">
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-gray-300 mb-2">
           First name
         </label>
         <input
           type="text"
           onChange={(e) => setName(e.target.value)}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm bg-gray-100 focus:ring-2 focus:ring-gray-900 focus:outline-none transition"
+          className="w-full px-4 py-3 border border-gray-700 rounded-lg text-sm bg-gray-700 text-gray-300 placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition"
           placeholder="Enter your first name"
         />
       </div>
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-gray-300 mb-2">
           Email Address
         </label>
         <input
           type="email"
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm bg-gray-100 focus:ring-2 focus:ring-gray-900 focus:outline-none transition"
+          className="w-full px-4 py-3 border border-gray-700 rounded-lg text-sm bg-gray-700 text-gray-300 placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition"
           placeholder="Enter your email"
         />
       </div>
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-gray-300 mb-2">
           Password
         </label>
         <input
           type="password"
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm bg-gray-100 focus:ring-2 focus:ring-gray-900 focus:outline-none transition"
+          className="w-full px-4 py-3 border border-gray-700 rounded-lg text-sm bg-gray-700 text-gray-300 placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition"
           placeholder="Create a password"
         />
       </div>
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
-          Confirm Password
-        </label>
-        <input
-          type="password"
-          onChange={(e) => setConfirm(e.target.value)}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm bg-gray-100 focus:ring-2 focus:ring-gray-900 focus:outline-none transition"
-          placeholder="Confirm your password"
-        />
-      </div>
+
       <button
         type="submit"
-        className="w-full py-3 bg-black text-white font-medium rounded-lg hover:bg-gray-900 transition focus:ring-2 focus:ring-purple-400 focus:outline-none"
+        className="w-full py-3 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-500 transition focus:ring-2 focus:ring-indigo-400 focus:outline-none"
       >
         Sign Up
       </button>
 
-      <div className="text-center text-sm text-gray-600 mt-4">or register with</div>
+      <div className="text-center text-sm text-gray-400 mt-4">or register with</div>
       <div
-        className="flex items-center justify-center mt-4 cursor-pointer bg-gray-100 rounded-lg px-4 py-2 shadow hover:bg-gray-200 transition"
+        className="flex items-center justify-center mt-4 cursor-pointer  hover:bg-indigo-500 bg-indigo-600 rounded-lg px-4 py-2 shadow hover:bg-gray-200 transition "
         onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
       >
         <svg
@@ -134,15 +118,15 @@ export default function RegisterForm() {
             d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"
           ></path>
         </svg>
-        <span className="font-medium text-gray-700">Continue with Google</span>
+        <span className="font-medium text-gray-300">Continue with Google</span>
       </div>
     </form>
 
     <div className="text-center mt-6">
-      <p className="text-sm text-gray-600">
+      <p className="text-sm text-gray-300">
         Already have an account?{" "}
         <Link href="/login">
-          <span className="text-black font-medium hover:underline text-sm">
+          <span className="text-indigo-500 font-medium hover:underline text-sm">
             Log in here
           </span>
         </Link>

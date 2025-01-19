@@ -41,7 +41,6 @@ export async function POST(req) {
         password: hashed,
       },
     });
-    console.log(user)
     // if all ok then send response with status code 200
     return new Response(
       JSON.stringify({ message: "Data received successfully" }),

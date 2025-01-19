@@ -77,67 +77,76 @@ export default function Page() {
  
   return (
     <>
-      <div className=" flex flex-col items-center justify-center py-12 mx-auto text-center">
-        <div className="flex flex-wrap gap-4 justify-center mt-20 shadow-lg bg-white p-4 rounded">
-          {checkboxOptions.map((option) => (
-            <div className="flex items-center" key={option.id}>
-              <input
-                className="mr-2 cursor-pointer"
-                type="checkbox"
-                id={option.id}
-               
-                value={option.id}
-                name="options"
-                onChange={handleCheckboxChange}
-              />
-              <label
-                className="text-lg cursor-pointer hover:text-blue-600 transition"
-                htmlFor={option.id}
-              >
-                {option.label}
-              </label>
-            </div>
-          ))}
-        </div>
-
-        <p className="mt-6 text-lg font-medium">
-          Selected muscles:{" "}
-          <span className="font-semibold text-blue-600">
-            {options.length > 0 ? options : "None"}
-          </span>
-        </p> 
-    
-        <div className="mx-auto">
-          <input onChange={(e) => handleSearch(e.target.value)}  type="text" placeholder='Search'className="transition w-full px-4 py-2 mt-1 rounded-lg font-medium  border border-gray-300 placeholder-gray-500 text-sm focus:outline-none focus:border-black focus:bg-white"/>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
-          {filteredExercises.length > 0 ? (
-            filteredExercises.map((exercise) => (
-              <ExerciseCard  onViewDetailsClick={openDetails} key={exercise.id} workout={exercise} onPlusClick={() => openModal(exercise)} />
-            ))
-          ) : (
-            <p>No workouts found</p>
-          )}
-        </div>
-
-        {modalOpen && (
-        
-            <GroupModalCard exercise={selectedExercise} key={selectedExercise.id} onClose={closeModal} modalOpen={modalOpen} />
-        )}
-        {detailModalOpen && (
-          <CatalogDetailsModal 
-            name={selectedExercise.name}
-            target={selectedExercise.target}
-            bodyPart={selectedExercise.bodyPart}
-            secondaryMuscles={selectedExercise.secondaryMuscles}
-            gifUrl={selectedExercise.gifUrl}
-            equipment={selectedExercise.equipment}
-            instructions={selectedExercise.instructions}
-            onClose={closeDetails} 
-          />
-        )}
+     <div className="flex flex-col items-center justify-center py-12 px-6 mx-auto text-center">
+  <div className="flex flex-wrap gap-4 justify-center mt-10 shadow-lg bg-gradient-to-r from-gray-100 via-white to-gray-100 p-6 rounded-lg">
+    {checkboxOptions.map((option) => (
+      <div className="flex items-center" key={option.id}>
+        <input
+          className="mr-3 cursor-pointer accent-blue-600"
+          type="checkbox"
+          id={option.id}
+          value={option.id}
+          name="options"
+          onChange={handleCheckboxChange}
+        />
+        <label
+          className="text-lg cursor-pointer hover:text-blue-600 transition-all duration-200"
+          htmlFor={option.id}
+        >
+          {option.label}
+        </label>
       </div>
+    ))}
+  </div>
+
+
+
+  <div className="w-full max-w-md mt-6">
+    <input
+      onChange={(e) => handleSearch(e.target.value)}
+      type="text"
+      placeholder="Search for workouts"
+      className="w-full px-4 py-2 text-sm border border-gray-300 rounded-lg placeholder-gray-500 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-200"
+    />
+  </div>
+
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8 mb-8 w-full px-4">
+    {filteredExercises.length > 0 ? (
+      filteredExercises.map((exercise) => (
+        <ExerciseCard
+          key={exercise.id}
+          workout={exercise}
+          onPlusClick={() => openModal(exercise)}
+          onViewDetailsClick={openDetails}
+        />
+      ))
+    ) : (
+      <p className="text-gray-500 col-span-full">No workouts found</p>
+    )}
+  </div>
+
+  {modalOpen && (
+    <GroupModalCard
+      exercise={selectedExercise}
+      key={selectedExercise.id}
+      onClose={closeModal}
+      modalOpen={modalOpen}
+    />
+  )}
+  {detailModalOpen && (
+    <CatalogDetailsModal
+      name={selectedExercise.name}
+      target={selectedExercise.target}
+      bodyPart={selectedExercise.bodyPart}
+      secondaryMuscles={selectedExercise.secondaryMuscles}
+      gifUrl={selectedExercise.gifUrl}
+      equipment={selectedExercise.equipment}
+      instructions={selectedExercise.instructions}
+      onClose={closeDetails}
+    />
+  )}
+</div>
+
     </>
   );
 }

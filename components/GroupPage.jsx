@@ -4,16 +4,17 @@ import GroupCard from "@/components/GroupCard";
 import GroupForm from "@/components/GroupForm";
 import CalendarComponent from "./calendar";
 import { useRouter } from "next/navigation";
+
 export default function GroupPage({ userId }) {
   const [groups, setGroups] = useState([]);
   const router = useRouter();
+
   useEffect(() => {
     const fetchGroups = async () => {
       try {
         const res = await fetch(`/api/group?userId=${userId}`);
         const data = await res.json();
         console.log(data);
-
         setGroups(data);
       } catch (error) {
         console.error(error);
@@ -23,13 +24,19 @@ export default function GroupPage({ userId }) {
       fetchGroups();
     }
   }, [userId]);
+
+  const handleAddGroup = (newGroup) => {
+    setGroups((prevGroups) => [...prevGroups, newGroup]);
+  };
+
   const handleStartWorkout = (groupId) => {
     router.push(`/dashboard/${groupId}`);
   };
+
   return (
-    <div className="min-h-screen flex flex-col lg:flex-row items-center justify-center  font-[var(--font-geist-sans)] p-4 sm:p-8 lg:p-12">
-      <div className="w-full max-w-md p-8  rounded-lg  mb-10 lg:mb-0 lg:mr-10">
-        <GroupForm />
+    <div className="min-h-screen flex flex-col lg:flex-row   items-center justify-center font-[var(--font-geist-sans)] p-4 sm:p-8 lg:p-12">
+      <div className="w-full max-w-md p-8 rounded-lg mb-10 lg:mb-0 lg:mr-10">
+        <GroupForm onAddGroup={handleAddGroup} />
       </div>
 
       <div className="flex flex-col w-full lg:w-3/5 space-y-10">
