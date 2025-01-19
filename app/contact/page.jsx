@@ -6,7 +6,7 @@ export default function Page() {
     <div className="max-w-lg w-full  bg-gradient-to-b from-gray-900 to-black shadow-lg rounded-xl p-8">
       <div className="text-center">
         <h1 className="text-4xl font-bold text-white mb-4">Contact Us</h1>
-        <p className="text-gray-400">We'd love to hear from you! Please fill out the form below.</p>
+        <p className="text-gray-400">We would love to hear from you! Please fill out the form below.</p>
       </div>
       <form
         action="https://formspree.io/f/xannazwk"

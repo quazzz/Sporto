@@ -15,7 +15,7 @@ export async function POST(req) {
     );
   }
   // creating new group in db via prisma
-  const group = await prisma.group.create({
+  await prisma.group.create({
     data: {
       name: namer,
       userId: id,

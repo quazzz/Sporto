@@ -7,7 +7,6 @@ import { Toaster } from "react-hot-toast";
 import LoadingPage from "../app/loading";
 import { Raleway } from 'next/font/google'
 import Chat from '@/components/Chat'
-import clsx from "clsx";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
 const raleway = Raleway({subsets: ['latin']})
