@@ -103,7 +103,7 @@ export default function GroupModalCard({ exercise, onClose }) {
               <li
                 key={group.id}
                 onClick={() => setSelectedGroup(group.id)}
-                className={`p-4 border rounded-lg cursor-pointer transition-colors ${
+                className={`p-4 border border-gray-950 rounded-lg cursor-pointer transition-colors ${
                   selectedGroup === group.id
                     ? "bg-gradient-to-b from-gray-800 to-black text-white"
                     : "hover:bg-gray-700 text-gray-300"
@@ -115,7 +115,7 @@ export default function GroupModalCard({ exercise, onClose }) {
                   <div className="mt-4">
                     <p className="text-sm text-gray-400 mb-1">Number of sets</p>
                     <input
-                      className="border bg-gray-900 text-gray-100 p-2 rounded-lg w-full mb-4 focus:outline-none focus:ring focus:ring-blue-600"
+                      className="transition-full border border-gray-950 bg-gray-900 text-gray-100 p-2 rounded-lg w-full mb-4 focus:outline-none focus:ring focus:ring-blue-600"
                       value={sets}
                       onChange={(e) => setSets(e.target.value)}
                       type="text"
@@ -123,7 +123,7 @@ export default function GroupModalCard({ exercise, onClose }) {
                     />
                     <p className="text-sm text-gray-400 mb-1">Number of reps</p>
                     <input
-                      className="border bg-gray-900 text-gray-100 p-2 rounded-lg w-full mb-4 focus:outline-none focus:ring focus:ring-blue-600"
+                      className="border border-gray-950 bg-gray-900 text-gray-100 p-2 rounded-lg w-full mb-4 focus:outline-none focus:ring focus:ring-blue-600"
                       value={reps}
                       onChange={(e) => setReps(e.target.value)}
                       type="text"
@@ -131,7 +131,7 @@ export default function GroupModalCard({ exercise, onClose }) {
                     />
                     <p className="text-sm text-gray-400 mb-1">Weight</p>
                     <input
-                      className="border bg-gray-900 text-gray-100 p-2 rounded-lg w-full mb-4 focus:outline-none focus:ring focus:ring-blue-600"
+                      className="border border-gray-950 bg-gray-900 text-gray-100 p-2 rounded-lg w-full mb-4 focus:outline-none focus:ring focus:ring-blue-600"
                       value={kg}
                       onChange={(e) => setKg(e.target.value)}
                       type="text"
