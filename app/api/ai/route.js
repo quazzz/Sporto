@@ -52,7 +52,7 @@ async function analyzeIntent(message) {
     return parsedContent;
   } catch (error) {
     console.error("Failed to parse OpenAI response content:", data.choices[0]?.message?.content);
-    throw new Error("Invalid JSON in OpenAI response");
+    throw new Error("Invalid JSON in OpenAI response",error);
   }
 }
 
