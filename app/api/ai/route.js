@@ -13,27 +13,7 @@ const bodyPartsMappingForAI = [
   "waist",
 ];
 
-const targetList = [
-  "abductors",
-  "abs",
-  "adductors",
-  "biceps",
-  "calves",
-  "cardiovascular system",
-  "delts",
-  "forearms",
-  "glutes",
-  "hamstrings",
-  "lats",
-  "levator scapulae",
-  "pectorals",
-  "quads",
-  "serratus anterior",
-  "spine",
-  "traps",
-  "triceps",
-  "upper back",
-];
+
 
 async function analyzeIntent(message) {
   const messages = [
@@ -76,7 +56,7 @@ async function analyzeIntent(message) {
   }
 }
 
-import { shuffle } from 'lodash'; // Use Lodash for shuffling (install with `npm install lodash`)
+import { shuffle } from 'lodash'; 
 
 async function createGroupWithExercises(userId, groupName, muscleGroup) {
   try {
@@ -124,7 +104,7 @@ async function createGroupWithExercises(userId, groupName, muscleGroup) {
       kg: "10-15",
       groupId: group.id,
     }));
-
+ 
     await prisma.exercise.createMany({
       data: exerciseData,
     });
