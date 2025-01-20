@@ -2,45 +2,50 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import ExerciseCardDashboard from "@/components/ExerciseCardDashboard";
-export default function GroupCard({ group, onStartWorkout }) {
+export default function GroupCard({ group, onStartWorkout,handleDeleteGroup,handleChange }) {
   const [nameVisible, setNameVisible] = useState(true);
   const [newName, setNewName] = useState("");
   const [exercises, setExercises] = useState([]);
   const handleDelete = async () => {
     try {
-      const groupid = group.id;
-      const res = await fetch(`/api/group?id=${groupid}`, {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-      });
-      if (!res.ok) {
-        console.log("An error occured trying to delete");
-        return 0;
-      }
-      window.location.reload();
-      return;
+        const groupid = group.id;
+        console.log(groupid)
+        const res = await fetch(`/api/group?id=${groupid}`, {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" },
+        });
+        console.log(res)
+        if (!res.ok) {
+            console.log("An error occurred while deleting");
+            return;
+        }
+        handleDeleteGroup(groupid);
     } catch (error) {
-      console.error(error);
+        console.error(error);
     }
-  };
-  const handleChangeName = async () => {
+};
+
+const handleChangeName = async () => {
     try {
-      const groupid = group.id;
-      console.log(groupid);
-      const res = await fetch(`/api/group?id=${groupid}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: newName }),
-      });
-      if (!res.ok) {
-        console.error("An error occured when fetching");
-        return 0;
-      }
-      window.location.reload();
+        const groupid = group.id;
+        const res = await fetch(`/api/group?id=${groupid}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name: newName }),
+        });
+
+        if (!res.ok) {
+            console.error("An error occurred when updating the name");
+            return;
+        }
+        handleChange({ ...group, name: newName });
+        setNameVisible(true);
     } catch (error) {
-      console.error(error);
+        console.error(error);
     }
-  };
+};
+
+
   useEffect(() => {
     const fetchGroups = async () => {
       try {
