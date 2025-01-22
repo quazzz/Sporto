@@ -4,30 +4,44 @@ const prisma = new PrismaClient();
 export async function POST(req) {
   // getting name and id from request
   const { namer, id } = await req.json();
-  // if we dont have them then return an error
+
+  // if we don't have them, return an error
   if (!namer || !id) {
     return new Response(
-      JSON.stringify({ message: "All fields must be fullfilled" }),
+      JSON.stringify({ message: "All fields must be fulfilled" }),
       {
         status: 500,
         headers: { "Content-Type": "application/json" },
       }
     );
   }
-  // creating new group in db via prisma
-  await prisma.group.create({
-    data: {
-      name: namer,
-      userId: id,
-    },
-  });
- 
-  // all ok so we return code 200
-  return new Response(JSON.stringify({ message: "All ok" }), {
-    status: 200,
-    headers: { "Content-Type": "application/json" },
-  });
+
+  try {
+    // creating new group in db via prisma
+    const newGroup = await prisma.group.create({
+      data: {
+        name: namer,
+        userId: id,
+      },
+    });
+
+    // return the created group, including its id
+    return new Response(JSON.stringify(newGroup), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (error) {
+    console.error("Error creating group:", error);
+    return new Response(
+      JSON.stringify({ message: "Error creating group" }),
+      {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+  }
 }
+
 
 export async function GET(req) {
   // get params from url
