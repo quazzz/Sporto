@@ -22,10 +22,12 @@ export default function Chat() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ messages: newMessages, id: session?.user.id })
             });
-
+            console.log(res)
+          
             const data = await res.json();
-            if (data && data.content) {
-                setMessages([...newMessages, { role: 'assistant', content: data.content }]);
+            console.log(data)
+            if (data.message) {
+                setMessages([...newMessages, { role: 'assistant', content: data.message }]);
             } else {
                 throw new Error("Invalid response data");
             }
@@ -48,7 +50,6 @@ export default function Chat() {
       
         {open && (
           <div className="fixed bottom-0 right-0 w-full max-w-sm bg-white rounded-t-3xl shadow-2xl overflow-hidden transform transition-transform duration-300">
-            {/* Chat Header */}
             <div className="flex justify-between items-center bg-gradient-to-r from-blue-600 to-purple-600 p-4 text-white">
               <h2 className="text-lg font-bold">Chat</h2>
               <button
@@ -58,8 +59,6 @@ export default function Chat() {
                 &times;
               </button>
             </div>
-      
-            {/* Messages Container */}
             <div className="flex-1 overflow-y-auto p-4 bg-gray-50 border-b border-gray-200 max-h-[70vh] space-y-4">
               {messages.map((msg, idx) => (
                 <div
@@ -81,8 +80,6 @@ export default function Chat() {
                 </div>
               ))}
             </div>
-      
-            {/* Input Container */}
             <div className="flex items-center p-4 bg-gray-50 border-t border-gray-200">
               <input
                 type="text"
