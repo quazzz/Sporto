@@ -26,7 +26,7 @@ export default async function RootLayout({ children }) {
           <Toaster position="bottom-center" />
           <AuthProvider>
             <Navbar/>
-            <div className="min-h-screen text-gray-900 flex items-center justify-center py-12  font-[family-name:var(--font-geist-sans)] bg-gradient-to-b from-gray-900 to-black">
+            <div className="min-h-screen text-gray-900 flex items-center justify-center py-12  font-[family-name:var(--font-geist-sans)] bg-gradient-to-b from-blue-950 to-black">
             {children}
             {session &&  <Chat/>}
           

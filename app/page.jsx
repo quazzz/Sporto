@@ -15,7 +15,7 @@ export default async function Home() {
   if (session) redirect("/dashboard");
 
   return (
-    <div className="bg-gradient-to-b  from-gray-900 to-black w-full flex flex-col items-center justify-between min-h-screen text-white p-8 sm:p-20 h-screen overflow-hidden">
+    <div className="bg-gradient-to-b  from-blue-950 to-black w-full flex flex-col items-center justify-between min-h-screen text-white p-8 sm:p-20 h-screen overflow-hidden">
       <main className="flex flex-col items-center text-center max-w-3xl mt-16">
         <div className="grid grid-cols-4 gap-4 w-full mb-10">
           <div className="col-span-4 row-span-1 flex flex-col items-center justify-center">
