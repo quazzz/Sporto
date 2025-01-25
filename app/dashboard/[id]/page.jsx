@@ -79,15 +79,15 @@ export default function Page() {
 
   return (
     <div>
-      <div className="min-h-screen flex flex-col items-center justify-center py-12">
+      <div className="min-h-screen flex flex-col items-center justify-center py-12 ">
         {workoutCompleted ? (
           <>
-            <p className="mt-6 text-xl font-semibold text-black">
+            <p className="mt-6 text-xl  font-semibold text-gray-200">
               Congratulations, youve completed the workout!
             </p>
             <button
               onClick={handleSubmit}
-              className="mt-4 w-full bg-black text-white py-2 rounded-lg font-medium shadow-lg hover:bg-gray-950 transition duration-300 ease-in-out"
+              className="mt-4 w-full bg-gradient-to-b from-gray-900 to-black text-white py-2 rounded-lg font-medium shadow-lg hover:bg-gray-950 transition duration-300 ease-in-out"
             >
               Submit Workout
             </button>
@@ -95,9 +95,9 @@ export default function Page() {
         ) : (
           exercises.length > 0 ? (
             <>
-              <h1 className="text-3xl font-bold mb-6 text-gray-700">{groupName}</h1>
-              <div className="bg-white shadow-md rounded-lg p-6 max-w-lg w-full">
-                <h2 className="text-2xl font-semibold text-gray-800 mb-2 text-center">
+              <h1 className="text-3xl font-bold mb-6 text-gray-100">{groupName}</h1>
+              <div className="bg-gradient-to-b from-gray-900 to-black shadow-md rounded-lg p-6 max-w-lg w-full">
+                <h2 className="text-2xl font-semibold text-gray-200 mb-2 text-center">
                   {exercises[curExercise].name}
                 </h2>
                 <Image
@@ -106,9 +106,9 @@ export default function Page() {
                   height={150}
                   unoptimized
                   alt="Gif of the workout"
-                  className="mx-auto my-4"
+                  className="mx-auto my-4 rounded-full"
                 />
-                <div className="text-lg text-gray-600 mb-4">
+                <div className="text-lg text-gray-300 mb-4">
                   <p className="mb-1">{exercises[curExercise].instructions}</p>
                   <p>
                     <strong>Sets:</strong> {exercises[curExercise].sets}

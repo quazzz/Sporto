@@ -43,7 +43,8 @@
     "react-i18next": "^15.1.1",
     "shadcn": "^1.0.0",
     "tailwind-merge": "^2.5.4",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "vanilla-calendar-pro": "^3.0.3"
   },
   "devDependencies": {
     "@types/node": "^20",

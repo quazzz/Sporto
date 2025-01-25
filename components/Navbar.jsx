@@ -60,7 +60,7 @@ export default function Navbar() {
         <div className="hidden md:flex items-center space-x-8">
           {session ? (
             <>
-              <span className="font-semibold text-white">{`Hello, ${session.user.name}!`}</span>
+              <span className="font-semibold text-white ">{`Hello, ${session.user.name}!`}</span>
               {[
                 { href: pageConfig.dashboard, label: "Dashboard" },
                 { href: pageConfig.catalog, label: "Catalog" },

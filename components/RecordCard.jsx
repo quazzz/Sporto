@@ -18,7 +18,7 @@ export default function ExerciseCardDashboard({ name, record, id }) {
 
   return (
     <>
-      <div className="max-w-xs sm:max-w-sm rounded-lg overflow-hidden shadow-lg bg-white p-4 m-2 text-center relative mx-auto">
+      <div className="max-w-sm rounded-lg shadow-md bg-gradient-to-br from-gray-800 via-gray-900 to-black p-4 m-4 text-center text-white">
         <button
           onClick={handleDelete}
           className="absolute top-2 right-2 bg-black text-white w-7 h-7 rounded-full flex items-center justify-center font-semibold hover:bg-gray-950 transition duration-300 ease-in-out transform hover:scale-105 shadow-md"
@@ -26,11 +26,11 @@ export default function ExerciseCardDashboard({ name, record, id }) {
           ✕
         </button>
 
-        <h2 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2 mt-2">
+        <h2 className="text-lg sm:text-xl font-semibold text-gray-300 mb-2 mt-2">
           {name}
         </h2>
 
-        <p className="text-gray-600 text-sm sm:text-base mb-2">
+        <p className="text-gray-200 text-sm sm:text-base mb-2">
           <span className="font-semibold">Achievement:</span> {record}
         </p>
       </div>

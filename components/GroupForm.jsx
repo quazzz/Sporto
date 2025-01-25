@@ -34,7 +34,7 @@ export default function GroupForm({ onAddGroup }) {
       onAddGroup(newGroup);
 
       setName(""); // Clear the input field after updating parent
-      toast("Group created!");
+      toast.success("Group created!");
     } catch (error) {
       console.error("Error creating group:", error);
       toast("An error occurred while creating the group.");

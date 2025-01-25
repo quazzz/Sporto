@@ -4,6 +4,7 @@ import GroupCard from "@/components/GroupCard";
 import GroupForm from "@/components/GroupForm";
 import CalendarComponent from "./calendar";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 export default function GroupPage({ userId }) {
   const [groups, setGroups] = useState([]);
@@ -43,6 +44,7 @@ export default function GroupPage({ userId }) {
 
   const handleDeleteGroup = (groupId) => {
     setGroups((prevGroups) => prevGroups.filter((group) => group.id !== groupId));
+    toast.success('Group deleted succesfuly!')
   };
 
   return (
