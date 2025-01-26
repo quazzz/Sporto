@@ -2,7 +2,7 @@
 import toast from "react-hot-toast";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
-export default function RecordForm() {
+export default function RecordForm({handleAdd}) {
   const { data: session } = useSession();
   const [recordName, setRecordName] = useState("");
   const [achievement, setAchievement] = useState("");
@@ -18,11 +18,13 @@ export default function RecordForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ recordName, achievement }),
       });
-      console.log(res)
-      window.location.reload()
+      const json = await res.json()
+      console.log(json)
+      handleAdd(json)
+      toast.success('Record created succesfuly!')
     } catch (error) {
       console.error(error);
-      toast("An error occured submitting the achievement");
+      toast.error("An error occured submitting the achievement");
     }
   };
   return (

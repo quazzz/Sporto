@@ -63,8 +63,8 @@ export default function GroupPage({ userId }) {
               key={group.id}
               group={group}
               onStartWorkout={handleStartWorkout}
-              handleDeleteGroup={handleDeleteGroup} // Pass delete handler
-              handleChange={handleRenameGroup} // Pass rename handler
+              handleDeleteGroup={handleDeleteGroup} 
+              handleChange={handleRenameGroup} 
             />
           ))}
         </div>

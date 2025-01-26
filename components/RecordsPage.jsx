@@ -31,12 +31,17 @@ export default function RecordsPage() {
 
     fetchRecords();
   }, [session]);
-
+  const handleDelete = (id) => {
+    setRecords((prev) => prev.filter((rec) => rec.id !== id))
+  }
+  const handleAdd = (newg) => {
+    setRecords((prev) => [...prev,newg]);
+  }
   return (
  
     <div className="min-h-screen flex flex-col lg:flex-row items-center justify-center  font-[var(--font-geist-sans)] p-4 sm:p-8 lg:p-12">
       <div className="w-full max-w-md p-8  rounded-lg  mb-10 lg:mb-0 lg:mr-10">
-        <RecordForm />
+        <RecordForm handleAdd={handleAdd}/>
       </div>
       <div className="flex flex-col w-full lg:w-3/5 space-y-10">
       <div className="flex flex-wrap gap-6 justify-center px-4 md:px-8 items-start">
@@ -47,6 +52,7 @@ export default function RecordsPage() {
               name={record.recordName} 
               record={record.achievement} 
               id={record.id} 
+              handleDeleteProp={handleDelete}
             />
           ))
         ) : (

@@ -28,12 +28,11 @@ export default function GroupForm({ onAddGroup }) {
         return;
       }
 
-      const newGroup = await response.json(); // Assuming the API returns the created group data
+      const newGroup = await response.json(); 
 
-      // Add the new group to the parent state
       onAddGroup(newGroup);
 
-      setName(""); // Clear the input field after updating parent
+      setName(""); 
       toast.success("Group created!");
     } catch (error) {
       console.error("Error creating group:", error);

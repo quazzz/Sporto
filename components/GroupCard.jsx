@@ -44,6 +44,9 @@ const handleChangeName = async () => {
         console.error(error);
     }
 };
+const handleDeleteEx = (id) => {
+  setExercises((prevex) => prevex.filter((ex) => ex.id !== id))
+}
 
 
   useEffect(() => {
@@ -160,6 +163,7 @@ const handleChangeName = async () => {
           <ExerciseCardDashboard
             key={exercise.id}
             name={exercise.name}
+            handleDeleteEx = {handleDeleteEx}
             gifUrl={exercise.gifUrl}
             bodypart={exercise.bodyPart}
             target={exercise.target}

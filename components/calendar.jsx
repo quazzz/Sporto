@@ -1,14 +1,36 @@
 "use client";
-import Calendar from "react-calendar/dist/cjs/Calendar.js";
+import { Line, Bar } from "react-chartjs-2";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
 
-export default function CalendarComponent() {
-  const [dates, setDates] = useState([]);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
+
+export default function WorkoutChart() {
   const { data: session } = useSession();
+  const [dates, setDates] = useState([]);
+  const [names, setNames] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [names, setNames] = useState([]);
 
   useEffect(() => {
     const fetchSubmitted = async () => {
@@ -40,34 +62,65 @@ export default function CalendarComponent() {
     fetchSubmitted();
   }, [session]);
 
-  const tileClassName = ({ date, view }) => {
-    if (view === "month") {
-      const dateStr = new Date(
-        date.getTime() - date.getTimezoneOffset() * 60000
-      )
-        .toISOString()
-        .split("T")[0];
-      return dates.includes(dateStr) ? "highlight" : null;
-    }
+  const groupWorkoutsByDate = () => {
+    const grouped = {};
+
+    dates.forEach((date, idx) => {
+      if (!grouped[date]) {
+        grouped[date] = [];
+      }
+      grouped[date].push(names[idx]);
+    });
+
+    return grouped;
   };
 
-  const tileContent = ({ date, view }) => {
-    if (view === "month") {
-      const dateStr = new Date(
-        date.getTime() - date.getTimezoneOffset() * 60000
-      )
-        .toISOString()
-        .split("T")[0];
-      const idx = dates.indexOf(dateStr);
-      if (idx > -1) {
-        const name = names[idx];
-        return (
-          <div className="text-center text-xs font-semibold text-white bg-green-500 rounded-full w-6 h-6 flex items-center justify-center mx-auto">
-            {name.slice(0, 2)}..
-          </div>
-        );
-      }
-    }
+  const formatWorkoutCountData = () => {
+    const grouped = groupWorkoutsByDate();
+
+    const chartLabels = Object.keys(grouped);
+    const chartData = chartLabels.map((date) => ({
+      x: date,
+      y: grouped[date].length,
+    }));
+
+    return {
+      labels: chartLabels,
+      datasets: [
+        {
+          label: "Workout Count",
+          data: chartData,
+          borderColor: "rgba(75,192,192,1)",
+          backgroundColor: "rgba(75,192,192,0.2)",
+          fill: true,
+        },
+      ],
+    };
+  };
+
+  const formatWorkoutNamesData = () => {
+    const grouped = groupWorkoutsByDate();
+
+    const chartLabels = Object.keys(grouped);
+    const chartData = chartLabels.map((date) => grouped[date].length);
+
+    return {
+      labels: chartLabels,
+      datasets: [
+        {
+          label: "Workouts Per Date",
+          data: chartData,
+          backgroundColor: "rgba(153,102,255,0.6)",
+          borderColor: "rgba(153,102,255,1)",
+          borderWidth: 1,
+          tooltip: {
+            callbacks: {
+              label: (tooltipItem) => grouped[tooltipItem.label].join(", "),
+            },
+          },
+        },
+      ],
+    };
   };
 
   if (loading) {
@@ -86,18 +139,23 @@ export default function CalendarComponent() {
     );
   }
 
+  const workoutCountData = formatWorkoutCountData();
+  const workoutNamesData = formatWorkoutNamesData();
+
   return (
     <>
       <h1 className="text-center mb-5 bg-gradient-to-r from-blue-600 to-blue-800 p-3 text-white rounded shadow-lg">
-        Your workout timeline
+        Your Workout Timeline
       </h1>
-      <div className="react-calendar-wrapper bg-gradient-to-b from-gray-900 to-black p-4 rounded-xl">
-        <Calendar
-          locale="en"
-          tileClassName={tileClassName}
-          tileContent={tileContent}
-          className="react-calendar rounded-xl shadow-md  bg-gradient-to-b from-gray-900 to-black text-white"
-        />
+
+      <div className="chart-wrapper bg-gradient-to-b from-gray-900 to-black p-4 rounded-xl mb-6">
+        <h2 className="text-center text-white mb-4">Workout Count</h2>
+        <Line data={workoutCountData} options={{ responsive: true }} />
+      </div>
+
+      <div className="chart-wrapper bg-gradient-to-b from-gray-900 to-black p-4 rounded-xl">
+        <h2 className="text-center text-white mb-4">Workout Names</h2>
+        <Bar data={workoutNamesData} options={{ responsive: true }} />
       </div>
     </>
   );

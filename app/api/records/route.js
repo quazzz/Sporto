@@ -10,14 +10,14 @@ export async function POST(req) {
         status: 500
     })
   }
-  const newExercise = await prisma.record.create({
+  const newRecord = await prisma.record.create({
     data: {
       userId: userId,
       recordName: recordName,
       achievement: achievement,
     },
   });
-  return new NextResponse('Record succesfuly created!',newExercise,{
+  return new NextResponse(JSON.stringify(newRecord),{
     status: 200
   })
   

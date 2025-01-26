@@ -1,4 +1,5 @@
-export default function ExerciseCardDashboard({ name, record, id }) {
+import toast from "react-hot-toast";
+export default function RecordCardDashboard({ name, record, id, handleDeleteProp }) {
   const handleDelete = async () => {
     try {
       const req = await fetch(`/api/records?recordId=${id}`, {
@@ -10,7 +11,8 @@ export default function ExerciseCardDashboard({ name, record, id }) {
         return 0;
       }
 
-      window.location.reload();
+      handleDeleteProp(id)
+      toast.success('Record deleted succesfully!')
     } catch (error) {
       console.error(error);
     }
@@ -21,7 +23,7 @@ export default function ExerciseCardDashboard({ name, record, id }) {
       <div className="max-w-sm rounded-lg shadow-md bg-gradient-to-br from-gray-800 via-gray-900 to-black p-4 m-4 text-center text-white">
         <button
           onClick={handleDelete}
-          className="absolute top-2 right-2 bg-black text-white w-7 h-7 rounded-full flex items-center justify-center font-semibold hover:bg-gray-950 transition duration-300 ease-in-out transform hover:scale-105 shadow-md"
+
         >
           ✕
         </button>

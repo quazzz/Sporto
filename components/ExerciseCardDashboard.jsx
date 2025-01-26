@@ -1,7 +1,7 @@
 import Image from "next/image";
 import CatalogDetailsModal from "./CatalogDetailsModal";
 import { useState } from "react";
-
+import toast from "react-hot-toast";
 export default function ExerciseCardDashboard({
   name,
   gifUrl,
@@ -12,7 +12,8 @@ export default function ExerciseCardDashboard({
   sets,
   id,
   kg,
-  instructions
+  instructions,
+  handleDeleteEx
 }) {
   const [open, setOpen] = useState(false);
 
@@ -27,7 +28,8 @@ export default function ExerciseCardDashboard({
         return 0;
       }
 
-      window.location.reload();
+      handleDeleteEx(id)
+      toast.success('Exercise deleted succesfuly!')
     } catch (error) {
       console.error(error);
     }
@@ -66,7 +68,7 @@ export default function ExerciseCardDashboard({
         cx="12"
         cy="12"
         r="10"
-        stroke="currentColor"
+        stroke="black"
         fill="black"
         strokeWidth="2"
       />
