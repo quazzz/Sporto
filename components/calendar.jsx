@@ -2,6 +2,7 @@
 import { Line, Bar } from "react-chartjs-2";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
+import Loading from '@/components/Loading.jsx'
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -125,9 +126,7 @@ export default function WorkoutChart() {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-full">
-        <div className="loader border-4 border-t-4 border-gray-500 rounded-full w-12 h-12 animate-spin"></div>
-      </div>
+      <Loading/>
     );
   }
 

@@ -56,7 +56,7 @@ export default function LoginForm() {
 
   return (
     
-    <div className="flex flex-col items-center justify-center min-h-screen p-8">
+  <div className="flex flex-col items-center justify-center min-h-screen p-8">
   <div className="max-w-lg w-full  bg-gradient-to-b from-gray-900 to-black shadow-lg rounded-xl p-8">
     <div className="text-center">
       <h1 className="text-4xl font-bold text-white mb-4">Welcome Back!</h1>
@@ -99,9 +99,9 @@ export default function LoginForm() {
         Log In
       </button>
 
-      <div className="text-center text-sm text-gray-400 mt-4">or login with</div>
+      <div className="text-center text-sm text-gray-400 ">or login with</div>
       <div
-        className="flex items-center justify-center mt-4 cursor-pointer bg-gray-700 rounded-lg px-4 py-2 shadow hover:bg-gray-600 transition"
+        className="flex items-center justify-center  cursor-pointer bg-gray-900 rounded-lg px-4 py-2 shadow hover:bg-gray-950 transition"
         onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
       >
         <svg
