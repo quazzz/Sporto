@@ -13,7 +13,7 @@ export default function ExerciseCardDashboard({
   id,
   kg,
   instructions,
-  handleDeleteEx
+  handleDeleteEx,
 }) {
   const [open, setOpen] = useState(false);
 
@@ -28,8 +28,8 @@ export default function ExerciseCardDashboard({
         return 0;
       }
 
-      handleDeleteEx(id)
-      toast.success('Exercise deleted succesfuly!')
+      handleDeleteEx(id);
+      toast.success("Exercise deleted succesfuly!");
     } catch (error) {
       console.error(error);
     }
@@ -42,91 +42,111 @@ export default function ExerciseCardDashboard({
   name = capitalizeFirstLetter(name);
 
   return (
-    <>
-   <div className="max-w-xs sm:max-w-sm rounded-xl overflow-hidden shadow-lg bg-gradient-to-br from-gray-800 via-gray-900 to-black p-4 m-4 text-center relative">
-  <button
-    onClick={handleDelete}
-    className="absolute top-2 right-2 bg-black text-white w-7 h-7 rounded-full flex items-center justify-center font-semibold hover:bg-gray-800 transition duration-300 ease-in-out transform hover:scale-105 shadow-lg"
-  >
-    ✕
-  </button>
+    <div className="">
+      <div className="max-w-sm rounded-2xl overflow-hidden shadow-lg bg-gradient-to-br from-gray-900 via-gray-800 to-gray-950 p-6 m-4 text-center relative transform hover:scale-[1.02] transition-transform duration-300 ease-in-out">
+      
+        <button
+          onClick={handleDelete}
+          className="absolute top-4 right-4 bg-gray-700 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold hover:bg-red-600 transition duration-300 ease-in-out transform hover:scale-110 shadow-md"
+          aria-label="Delete"
+        >
+          ✕
+        </button>
 
-  <div
-    onClick={() => setOpen(true)} 
-    className="hover:scale-105 transition-transform cursor-pointer absolute top-2 left-2"
-    title="Details"
-  >
-    <svg
-      title="Details"
-      width="29"
-      height="29"
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <circle
-        cx="12"
-        cy="12"
-        r="10"
-        stroke="black"
-        fill="black"
-        strokeWidth="2"
-      />
-      <line
-        x1="12"
-        y1="8"
-        x2="12"
-        y2="8"
-        stroke="white"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
-      <line
-        x1="12"
-        y1="11"
-        x2="12"
-        y2="16"
-        stroke="white"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-    </svg>
-  </div>
+    
+        <div
+          onClick={() => setOpen(true)}
+          className="absolute top-4 left-4 cursor-pointer hover:scale-110 transition-transform"
+          title="Details"
+          aria-label="Details"
+        >
+          <svg
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="white"
+              strokeWidth="2"
+              fill="transparent"
+            />
+            <line
+              x1="12"
+              y1="8"
+              x2="12"
+              y2="8"
+              stroke="white"
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
+            <line
+              x1="12"
+              y1="11"
+              x2="12"
+              y2="16"
+              stroke="white"
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
+          </svg>
+        </div>
 
-  <h2 className="text-lg sm:text-xl font-bold mb-2 text-gray-100 mt-6">
-    {name}
-  </h2>
-  <Image
-    unoptimized={true}
-    className="mx-auto rounded-xl"
-    src={gifUrl}
-    width={80}
-    height={80}
-    alt="Gif of workout"
-  />
-  <p className="text-gray-200 text-base mb-1">Bodypart: {bodypart}</p>
-  <p className="text-gray-200 text-base mb-1">Sets: {sets}</p>
-  <p className="text-gray-200 text-base mb-1">Reps: {reps}</p>
-  <p className="text-gray-200 text-base mb-1">Weight: {kg} kg</p>
-  <p className="text-gray-400 text-sm mb-3">Target: {target}</p>
-  <p className="text-xs text-gray-500">Equipment: {equipment}</p>
-</div>
+       
+        <h2 className="text-xl font-extrabold text-gray-100 mt-8 mb-4">
+          {name}
+        </h2>
 
-{open && (
-  <CatalogDetailsModal
-    name={name}
-    bodyPart={bodypart}
-    target={target}
-    equipment={equipment}
-    reps={reps}
-    instructions={instructions}
-    sets={sets}
-    gifUrl={gifUrl}
-    weight={kg}
-    onClose={() => setOpen(false)} 
-  />
-)}
+        <Image
+          unoptimized={true}
+          className="mx-auto rounded-xl"
+          src={gifUrl}
+          width={100}
+          height={100}
+          alt="Workout gif"
+        />
 
-    </>
+        <div className="mt-4 space-y-2">
+          <p className="text-gray-300 text-sm">
+            <span className="font-semibold">Bodypart:</span> {bodypart}
+          </p>
+          <p className="text-gray-300 text-sm">
+            <span className="font-semibold">Sets:</span> {sets}
+          </p>
+          <p className="text-gray-300 text-sm">
+            <span className="font-semibold">Reps:</span> {reps}
+          </p>
+          <p className="text-gray-300 text-sm">
+            <span className="font-semibold">Weight:</span> {kg} kg
+          </p>
+          <p className="text-gray-400 text-sm">
+            <span className="font-semibold">Target:</span> {target}
+          </p>
+          <p className="text-gray-500 text-xs">
+            <span className="font-semibold">Equipment:</span> {equipment}
+          </p>
+        </div>
+      </div>
+      <div className="">
+        {open && (
+          <CatalogDetailsModal
+            name={name}
+            bodyPart={bodypart}
+            target={target}
+            equipment={equipment}
+            reps={reps}
+            instructions={instructions}
+            sets={sets}
+            gifUrl={gifUrl}
+            weight={kg}
+            onClose={() => setOpen(false)}
+          />
+        )}
+      </div>
+    </div>
   );
 }

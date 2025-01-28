@@ -19,7 +19,7 @@ export default function CatalogDetailsModal({
   }
 
   return (
-<div className="fixed inset-0 flex items-center justify-center bg-opacity-50 z-50">
+<div className="fixed inset-0 bg-opacity-60 backdrop-blur-sm flex items-center justify-center bg-opacity-50 z-50">
   <div className="bg-gradient-to-b from-black via-gray-900 to-black  p-6 rounded-lg shadow-xl max-w-md w-full m-4 relative transform transition-transform duration-300 ">
     <button
       onClick={onClose}

@@ -41,24 +41,31 @@ export default function RegisterForm() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-8">
-  <div className="max-w-lg w-full  bg-gradient-to-b from-gray-900 to-black shadow-lg rounded-xl p-8">
-    <div className="text-center">
+    <div className="flex flex-col items-center justify-center min-h-screen p-8 ">
+  <div className="max-w-md w-full bg-gradient-to-b from-gray-900 to-black shadow-2xl rounded-2xl p-8">
+
+    <div className="text-center mb-8">
       <h1 className="text-4xl font-bold text-white mb-4">Create an Account</h1>
       <p className="text-gray-400">Join us to elevate your workout journey!</p>
     </div>
-    <form onSubmit={handleSubmit} className="space-y-6 mt-8">
+
+
+    <form onSubmit={handleSubmit} className="space-y-6">
+   
       <div>
         <label className="block text-sm font-medium text-gray-300 mb-2">
-          First name
+          First Name
         </label>
         <input
           type="text"
           onChange={(e) => setName(e.target.value)}
-          className="w-full px-4 py-3 border border-gray-700 rounded-lg text-sm bg-gray-700 text-gray-300 placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition"
+          className="w-full px-4 py-3 border border-gray-700 rounded-lg text-sm bg-gray-800 text-gray-300 placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition"
           placeholder="Enter your first name"
+          required
         />
       </div>
+
+     
       <div>
         <label className="block text-sm font-medium text-gray-300 mb-2">
           Email Address
@@ -66,10 +73,13 @@ export default function RegisterForm() {
         <input
           type="email"
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full px-4 py-3 border border-gray-700 rounded-lg text-sm bg-gray-700 text-gray-300 placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition"
+          className="w-full px-4 py-3 border border-gray-700 rounded-lg text-sm bg-gray-800 text-gray-300 placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition"
           placeholder="Enter your email"
+          required
         />
       </div>
+
+  
       <div>
         <label className="block text-sm font-medium text-gray-300 mb-2">
           Password
@@ -77,10 +87,12 @@ export default function RegisterForm() {
         <input
           type="password"
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full px-4 py-3 border border-gray-700 rounded-lg text-sm bg-gray-700 text-gray-300 placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition"
+          className="w-full px-4 py-3 border border-gray-700 rounded-lg text-sm bg-gray-800 text-gray-300 placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition"
           placeholder="Create a password"
+          required
         />
       </div>
+
 
       <button
         type="submit"
@@ -89,9 +101,17 @@ export default function RegisterForm() {
         Sign Up
       </button>
 
-      <div className="text-center text-sm text-gray-400 mt-4">or register with</div>
+
+      <div className="relative flex items-center justify-center">
+        <div className="absolute inset-0 border-t border-gray-700"></div>
+        <div className="relative bg-gray-900 px-4 text-sm text-gray-400">
+          or register with
+        </div>
+      </div>
+
+
       <div
-        className="flex items-center justify-center mt-4 cursor-pointer  hover:bg-indigo-500 bg-indigo-600 rounded-lg px-4 py-2 shadow hover:bg-gray-200 transition "
+        className="flex items-center justify-center cursor-pointer bg-gray-800 rounded-lg px-4 py-3 shadow hover:bg-gray-750 transition"
         onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
       >
         <svg
@@ -122,11 +142,12 @@ export default function RegisterForm() {
       </div>
     </form>
 
+
     <div className="text-center mt-6">
-      <p className="text-sm text-gray-300">
+      <p className="text-sm text-gray-400">
         Already have an account?{" "}
         <Link href="/login">
-          <span className="text-indigo-500 font-medium hover:underline text-sm">
+          <span className="text-indigo-500 font-medium hover:underline">
             Log in here
           </span>
         </Link>

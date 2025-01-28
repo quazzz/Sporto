@@ -78,11 +78,11 @@ export default function Page() {
   return (
     <>
      <div className="flex flex-col items-center justify-center py-12 px-6 mx-auto text-center">
-  <div className="flex flex-wrap gap-4 justify-center mt-10 shadow-lg bg-gradient-to-r from-gray-100 via-white to-gray-100 p-6 rounded-lg">
+  <div className="flex flex-wrap gap-4 justify-center mt-10 shadow-lg bg-gradient-to-r from-gray-950  to-blue-950 p-6 rounded-lg">
     {checkboxOptions.map((option) => (
       <div className="flex items-center" key={option.id}>
         <input
-          className="mr-3 cursor-pointer accent-blue-600"
+          className="mr-3 cursor-pointer text-white accent-blue-600"
           type="checkbox"
           id={option.id}
           value={option.id}
@@ -90,7 +90,7 @@ export default function Page() {
           onChange={handleCheckboxChange}
         />
         <label
-          className="text-lg cursor-pointer hover:text-blue-600 transition-all duration-200"
+          className="text-lg cursor-pointer hover:text-blue-600 transition-all duration-200 text-white"
           htmlFor={option.id}
         >
           {option.label}

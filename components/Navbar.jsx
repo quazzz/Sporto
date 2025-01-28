@@ -6,6 +6,7 @@ import Link from "next/link";
 import { signOut } from "next-auth/react";
 import { useSession } from "next-auth/react";
 import clsx from "clsx";
+import { motion } from "framer-motion";
 
 class PageConfig {
   home = "/";
@@ -37,15 +38,74 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-gradient-to-r from-black via-gray-900 to-black  py-4 z-10 fixed w-full">
+    <nav className="bg-gradient-to-r from-gray-900 via-black to-gray-900 py-4 fixed w-full z-20 shadow-lg">
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-        <div className="text-2xl font-semibold text-white">
+        
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-3xl font-bold text-white tracking-wide"
+        >
           <Link href={pageConfig.home} className="hover:text-indigo-400 transition-colors">
             Sporto
           </Link>
+        </motion.div>
+
+      
+        <div className="hidden md:flex items-center space-x-6">
+          {session ? (
+            <>
+              <span className="font-medium text-white">{`Hello, ${session.user.name}!`}</span>
+              {[
+                { href: pageConfig.dashboard, label: "Dashboard" },
+                { href: pageConfig.catalog, label: "Catalog" },
+                { href: pageConfig.records, label: "Achievements" },
+              ].map(({ href, label }) => (
+                <Link
+                  key={label}
+                  href={href}
+                  className={clsx(
+                    "text-white hover:text-indigo-400 transition-colors duration-300",
+                    { "font-semibold": isActive(href) }
+                  )}
+                >
+                  {label}
+                </Link>
+              ))}
+              <button
+                onClick={handleClick}
+                className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-500 transition-colors duration-300"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            [
+              { href: pageConfig.login, label: "Login" },
+              { href: pageConfig.register, label: "Register" },
+            ].map(({ href, label }) => (
+              <Link
+                key={label}
+                href={href}
+                className={clsx(
+                  "text-white hover:text-indigo-400 transition-colors duration-300",
+                  { "font-semibold": isActive(href) }
+                )}
+              >
+                {label}
+              </Link>
+            ))
+          )}
         </div>
+
+
         <div className="md:hidden flex items-center">
-          <button onClick={toggleMenu} className="text-white focus:outline-none" aria-label="Toggle Menu">
+          <button
+            onClick={toggleMenu}
+            className="text-white focus:outline-none"
+            aria-label="Toggle Menu"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6"
@@ -57,36 +117,44 @@ export default function Navbar() {
             </svg>
           </button>
         </div>
-        <div className="hidden md:flex items-center space-x-8">
-          {session ? (
-            <>
-              <span className="font-semibold text-white ">{`Hello, ${session.user.name}!`}</span>
-              {[
-                { href: pageConfig.dashboard, label: "Dashboard" },
-                { href: pageConfig.catalog, label: "Catalog" },
-                { href: pageConfig.records, label: "Achievements" },
-              ].map(({ href, label }) => (
-                <Link
-                  key={label}
-                  href={href}
-                  className={clsx(
-                    "text-white hover:text-indigo-400 transition-colors duration-300",
-                    { "font-semibold": isActive(href) }
-                  )}
+      </div>
+
+      {isMenuOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+          className="md:hidden bg-gradient-to-r from-gray-900 via-black to-gray-900 py-4"
+        >
+          <div className="flex flex-col items-center space-y-4">
+            {session ? (
+              <>
+                <span className="font-medium text-white">{`Hello, ${session.user.name}`}</span>
+                {[
+                  { href: pageConfig.dashboard, label: "Dashboard" },
+                  { href: pageConfig.catalog, label: "Catalog" },
+                  { href: pageConfig.records, label: "Achievements" },
+                ].map(({ href, label }) => (
+                  <Link
+                    key={label}
+                    href={href}
+                    className={clsx(
+                      "text-white hover:text-indigo-400 transition-colors duration-300",
+                      { "font-semibold": isActive(href) }
+                    )}
+                  >
+                    {label}
+                  </Link>
+                ))}
+                <button
+                  onClick={handleClick}
+                  className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-500 transition-colors duration-300"
                 >
-                  {label}
-                </Link>
-              ))}
-              <button
-                onClick={handleClick}
-                className="text-white hover:text-indigo-400 transition-colors duration-300"
-              >
-                Logout
-              </button>
-            </>
-          ) : (
-            <>
-              {[
+                  Logout
+                </button>
+              </>
+            ) : (
+              [
                 { href: pageConfig.login, label: "Login" },
                 { href: pageConfig.register, label: "Register" },
               ].map(({ href, label }) => (
@@ -100,60 +168,11 @@ export default function Navbar() {
                 >
                   {label}
                 </Link>
-              ))}
-            </>
-          )}
-        </div>
-      </div>
-      <div className={clsx("md:hidden", { block: isMenuOpen, hidden: !isMenuOpen })}>
-        <div className="flex flex-col items-center space-y-4 py-4 bg-gradient-to-r from-black via-gray-900 to-black ">
-          {session ? (
-            <>
-              <span className="font-semibold text-white">{`Hello, ${session.user.name}`}</span>
-              {[
-                { href: pageConfig.dashboard, label: "Dashboard" },
-                { href: pageConfig.catalog, label: "Catalog" },
-                { href: pageConfig.records, label: "Achievements" },
-              ].map(({ href, label }) => (
-                <Link
-                  key={label}
-                  href={href}
-                  className={clsx(
-                    "text-white hover:text-indigo-400 transition-colors duration-300",
-                    { "font-semibold": isActive(href) }
-                  )}
-                >
-                  {label}
-                </Link>
-              ))}
-              <button
-                onClick={handleClick}
-                className="text-white hover:text-indigo-400 transition-colors duration-300"
-              >
-                Logout
-              </button>
-            </>
-          ) : (
-            <>
-              {[
-                { href: pageConfig.login, label: "Login" },
-                { href: pageConfig.register, label: "Register" },
-              ].map(({ href, label }) => (
-                <Link
-                  key={label}
-                  href={href}
-                  className={clsx(
-                    "text-white hover:text-indigo-400 transition-colors duration-300",
-                    { "font-semibold": isActive(href) }
-                  )}
-                >
-                  {label}
-                </Link>
-              ))}
-            </>
-          )}
-        </div>
-      </div>
+              ))
+            )}
+          </div>
+        </motion.div>
+      )}
     </nav>
   );
 }
