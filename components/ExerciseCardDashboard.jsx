@@ -43,11 +43,11 @@ export default function ExerciseCardDashboard({
 
   return (
     <div className="">
-      <div className="max-w-sm rounded-2xl overflow-hidden shadow-lg bg-gradient-to-br from-gray-900 via-gray-800 to-gray-950 p-6 m-4 text-center relative transform hover:scale-[1.02] transition-transform duration-300 ease-in-out">
+      <div className="max-w-sm rounded-2xl overflow-hidden shadow-lg bg-gradient-to-b from-gray-900 to-black p-6 m-4 text-center relative transform hover:scale-[1.02] transition-transform duration-300 ease-in-out">
       
         <button
           onClick={handleDelete}
-          className="absolute top-4 right-4 bg-gray-700 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold hover:bg-red-600 transition duration-300 ease-in-out transform hover:scale-110 shadow-md"
+          className="absolute top-4 right-4 bg-gray-950 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold hover:bg-red-600 transition duration-300 ease-in-out transform hover:scale-110 shadow-md"
           aria-label="Delete"
         >
           ✕

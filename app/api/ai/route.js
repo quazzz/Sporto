@@ -34,7 +34,7 @@ const targets = [
   'spine',
   'traps',
   'triceps',
-  'upperback'
+ 
 ]
 
 function randomPrefix(bodyPart) {
@@ -62,7 +62,7 @@ async function analyzeIntent(message) {
       in list ("lower" or "upper"), 
       so like if user wants some legs (in list it has prefix) then select the upper legs or lower legs
       If it's just a group, set the intent as 
-      "group" and add the group name. If the user is asking about sports or other topics, set the intent as "chat" and add a message for the user.\n${message}`,
+      "group" and add the group name. If the user is asking about sports or other topics or some random shit, set the intent as "chat" and add a message for the user.\n${message}`,
     },
   ];
 

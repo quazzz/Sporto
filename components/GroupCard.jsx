@@ -64,11 +64,11 @@ const handleDeleteEx = (id) => {
     fetchGroups();
   }, []);
   return (
-    <div className="max-w-sm rounded-lg shadow-lg bg-gradient-to-br from-gray-800 via-gray-900 to-black p-6 text-center text-white">
+    <div className="max-w-sm rounded-lg shadow-lg bg-gradient-to-b from-gray-900 to-black p-6 text-center text-white">
     <div className="flex justify-center space-x-3 mb-4">
      
       <div
-        className="border border-gray-600 rounded-full cursor-pointer p-2 transition-transform duration-200 hover:scale-105 hover:bg-red-500 hover:text-white flex items-center justify-center shadow-md"
+        className="border rounded-full cursor-pointer p-2 transition-transform duration-200 hover:scale-105 hover:bg-red-500 hover:text-white flex items-center justify-center shadow-md"
         onClick={handleDelete}
         title="Delete Group"
       >

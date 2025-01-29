@@ -106,7 +106,7 @@ export default function Page() {
       onChange={(e) => handleSearch(e.target.value)}
       type="text"
       placeholder="Search for workouts"
-      className="w-full px-4 py-2 text-sm border border-gray-300 rounded-lg placeholder-gray-500 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-200"
+      className="w-full border-gray-900 shadow-lg text-white bg-gradient-to-r from-gray-950  to-blue-950 px-4 py-2 text-sm border border-gray-300 rounded-lg placeholder-gray-500 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-200"
     />
   </div>
 
@@ -121,7 +121,7 @@ export default function Page() {
         />
       ))
     ) : (
-      <p className="text-gray-500 col-span-full">No workouts found</p>
+      <p className="text-gray-100 col-span-full">No workouts found</p>
     )}
   </div>
 
