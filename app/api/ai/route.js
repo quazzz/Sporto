@@ -26,10 +26,7 @@ const targets = [
   'forearms',
   'glutes',
   'hamstrings',
-<<<<<<< HEAD
   
-=======
->>>>>>> 44ae408 (fade in animations + ai relogic + main page fixes)
   'levator scapulae',
   'pectorals',
   'quads',
