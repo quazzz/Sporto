@@ -34,7 +34,7 @@ export async function POST(req) {
         }
       );
     }
-    const { data, error } = await resend.emails.send({
+    const { error } = await resend.emails.send({
       from: 'onboarding@resend.dev',
       to: 'alan256bros@gmail.com',
       subject: 'Hello world',

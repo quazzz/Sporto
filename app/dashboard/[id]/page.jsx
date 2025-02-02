@@ -90,7 +90,7 @@ export default function Page() {
       {workoutCompleted ? (
         <div className="text-center">
           <p className="mt-6 text-2xl font-semibold text-gray-200">
-            🎉 Congratulations! You've completed the workout! 🎉
+             Congratulations! Youve completed the workout! 
           </p>
           <button
             onClick={handleSubmit}
