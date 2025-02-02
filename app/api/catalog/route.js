@@ -28,6 +28,9 @@ export async function GET() {
 }
 export async function POST(req){
   const {name,equipment,gifUrl,target,bodyPart,instructions,secondaryMuscles,groupId,sets,reps,kg} = await req.json()
+  if(!name || !equipment || !gifUrl || !target || !bodyPart || !instructions || !secondaryMuscles || !groupId || !sets || !reps || !kg){
+    return new NextResponse(JSON.stringify({ error: "Some of properties are missing." }), { status: 401 });
+  }
   await prisma.exercise.create({
     data: {
       name: name,
@@ -43,6 +46,6 @@ export async function POST(req){
       kg: kg
     }
   })
-  return new NextResponse('All good')
+  return new NextResponse(JSON.stringify({ message: "All ok" }), { status: 200 });
 
 }

@@ -30,7 +30,7 @@ export default function RecordForm({handleAdd}) {
   return (
     <>
 
-        <div className="w-full flex rounded-xl justify-center items-start bg-gradient-to-b from-gray-900 to-black py-12 px-4 sm:px-6 lg:px-8 relative">
+        <div className="w-full animate-fade-in flex rounded-xl justify-center items-start bg-gradient-to-b from-gray-900 to-black py-12 px-4 sm:px-6 lg:px-8 relative">
           <div className="max-w-md w-full space-y-8">
             <div className="text-center">
               <h1 className="text-3xl sm:text-4xl font-extrabold text-white">

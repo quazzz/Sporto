@@ -143,7 +143,7 @@ export default function WorkoutChart() {
 
   return (
     <>
-      <h1 className="text-center mb-5 bg-gradient-to-r from-blue-600 to-blue-800 p-3 text-white rounded shadow-lg">
+      <h1 className="animate-fade-in text-center mb-5 bg-gradient-to-b from-indigo-500 to-indigo-600 p-3 text-white rounded shadow-lg">
         Your Workout Timeline
       </h1>
 

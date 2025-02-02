@@ -148,7 +148,7 @@ export default function Navbar() {
                 ))}
                 <button
                   onClick={handleClick}
-                  className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-500 transition-colors duration-300"
+                  className="px-4 py-2 bg-gradient-to-b from-indigo-500 to-indigo-600 text-white rounded-lg hover:bg-indigo-500 transition-colors duration-300"
                 >
                   Logout
                 </button>

@@ -42,8 +42,23 @@ export default function ExerciseCardDashboard({
   name = capitalizeFirstLetter(name);
 
   return (
+    <>
+    {open && (
+          <CatalogDetailsModal
+            name={name}
+            bodyPart={bodypart}
+            target={target}
+            equipment={equipment}
+            reps={reps}
+            instructions={instructions}
+            sets={sets}
+            gifUrl={gifUrl}
+            weight={kg}
+            onClose={() => setOpen(false)}
+          />
+        )}
     <div className="">
-      <div className="max-w-sm rounded-2xl overflow-hidden shadow-lg bg-gradient-to-b from-gray-900 to-black p-6 m-4 text-center relative transform hover:scale-[1.02] transition-transform duration-300 ease-in-out">
+      <div className="max-w-sm rounded-2xl overflow-hidden shadow-lg bg-gradient-to-b from-gray-900 to-black p-6 m-4 text-center relative transform hover:scale-[1.02] animate-fade-in transition-transform duration-300 ease-in-out">
       
         <button
           onClick={handleDelete}
@@ -131,22 +146,11 @@ export default function ExerciseCardDashboard({
           </p>
         </div>
       </div>
-      <div className="">
-        {open && (
-          <CatalogDetailsModal
-            name={name}
-            bodyPart={bodypart}
-            target={target}
-            equipment={equipment}
-            reps={reps}
-            instructions={instructions}
-            sets={sets}
-            gifUrl={gifUrl}
-            weight={kg}
-            onClose={() => setOpen(false)}
-          />
-        )}
-      </div>
+     
     </div>
+    
+    </>
+    
+    
   );
 }

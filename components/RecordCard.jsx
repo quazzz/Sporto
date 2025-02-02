@@ -20,7 +20,7 @@ export default function RecordCardDashboard({ name, record, id, handleDeleteProp
 
   return (
     <>
-      <div className="max-w-sm rounded-lg shadow-md bg-gradient-to-br from-gray-800 via-gray-900 to-black p-4 m-4 text-center text-white">
+      <div className="max-w-sm animate-fade-in rounded-lg shadow-md bg-gradient-to-br from-gray-800 via-gray-900 to-black p-4 m-4 text-center text-white">
         <button
           onClick={handleDelete}
 

@@ -7,7 +7,7 @@ export async function POST(req) {
   const { groupName, workoutDate, userId } = await req.json();
 
   if (!groupName || !workoutDate || !userId) {
-    return new NextResponse(JSON.stringify({ error: "No id or date" }), { status: 401 });
+    return new NextResponse(JSON.stringify({ error: "Some of properties are missing." }), { status: 401 });
   }
 
   try {

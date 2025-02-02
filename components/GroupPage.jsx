@@ -14,6 +14,7 @@ export default function GroupPage({ userId }) {
     const fetchGroups = async () => {
       try {
         const res = await fetch(`/api/group?userId=${userId}`);
+        const res2 = await fetch('/api/catalog')
         const data = await res.json();
         console.log(data);
         setGroups(data);
@@ -25,6 +26,7 @@ export default function GroupPage({ userId }) {
       fetchGroups();
     }
   }, [userId]);
+  
 
   const handleAddGroup = (newGroup) => {
     setGroups((prevGroups) => [...prevGroups, newGroup]);
@@ -49,7 +51,7 @@ export default function GroupPage({ userId }) {
 
   return (
     <div className="min-h-screen flex flex-col lg:flex-row items-center justify-center font-[var(--font-geist-sans)] p-4 sm:p-8 lg:p-12">
-      <div className="w-full max-w-md p-8 rounded-lg mb-10 lg:mb-0 lg:mr-10">
+      <div className="w-full max-w-md p-8 rounded-lg mb-10 lg:mb-0 lg:mr-10 ">
         <GroupForm onAddGroup={handleAddGroup} />
         <div className="w-full sm:w-[350px] lg:w-[400px] mx-auto mt-10">
           <CalendarComponent />

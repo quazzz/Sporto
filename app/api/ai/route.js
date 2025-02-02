@@ -26,7 +26,10 @@ const targets = [
   'forearms',
   'glutes',
   'hamstrings',
+<<<<<<< HEAD
   
+=======
+>>>>>>> 44ae408 (fade in animations + ai relogic + main page fixes)
   'levator scapulae',
   'pectorals',
   'quads',
@@ -34,7 +37,7 @@ const targets = [
 
   'traps',
   'triceps',
- 
+  'lats'
 ]
 
 function randomPrefix(bodyPart) {
@@ -56,13 +59,13 @@ async function analyzeIntent(message) {
       content: `Determine the user's intent based on this message. If the user wants to make a group with exercises, set the intent as "group_ex". 
       Add the user's message and the predicted muscle group from bodyparts array ${bodyPartsMappingForAI} or target ${targets} as muscle_group, 
       add property named 'api' that will have one of values bodypart or target 
-      so like if users wants something from bodypartlist then the property 
+      so like if users wants something from bodypartlist ${bodyPartsMappingForAI} then the property 
       will be named 'bodyPart' and if from 
-      target list then just 'target' (so like if user wants pecs then the muscle_group is pectorals (as it named in the list) and api gonna be named "target" because pecs only exist in target list) but if user says legs or other that has prefix 
+      target list ${targets} then just 'target' (so like if user wants pecs then the muscle_group is pectorals (as it named in the list) and api gonna be named "target" because pecs only exist in target list) but if user says legs or other that has prefix 
       in list ("lower" or "upper"), 
       so like if user wants some legs (in list it has prefix) then select the upper legs or lower legs
       If it's just a group, set the intent as 
-      "group" and add the group name. If the user is asking about sports or other topics or some random shit, set the intent as "chat" and add a message for the user.\n${message}`,
+      "group" and add the group name. If the user is asking questions about sports or other topics or some random shit, set the intent as "chat" and add a message for the user.\n${message}`,
     },
   ];
 
@@ -167,6 +170,10 @@ export async function POST(req) {
 
   try {
     const { messages, id } = await req.json();
+    if(!id || !messages){
+      return NextResponse.json({error: 'Some of the properties are missing.'}, {status:401})
+    }
+  
     const userMessage = messages[messages.length - 1].content;
 
     console.log("Received user message:", userMessage);
@@ -190,7 +197,7 @@ export async function POST(req) {
         throw new Error("Failed to create group");
       }
 
-      return NextResponse.json({ message: message });
+      return NextResponse.json({ message: message, bool: true });
     } else if (intent.intent === "chat") {
       const message = intent.message;
       return NextResponse.json({ message: message });
@@ -206,7 +213,7 @@ export async function POST(req) {
 
       try {
         const result = await createGroupWithExercises(id, groupName, muscleGroup,api);
-        return NextResponse.json({ message: result.message });
+        return NextResponse.json({ message: result.message,bool: true  });
       } catch (error) {
         console.error("Error in group_ex intent handling:", error);
         return NextResponse.json(

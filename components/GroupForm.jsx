@@ -28,11 +28,11 @@ export default function GroupForm({ onAddGroup }) {
         return;
       }
 
-      const newGroup = await response.json(); 
+      const newGroup = await response.json();
 
       onAddGroup(newGroup);
 
-      setName(""); 
+      setName("");
       toast.success("Group created!");
     } catch (error) {
       console.error("Error creating group:", error);
@@ -41,7 +41,7 @@ export default function GroupForm({ onAddGroup }) {
   };
 
   return (
-    <div className="w-full flex rounded-xl justify-center items-start bg-gradient-to-b from-gray-900 to-black py-12 px-4 sm:px-6 lg:px-8 relative">
+    <div className="w-full flex rounded-xl justify-center items-start bg-gradient-to-b from-gray-900 to-black py-12 px-4 sm:px-6 lg:px-8 relative animate-fade-in">
       <div className="max-w-md w-full space-y-8">
         <div className="text-center">
           <h1 className="text-3xl sm:text-4xl font-extrabold text-white">
@@ -71,7 +71,8 @@ export default function GroupForm({ onAddGroup }) {
             <button
               type="submit"
               title="Create new group"
-              className="transition w-full py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 hover:from-blue-600 hover:to-blue-700"
+              className="w-full py-3 bg-gradient-to-b from-indigo-500 to-indigo-600 text-white font-semibold rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 
+  transition-all duration-300 hover:brightness-110"
             >
               Create Group
             </button>

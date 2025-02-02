@@ -2,6 +2,7 @@
 import { useParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import Image from "next/image";
+
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 export default function Page() {
@@ -71,68 +72,69 @@ export default function Page() {
 
   const handleNextExercise = () => {
     if (curExercise < exercises.length - 1) {
-      setCurExercise(curExercise + 1);
+      setCurExercise((prev) => prev + 1)
     } else {
       setWorkoutCompleted(true);
     }
   };
+ 
+  const before = () => {
+    if(curExercise != 0){
+      setCurExercise((prev) => prev - 1)
+    }
+    
+  }
 
   return (
-    <div>
-      <div className="min-h-screen flex flex-col items-center justify-center py-12 ">
-        {workoutCompleted ? (
-          <>
-            <p className="mt-6 text-xl  font-semibold text-gray-200">
-              Congratulations, youve completed the workout!
-            </p>
+    <div className="min-h-screen flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 ">
+      {workoutCompleted ? (
+        <div className="text-center">
+          <p className="mt-6 text-2xl font-semibold text-gray-200">
+            🎉 Congratulations! You've completed the workout! 🎉
+          </p>
+          <button
+            onClick={handleSubmit}
+            className="mt-4 px-6 py-3 bg-gradient-to-b from-green-500 to-green-600 text-white text-lg font-medium rounded-xl shadow-lg hover:scale-105 transition-transform duration-300"
+          >
+            Submit Workout
+          </button>
+        </div>
+      ) : exercises.length > 0 ? (
+        <div className="flex flex-col items-center">
+          <h1 className="text-4xl font-bold mb-6 text-gray-100">{groupName}</h1>
+          <div className="bg-gradient-to-b from-gray-900 to-black shadow-lg rounded-2xl p-8 max-w-lg w-full border border-gray-800">
+            <h2 className="text-2xl font-semibold text-gray-200 mb-4 text-center">
+              {exercises[curExercise].name}
+            </h2>
+            <div>
+              <Image
+                src={exercises[curExercise].gifUrl}
+                width={180}
+                height={180}
+                unoptimized
+                alt="Workout demonstration"
+                className="mx-auto my-4 rounded border-2 border-gray-700 shadow-lg"
+              />
+            </div>
+            <div className="text-lg text-gray-300 mb-6 space-y-2 text-center">
+              <p>{exercises[curExercise].instructions}</p>
+              <p><strong>Sets:</strong> {exercises[curExercise].sets}</p>
+              <p><strong>Reps:</strong> {exercises[curExercise].reps}</p>
+              <p><strong>Weight:</strong> {exercises[curExercise].kg} kg</p>
+            </div>
+            
             <button
-              onClick={handleSubmit}
-              className="mt-4 w-full bg-gradient-to-b from-gray-900 to-black text-white py-2 rounded-lg font-medium shadow-lg hover:bg-gray-950 transition duration-300 ease-in-out"
+              onClick={handleNextExercise}
+              className="mt-6 w-full bg-green-500 text-white py-3 rounded-xl font-medium shadow-lg hover:bg-green-600 hover:scale-105 transition duration-300"
             >
-              Submit Workout
+              Done ✅
             </button>
-          </>
-        ) : (
-          exercises.length > 0 ? (
-            <>
-              <h1 className="text-3xl font-bold mb-6 text-gray-100">{groupName}</h1>
-              <div className="bg-gradient-to-b from-gray-900 to-black shadow-md rounded-lg p-6 max-w-lg w-full">
-                <h2 className="text-2xl font-semibold text-gray-200 mb-2 text-center">
-                  {exercises[curExercise].name}
-                </h2>
-                <Image
-                  src={exercises[curExercise].gifUrl}
-                  width={150}
-                  height={150}
-                  unoptimized
-                  alt="Gif of the workout"
-                  className="mx-auto my-4 rounded-full"
-                />
-                <div className="text-lg text-gray-300 mb-4">
-                  <p className="mb-1">{exercises[curExercise].instructions}</p>
-                  <p>
-                    <strong>Sets:</strong> {exercises[curExercise].sets}
-                  </p>
-                  <p>
-                    <strong>Reps:</strong> {exercises[curExercise].reps}
-                  </p>
-                  <p>
-                    <strong>Weight:</strong> {exercises[curExercise].kg} kg
-                  </p>
-                </div>
-                <button
-                  onClick={handleNextExercise}
-                  className="mt-6 w-full bg-green-500 text-white py-2 rounded-lg font-medium shadow-lg hover:bg-green-600 transition duration-300 ease-in-out"
-                >
-                  Done
-                </button>
-              </div>
-            </>
-          ) : (
-            <p className="text-gray-600 text-lg">Loading workout...</p>
-          )
-        )}
-      </div>
+            <button onClick={before} className="mt-6 w-full bg-green-500 text-white py-3 rounded-xl font-medium shadow-lg hover:bg-green-600 hover:scale-105 transition duration-300">Go back</button>
+          </div>
+        </div>
+      ) : (
+        <p className="text-white text-lg animate-pulse">Loading workout...</p>
+      )}
     </div>
   );
 }
