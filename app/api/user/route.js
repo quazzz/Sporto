@@ -1,8 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
-import { Resend } from 'resend';
-import {EmailTemplate} from '../../../components/EmailTemplate'
-const resend = new Resend(process.env.RESEND_API_KEY);
+
+
 const prisma = new PrismaClient();
 
 //route for POST method
@@ -34,23 +33,7 @@ export async function POST(req) {
         }
       );
     }
-    const { error } = await resend.emails.send({
-      from: 'onboarding@resend.dev',
-      to: 'alan256bros@gmail.com',
-      subject: 'Hello world',
-      react: EmailTemplate({ firstName: name }),
-    });
-    
-    if (error) {
-      console.error("Resend Error:", error);
-      return new Response(
-        JSON.stringify({ message: "Failed to send email", error: error.message }),
-        {
-          status: 500,
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-    }
+   
     
     // hash password for security
     const hashed = await bcrypt.hash(password, 10);
