@@ -59,7 +59,7 @@ export default async function Home() {
           <div className="bg-gradient-to-b from-gray-900 to-black p-4 sm:p-6 rounded-lg shadow-lg hover:scale-105 transition-all duration-300 hover:shadow-indigo-500/30">
             <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">Progress Tracking</h3>
             <p className="text-gray-400 text-sm sm:text-base">
-              Track your achievements and see how far you've come with detailed analytics.
+              Track your achievements and see how far youve come with detailed analytics.
             </p>
           </div>
         </div>

@@ -14,7 +14,6 @@ export default function GroupPage({ userId }) {
     const fetchGroups = async () => {
       try {
         const res = await fetch(`/api/group?userId=${userId}`);
-        const res2 = await fetch('/api/catalog')
         const data = await res.json();
         console.log(data);
         setGroups(data);
