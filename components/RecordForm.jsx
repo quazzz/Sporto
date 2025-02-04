@@ -72,7 +72,8 @@ export default function RecordForm({handleAdd}) {
                   type="submit"
                   title="Create new group"
                   onClick={handleSubmit}
-                  className="transition w-full py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 hover:from-blue-600 hover:to-blue-700"
+                  className="w-full py-3 bg-gradient-to-b from-indigo-500 to-indigo-600 text-white font-semibold rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 
+  transition-all duration-300 hover:brightness-110"
                 >
                   Submit achievement
                 </button>

@@ -5,6 +5,7 @@ import { useState } from "react";
 import { signIn } from "next-auth/react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+
 export default function RegisterForm() {
   //declaring router
   const router = useRouter();
@@ -35,7 +36,14 @@ export default function RegisterForm() {
       return;
     }
     if (response.ok) {
-      router.push("/login");
+      const res = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      });
+      if(res.ok){
+        router.push('/dashboard')
+      }
       return;
     }
   };
