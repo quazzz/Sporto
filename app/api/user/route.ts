@@ -22,7 +22,7 @@ export async function POST(req: Request) {
       );
     }
     //check for email valid
-    const emailcheck: any = await prisma.user.findUnique({
+    const emailcheck = await prisma.user.findUnique({
       where: {
         email: email,
       },
@@ -55,13 +55,20 @@ export async function POST(req: Request) {
         headers: { "Content-Type": "application/json" },
       }
     );
-  } catch (error: any) {
+  } catch (error: unknown) {
+    let errorMessage = "Error creating user";
+  
+    if (error instanceof Error) {
+      errorMessage = error.message;
+    }
+  
     return new Response(
-      JSON.stringify({ message: "Error creating user", error: error.message }),
+      JSON.stringify({ message: errorMessage }),
       {
         status: 500,
         headers: { "Content-Type": "application/json" },
       }
     );
   }
+  
 }

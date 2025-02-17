@@ -19,9 +19,12 @@ export async function POST(req: Request) {
       },
     });
     return new NextResponse(JSON.stringify({ message: "All good", newsubmitted }), { status: 200 });
-  } catch (error: any) {
-    return new NextResponse(JSON.stringify({ error: error.message }), { status: 500 });
-  }
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+        return new NextResponse(JSON.stringify({ error: error.message }), { status: 500 });
+    }
+    return new NextResponse(JSON.stringify({ error: "An unknown error occurred" }), { status: 500 });
+}
 }
 
 export async function GET(req: Request) {
