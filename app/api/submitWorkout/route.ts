@@ -3,7 +3,7 @@ import { PrismaClient } from "@prisma/client";
 import { NextResponse } from "next/server";
 const prisma = new PrismaClient();
 
-export async function POST(req) {
+export async function POST(req: Request) {
   const { groupName, workoutDate, userId } = await req.json();
 
   if (!groupName || !workoutDate || !userId) {
@@ -19,12 +19,12 @@ export async function POST(req) {
       },
     });
     return new NextResponse(JSON.stringify({ message: "All good", newsubmitted }), { status: 200 });
-  } catch (error) {
+  } catch (error: any) {
     return new NextResponse(JSON.stringify({ error: error.message }), { status: 500 });
   }
 }
 
-export async function GET(req) {
+export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const userId = searchParams.get("userId");
 

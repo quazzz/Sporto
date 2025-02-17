@@ -1,7 +1,8 @@
 import { PrismaClient } from "@prisma/client";
 import { NextResponse } from "next/server";
 const prisma = new PrismaClient();
-export async function POST(req) {
+
+export async function POST(req: Request) {
   const { searchParams } = new URL(req.url);
   const userId = searchParams.get("userId");
   const { recordName, achievement } = await req.json();
@@ -22,9 +23,9 @@ export async function POST(req) {
   })
   
 }
-export async function GET(req){
+export async function GET(req: Request){
     const {searchParams} = new URL(req.url);
-    const userId = searchParams.get('userId')
+    const userId = searchParams.get('userId') ?? undefined
     const records = await prisma.record.findMany({
         where: {
             userId: userId
@@ -32,9 +33,9 @@ export async function GET(req){
     })
     return NextResponse.json(records)
 }
-export async function DELETE(req){
+export async function DELETE(req: Request){
     const {searchParams} = new URL(req.url)
-    const recordId = searchParams.get('recordId')
+    const recordId = searchParams.get('recordId') ?? undefined
     await prisma.record.delete({
         where: {
             id: recordId

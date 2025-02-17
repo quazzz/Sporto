@@ -38,7 +38,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-gradient-to-r from-gray-900 via-black to-gray-900 py-4 fixed w-full z-20 shadow-lg">
+    <nav className="bg-gradient-to-r from-blue-950 via-black to-gray-950 py-4 fixed w-full z-20 shadow-lg">
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         
         <motion.div
@@ -47,7 +47,7 @@ export default function Navbar() {
           transition={{ duration: 0.5 }}
           className="text-3xl font-bold text-white tracking-wide"
         >
-          <Link href={pageConfig.home} className="hover:text-indigo-400 transition-colors">
+          <Link href={pageConfig.home} className="hover:text-blue-300 transition-colors bg-clip-text text-transparent bg-gradient-to-r from-blue-200 to-white">
             Sporto
           </Link>
         </motion.div>

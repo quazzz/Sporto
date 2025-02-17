@@ -5,7 +5,7 @@ import { useState } from "react";
 import { signIn } from "next-auth/react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-
+import {CreateUser} from '@/app/actions/actions.ts'
 export default function RegisterForm() {
   //declaring router
   const router = useRouter();
@@ -24,11 +24,8 @@ export default function RegisterForm() {
       return;
     }
     // send POST request with data to API endpoint
-    const response = await fetch("/api/user", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, email, password }),
-    });
+    const response = await CreateUser(email, password, name);
+
     // if response isnt okay then throw error
     if (!response.ok) {
       const error = await response.json();
@@ -53,7 +50,7 @@ export default function RegisterForm() {
   <div className="max-w-md w-full bg-gradient-to-b from-gray-900 to-black shadow-2xl rounded-2xl p-8 animate-fade-in">
 
     <div className="text-center mb-8">
-      <h1 className="text-4xl font-bold text-white mb-4">Create an Account</h1>
+      <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-400 mb-4">Create an Account</h1>
       <p className="text-gray-400">Join us to elevate your workout journey!</p>
     </div>
 
@@ -62,13 +59,13 @@ export default function RegisterForm() {
    
       <div>
         <label className="block text-sm font-medium text-gray-300 mb-2">
-          First Name
+          Username
         </label>
         <input
           type="text"
           onChange={(e) => setName(e.target.value)}
           className="w-full px-4 py-3 border border-gray-700 rounded-lg text-sm bg-gray-800 text-gray-300 placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition"
-          placeholder="Enter your first name"
+          placeholder="Create your username"
           required
         />
       </div>

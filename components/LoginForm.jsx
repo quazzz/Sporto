@@ -56,10 +56,10 @@ export default function LoginForm() {
 
   return (
     
-    <div className="flex flex-col items-center  justify-center min-h-screen p-8 bg-gradient-to-b from-blue-950 to-black">
+    <div className="flex flex-col items-center  justify-center min-h-screen p-8 ">
     <div className="max-w-md w-full bg-gradient-to-b from-gray-900 to-black  shadow-2xl rounded-2xl p-8 animate-fade-in">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold text-white mb-4">Welcome Back!</h1>
+        <h1 className="text-4xl font-bold  mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-400">Welcome Back!</h1>
         <p className="text-gray-400">Log in to continue your workout journey</p>
       </div>
       <form onSubmit={handleSubmit} className="space-y-6">

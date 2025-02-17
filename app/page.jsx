@@ -2,7 +2,7 @@ import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { authOptions } from "./api/auth/[...nextauth]/route.js";
-
+import { Activity, Dumbbell, LineChart, Brain } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -15,93 +15,102 @@ export default async function Home() {
   if (session) redirect("/dashboard");
 
   return (
-    <div className="bg-gradient-to-b from-blue-950 flex justify-center items-center to-black w-full min-h-screen text-white p-8 sm:p-20 overflow-hidden">
-    <div className="bg-gradient-to-b from-gray-950 to-blue-950 p-6 sm:p-10 w-full sm:w-3/4 lg:w-1/2 text-center rounded-2xl shadow-2xl border border-indigo-900 transition-all duration-500">
-      <header className="text-center mb-12 sm:mb-16">
-        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-white drop-shadow-lg mb-4 sm:mb-6 mt-6 sm:mt-10 animate-fade-in">
-          Workout to Another Level
-        </h1>
-        <p className="text-base sm:text-lg lg:text-xl text-white max-w-2xl mx-auto opacity-90 animate-fade-in delay-100">
-          Discover AI-powered tools to manage your workouts, track your progress, and achieve your fitness goals—all in one place.
-        </p>
-      </header>
-  
-      <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 mb-16 sm:mb-24 animate-fade-in delay-200">
-        <Link href="/register">
-          <p className="px-6 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-indigo-500 to-blue-600 text-white text-sm sm:text-lg rounded-full shadow-lg hover:scale-105 transition-transform hover:shadow-indigo-500/50">
-            Get Started
-          </p>
-        </Link>
-        <Link href="/login">
-          <p className="px-6 py-3 sm:px-8 sm:py-4 bg-white text-indigo-700 text-sm sm:text-lg rounded-full shadow-lg hover:bg-gray-200 hover:scale-105 transition-transform hover:shadow-white/50">
-            Log In
-          </p>
-        </Link>
-      </div>
-  
-      <section className="max-w-4xl mx-auto animate-fade-in delay-300">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12">
-          Why Choose Us?
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
-          <div className="bg-gradient-to-b from-gray-900 to-black p-4 sm:p-6 rounded-lg shadow-lg hover:scale-105 transition-all duration-300 hover:shadow-indigo-500/30">
-            <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">Best Workout Management</h3>
-            <p className="text-gray-400 text-sm sm:text-base">
-              Create your gym workouts using our catalog and keep track of them effortlessly.
+    <div className="bg-gradient-to-b from-blue-950 to-black min-h-screen text-white mt-10">
+    
+      <div className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-950/80 to-black/80 z-0" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-32 relative z-10">
+          <div className="text-center max-w-3xl mx-auto">
+            <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-8 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-400">
+              Transform Your Fitness Journey
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-300 mb-12">
+              Harness the power of AI to revolutionize your workout routine and achieve your fitness goals faster than ever.
             </p>
-          </div>
-          <div className="bg-gradient-to-b from-gray-900 to-black p-4 sm:p-6 rounded-lg shadow-lg hover:scale-105 transition-all duration-300 hover:shadow-indigo-500/30">
-            <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">AI-Powered Workouts</h3>
-            <p className="text-gray-400 text-sm sm:text-base">
-              Get personalized workout suggestions tailored to your fitness goals.
-            </p>
-          </div>
-          <div className="bg-gradient-to-b from-gray-900 to-black p-4 sm:p-6 rounded-lg shadow-lg hover:scale-105 transition-all duration-300 hover:shadow-indigo-500/30">
-            <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">Progress Tracking</h3>
-            <p className="text-gray-400 text-sm sm:text-base">
-              Track your achievements and see how far youve come with detailed analytics.
-            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/register">
+                <p className="px-8 py-4 bg-gradient-to-r from-indigo-600 to-blue-600 rounded-lg text-lg font-semibold hover:from-indigo-500 hover:to-blue-500 transition-all shadow-xl hover:shadow-indigo-500/25">
+                  Start Your Journey
+                </p>
+              </Link>
+              <Link href="/login">
+                <p className="px-8 py-4 bg-white/10 backdrop-blur-sm rounded-lg text-lg font-semibold hover:bg-white/20 transition-all border border-white/20">
+                  Sign In
+                </p>
+              </Link>
+            </div>
           </div>
         </div>
-      </section>
-  
-      <section className="max-w-4xl mx-auto mt-16 sm:mt-24 animate-fade-in delay-400">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12">
-          Frequently Asked Questions
-        </h2>
-        <Accordion
-          type="single"
-          collapsible
-          className="w-full rounded-lg shadow-lg bg-gradient-to-b from-gray-900 to-black border border-gray-800"
-        >
-          <AccordionItem value="item-1">
-            <AccordionTrigger className="text-sm sm:text-lg font-semibold text-gray-300 hover:text-indigo-400 transition px-4 sm:px-6 py-3 sm:py-4">
-              How do I start?
+      </div>
+
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 border-t border-indigo-900/30">
+        <div className="bg-gradient-to-br from-gray-900 to-blue-950 p-6 rounded-xl border border-indigo-900/30 transition-transform hover:scale-105">
+          <Dumbbell className="w-12 h-12 text-indigo-400 mb-4" />
+          <h3 className="text-xl font-bold mb-2">Manage Your Workouts</h3>
+          <p className="text-gray-400">Create workouts that fits in your style.</p>
+        </div>
+        <div className="bg-gradient-to-br from-gray-900 to-blue-950 p-6 rounded-xl border border-indigo-900/30 transition-transform hover:scale-105">
+          <Brain className="w-12 h-12 text-indigo-400 mb-4" />
+          <h3 className="text-xl font-bold mb-2">AI Coach</h3>
+          <p className="text-gray-400">Get real-time feedback and form corrections powered by AI.</p>
+        </div>
+        <div className="bg-gradient-to-br from-gray-900 to-blue-950 p-6 rounded-xl border border-indigo-900/30 transition-transform hover:scale-105">
+          <LineChart className="w-12 h-12 text-indigo-400 mb-4" />
+          <h3 className="text-xl font-bold mb-2">Progress Tracking</h3>
+          <p className="text-gray-400">Track your workout progress by viewing your analytics table.</p>
+        </div>
+        <div className="bg-gradient-to-br from-gray-900 to-blue-950 p-6 rounded-xl border border-indigo-900/30 transition-transform hover:scale-105">
+          <Activity className="w-12 h-12 text-indigo-400 mb-4" />
+          <h3 className="text-xl font-bold mb-2">Custom Plans</h3>
+          <p className="text-gray-400">Create and modify workout plans that fit your schedule perfectly.</p>
+        </div>
+      </div>
+
+   
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+        <h2 className="text-3xl font-bold text-center mb-12">Common Questions</h2>
+        <Accordion type="single" collapsible className="space-y-4">
+          <AccordionItem value="item-1" className="bg-gray-900/50 rounded-lg border border-indigo-900/30">
+            <AccordionTrigger className="px-6 py-4 text-lg hover:text-indigo-400">
+              How do I get started?
             </AccordionTrigger>
-            <AccordionContent className="text-gray-400 text-sm sm:text-base px-4 sm:px-6 py-3 sm:py-4 border-t border-gray-700">
-              Create a group, add exercises from our extensive catalog, and start tracking your achievements today!
+            <AccordionContent className="px-6 pb-4 text-gray-400">
+              Simply sign up, create your workout group and then add exercises to it from our catalog!
             </AccordionContent>
           </AccordionItem>
-          <AccordionItem value="item-2">
-            <AccordionTrigger className="text-sm sm:text-lg font-semibold text-gray-300 hover:text-indigo-400 transition px-4 sm:px-6 py-3 sm:py-4">
-              What features are available?
+          <AccordionItem value="item-2" className="bg-gray-900/50 rounded-lg border border-indigo-900/30">
+            <AccordionTrigger className="px-6 py-4 text-lg hover:text-indigo-400">
+              How can I use AI?
             </AccordionTrigger>
-            <AccordionContent className="text-gray-400 text-sm sm:text-base px-4 sm:px-6 py-3 sm:py-4 border-t border-gray-700">
-              Manage workouts with AI-powered suggestions, track progress, and share achievements with a supportive community.
+            <AccordionContent className="px-6 pb-4 text-gray-400">
+              Our AI can create groups and specific bodypart exercises to it.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-3" className="bg-gray-900/50 rounded-lg border border-indigo-900/30">
+            <AccordionTrigger className="px-6 py-4 text-lg hover:text-indigo-400">
+              How do I start a workout?
+            </AccordionTrigger>
+            <AccordionContent className="px-6 pb-4 text-gray-400">
+              Simply when you achieve more than 2 exercises in a workout group an start button will appear.
             </AccordionContent>
           </AccordionItem>
         </Accordion>
-      </section>
-  
-      <footer className="text-center text-white mt-16 sm:mt-24 text-xs sm:text-sm opacity-80 animate-fade-in delay-500">
-        <p>&copy; {new Date().getFullYear()} Sporto. All rights reserved.</p>
-        <div className="flex justify-center mt-4 space-x-4 sm:space-x-6">
-          <Link href="/contact" className="hover:text-indigo-400 transition-colors">
-            Contact Us
-          </Link>
+      </div>
+
+
+      <footer className="border-t border-indigo-900/30 bg-black/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="text-center">
+            <p className="text-gray-400">&copy; {new Date().getFullYear()} Sporto. All rights reserved.</p>
+            <div className="mt-4">
+              <Link href="/contact" className="text-gray-400 hover:text-indigo-400 transition-colors">
+                Contact Us
+              </Link>
+            </div>
+          </div>
         </div>
       </footer>
     </div>
-  </div>
   );
 }

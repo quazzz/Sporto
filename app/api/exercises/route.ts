@@ -1,14 +1,17 @@
 import { PrismaClient } from "@prisma/client";
 import { NextResponse } from "next/server";
 const prisma = new PrismaClient()
-export async function GET(req){
+export async function GET(req: Request){
     const { searchParams } = new URL(req.url);
-    const groupId = searchParams.get("groupId");
+    const groupId = searchParams.get("groupId") ?? undefined;
     const group = await prisma.group.findFirst({
         where: {
             id: groupId
         }
     })
+    if(!group){
+        throw new Error('Group not found')
+    }
     const groupName = group.name
     const exercises = await prisma.exercise.findMany({
         where: {
@@ -23,7 +26,7 @@ export async function GET(req){
         }
     })
 }
-export async function DELETE(req){
+export async function DELETE(req: Request){
     const { searchParams } = new URL(req.url)
     const exerciseId = searchParams.get('exerciseId')
     if(!exerciseId){

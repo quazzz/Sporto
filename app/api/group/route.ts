@@ -1,14 +1,14 @@
 import { PrismaClient } from "@prisma/client";
 import { NextResponse } from "next/server";
 const prisma = new PrismaClient();
-export async function POST(req) {
+export async function POST(req: Request) {
   // getting name and id from request
-  const { namer, id } = await req.json();
+  const { namer, id }: { namer: string; id: string } = await req.json();
 
   // if we don't have them, return an error
   if (!namer || !id) {
     return new Response(
-      JSON.stringify({ message: "All fields must be fulfilled" }),
+      JSON.stringify({ message: "All fields must be filled" }),
       {
         status: 500,
         headers: { "Content-Type": "application/json" },
@@ -32,21 +32,17 @@ export async function POST(req) {
     });
   } catch (error) {
     console.error("Error creating group:", error);
-    return new Response(
-      JSON.stringify({ message: "Error creating group" }),
-      {
-        status: 500,
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+    return new Response(JSON.stringify({ message: "Error creating group" }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
   }
 }
 
-
-export async function GET(req) {
+export async function GET(req: Request) {
   // get params from url
   const { searchParams } = new URL(req.url);
-  const userId = searchParams.get("userId");
+  const userId = searchParams.get("userId") ?? undefined;
   // if theres no param then return an error because user dont have authorization
   if (!userId) {
     return new Response(JSON.stringify({ message: "No auth" }), {
@@ -68,7 +64,7 @@ export async function GET(req) {
     console.error(err);
   }
 }
-export async function DELETE(req) {
+export async function DELETE(req: Request) {
   const { searchParams } = new URL(req.url);
   const groupId = searchParams.get("id");
   if (!groupId) {
@@ -88,7 +84,7 @@ export async function DELETE(req) {
         id: groupId,
       },
     });
-    
+
     return new Response(
       JSON.stringify({ message: "Group and exercises deleted successfully" }),
       { status: 200, headers: { "Content-Type": "application/json" } }
@@ -102,10 +98,10 @@ export async function DELETE(req) {
   }
 }
 
-export async function PUT(req) {
+export async function PUT(req: Request) {
   const { searchParams } = new URL(req.url);
   const groupid = searchParams.get("id");
-  const { name } = await req.json();
+  const { name }: { name: string } = await req.json();
   if (!groupid) {
     return new Response(JSON.stringify({ message: "Something is missing" }), {
       status: 520,
