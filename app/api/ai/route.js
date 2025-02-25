@@ -1,134 +1,148 @@
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
+import { shuffle } from "lodash";
+
 const prisma = new PrismaClient();
 
-const bodyPartsMappingForAI = [
-  "back",
-  "cardio",
-  "chest",
-  "lower arms",
-  "neck",
-  "lower_legs",
-  "upper_legs",
-  "shoulders",
-  "legs",
-  "waist",
-  "upper arms"
-];
-const targets = [
-  'abductors',
-  'abs',
-  'adductors',
-  'biceps',
-  'calves',
-  'cardiovascular system',
-  'delts',
-  'forearms',
-  'glutes',
-  'hamstrings',
-  
-  'levator scapulae',
-  'pectorals',
-  'quads',
-  'serratus anterior',
+const BODY_PARTS = {
+  back: "back",
+  cardio: "cardio",
+  chest: "chest",
+  "lower arms": "lower arms",
+  neck: "neck",
+  "lower legs": "lower legs",
+  "upper legs": "upper legs",
+  shoulders: "shoulders",
+  legs: "legs",
+  waist: "waist",
+  "upper arms": "upper arms",
+};
 
-  'traps',
-  'triceps',
-  'lats'
-]
+const MUSCLE_TARGETS = {
+  abductors: "abductors",
+  abs: "abs",
+  adductors: "adductors",
+  biceps: "biceps",
+  calves: "calves",
+  "cardiovascular system": "cardiovascular system",
+  delts: "delts",
+  forearms: "forearms",
+  glutes: "glutes",
+  hamstrings: "hamstrings",
+  "levator scapulae": "levator scapulae",
+  pectorals: "pectorals",
+  quads: "quads",
+  "serratus anterior": "serratus anterior",
+  traps: "traps",
+  triceps: "triceps",
+  lats: "lats",
+};
 
-function randomPrefix(bodyPart) {
-  if (bodyPart === "legs") {
+function getRandomLegsVariation(muscleGroup) {
+  if (muscleGroup.toLowerCase() === "legs") {
     return Math.random() > 0.5 ? "upper legs" : "lower legs";
   }
-  return bodyPart;
+  return muscleGroup;
 }
 
-async function analyzeIntent(message) {
-  const messages = [
-    {
-      role: "system",
-      content:
-        "You are a helpful assistant. Extract the user's intent and provide structured output as JSON.",
-    },
-    {
-      role: "user",
-      content: `Determine the user's intent based on this message. If the user wants to make a group with exercises, set the intent as "group_ex". 
-      Add the user's message and the predicted muscle group from bodyparts array ${bodyPartsMappingForAI} or target ${targets} as muscle_group, 
-      add property named 'api' that will have one of values bodypart or target 
-      so like if users wants something from bodypartlist ${bodyPartsMappingForAI} then the property 
-      will be named 'bodyPart' and if from 
-      target list ${targets} then just 'target' (so like if user wants pecs then the muscle_group is pectorals (as it named in the list) and api gonna be named "target" because pecs only exist in target list) but if user says legs or other that has prefix 
-      in list ("lower" or "upper"), 
-      so like if user wants some legs (in list it has prefix) then select the upper legs or lower legs
-      If it's just a group, set the intent as 
-      "group" and add the group name. If the user is asking questions about sports or other topics or some random shit, set the intent as "chat" and add a message for the user.\n${message}`,
-    },
-  ];
-
-  const response = await fetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
-    },
-    body: JSON.stringify({
-      model: "gpt-3.5-turbo",
-      messages,
-      max_tokens: 1000,
-    }),
-  });
-
-  if (!response.ok) {
-    console.error("OpenAI API request failed:", response.status, response.statusText);
-    throw new Error("Failed to analyze intent");
-  }
-
-  const data = await response.json();
-  try {
-    const parsedContent = JSON.parse(data.choices[0]?.message?.content || "{}");
-    return parsedContent;
-  } catch (error) {
-    console.error("Failed to parse OpenAI response content:", data.choices[0]?.message?.content);
-    throw new Error("Invalid JSON in OpenAI response",error);
+function validateApiSetup() {
+  if (!process.env.OPENAI_API_KEY || !process.env.RAPIDAPI_KEY) {
+    throw new Error("Required API keys are not configured");
   }
 }
 
-import { shuffle } from 'lodash'; 
+async function analyzeUserIntent(message) {
+  const systemPrompt = {
+    role: "system",
+    content:
+      "You are a helpful assistant. Extract the user's intent and provide structured output as JSON.",
+  };
 
-async function createGroupWithExercises(userId, groupName, muscleGroup,api) {
+  const userPrompt = {
+    role: "user",
+    content: `Analyze the following message and determine the user's intent. Return a JSON object with:
+    - "intent": Either "group_ex" (for exercise group creation), "group" (for empty group creation), or "chat" (for general questions)
+    - "group_name": Name of the group if specified
+    - "muscle_group": Target muscle or body part if specified
+    - "api": Either "bodyPart" (if muscle_group is in ${Object.keys(
+      BODY_PARTS
+    ).join(", ")}) or "target" (if muscle_group is in ${Object.keys(
+      MUSCLE_TARGETS
+    ).join(", ")})
+    - "message": Response message for chat intent
+
+    Message: ${message}`,
+  };
+
   try {
-    if (!process.env.RAPIDAPI_KEY) {
-      throw new Error("RAPIDAPI_KEY is missing in environment variables.");
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+      },
+      body: JSON.stringify({
+        model: "gpt-3.5-turbo",
+        messages: [systemPrompt, userPrompt],
+        max_tokens: 1000,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`OpenAI API error: ${response.status}`);
     }
 
-    const groupTitle = groupName || `Workout Group - ${muscleGroup}`;
+    const data = await response.json();
+    const parsedIntent = JSON.parse(data.choices[0]?.message?.content || "{}");
+
+    if (!parsedIntent.intent) {
+      throw new Error("Invalid intent format received from OpenAI");
+    }
+
+    return parsedIntent;
+  } catch (error) {
+    console.error("Intent analysis error:", error);
+    throw new Error("Failed to analyze message intent");
+  }
+}
+
+async function fetchExercises(muscleGroup, api) {
+  try {
+    const response = await fetch(
+      `https://exercisedb.p.rapidapi.com/exercises/${api}/${muscleGroup}`,
+      {
+        method: "GET",
+        headers: {
+          "x-rapidapi-key": process.env.RAPIDAPI_KEY,
+          "x-rapidapi-host": "exercisedb.p.rapidapi.com",
+        },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`Exercise API error: ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Exercise fetch error:", error);
+    throw new Error("Failed to fetch exercises");
+  }
+}
+
+async function createGroupWithExercises(userId, groupName, muscleGroup, api) {
+  try {
     const group = await prisma.group.create({
       data: {
-        name: groupTitle,
+        name: groupName || `Workout Group - ${muscleGroup}`,
         userId: userId,
       },
     });
 
-    console.log(`Group created: ${group.name} (ID: ${group.id})`);
+    const exercises = await fetchExercises(muscleGroup, api);
+    const selectedExercises = shuffle(exercises).slice(0, 5);
 
-    const response = await fetch(`https://exercisedb.p.rapidapi.com/exercises/${api}/${muscleGroup}`, {
-      method: "GET",
-      headers: {
-        "x-rapidapi-key": process.env.RAPIDAPI_KEY,
-        "x-rapidapi-host": "exercisedb.p.rapidapi.com",
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error(`Failed to fetch exercises: ${response.statusText}`);
-    }
-
-    const exercises = await response.json();
-
-    const randomExercises = shuffle(exercises).slice(0, 5);
-
-    const exerciseData = randomExercises.map((exercise) => ({
+    const exerciseData = selectedExercises.map((exercise) => ({
       name: exercise.name,
       gifUrl: exercise.gifUrl,
       target: exercise.target,
@@ -141,92 +155,80 @@ async function createGroupWithExercises(userId, groupName, muscleGroup,api) {
       kg: "Unnamed",
       groupId: group.id,
     }));
- 
+
     await prisma.exercise.createMany({
       data: exerciseData,
     });
 
-    console.log(`${exerciseData.length} exercises added to group: ${group.name}`);
     return {
-      message: `Group "${groupTitle}" with ${exerciseData.length} exercises created successfully!`,
+      success: true,
+      message: `Group "${group.name}" created with ${exerciseData.length} exercises! Please reload the page ;)`,
     };
   } catch (error) {
-    console.error("Error creating group with exercises:", error);
-    throw new Error("Failed to create group with exercises. Please try again.");
+    console.error("Group creation error:", error);
+    throw new Error("Failed to create exercise group");
   }
 }
 
-
 export async function POST(req) {
-  if (!process.env.OPENAI_API_KEY || !process.env.RAPIDAPI_KEY) {
-    return NextResponse.json(
-      { error: "API keys are not set in the environment variables" },
-      { status: 500 }
-    );
-  }
-
   try {
+    validateApiSetup();
+
     const { messages, id } = await req.json();
-    if(!id || !messages){
-      return NextResponse.json({error: 'Some of the properties are missing.'}, {status:401})
+    if (!id || !messages?.length) {
+      return NextResponse.json(
+        { error: "Invalid request: missing user ID or messages" },
+        { status: 400 }
+      );
     }
-  
+
     const userMessage = messages[messages.length - 1].content;
+    const intent = await analyzeUserIntent(userMessage);
 
-    console.log("Received user message:", userMessage);
-
-    const intent = await analyzeIntent(userMessage);
-    console.log("Detected intent:", intent);
-
-    if (intent.intent === "group") {
-      const groupName = intent.group_name || "Unnamed Group";
-      const message = intent.message;
-      console.log("Creating group:", groupName);
-
-      const group = await prisma.group.create({
-        data: {
-          name: groupName,
-          userId: id,
-        },
-      });
-
-      if (!group.id) {
-        throw new Error("Failed to create group");
+    switch (intent.intent) {
+      case "group": {
+        await prisma.group.create({
+          data: {
+            name: intent.group_name || "Unnamed Group",
+            userId: id,
+          },
+        });
+        return NextResponse.json({
+          message: intent.message,
+          bool: true,
+        });
       }
 
-      return NextResponse.json({ message: message, bool: true });
-    } else if (intent.intent === "chat") {
-      const message = intent.message;
-      return NextResponse.json({ message: message });
-    } else if (intent.intent === "group_ex") {
-      const groupName = intent.group_name;
-      let muscleGroup = intent.muscle_group;
-      let api = intent.api
-      if(api == 'bodypart'){
-        api = 'bodyPart'
-      }
-      console.log(api)
-      muscleGroup = randomPrefix(muscleGroup)
-
-      try {
-        const result = await createGroupWithExercises(id, groupName, muscleGroup,api);
-        return NextResponse.json({ message: result.message,bool: true  });
-      } catch (error) {
-        console.error("Error in group_ex intent handling:", error);
-        return NextResponse.json(
-          { error: error.message || "Failed to create group with exercises." },
-          { status: 500 }
+      case "group_ex": {
+        const muscleGroup = getRandomLegsVariation(intent.muscle_group);
+        const result = await createGroupWithExercises(
+          id,
+          intent.group_name,
+          muscleGroup,
+          intent.api === "bodypart" ? "bodyPart" : intent.api
         );
+        return NextResponse.json({
+          message: result.message,
+          bool: true,
+        });
+      }
+
+      case "chat": {
+        return NextResponse.json({
+          message: intent.message,
+        });
+      }
+
+      default: {
+        return NextResponse.json({
+          message: "Could not determine appropriate action from message.",
+        });
       }
     }
-
-    return NextResponse.json({
-      message: "No valid action detected from the user's message.",
-    });
   } catch (error) {
-    console.error("Error occurred:", error);
+    console.error("API error:", error);
     return NextResponse.json(
-      { error: error.message || "Something went wrong" },
+      { error: error.message || "Internal server error" },
       { status: 500 }
     );
   }

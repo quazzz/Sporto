@@ -5,7 +5,7 @@ export default function Page() {
     <div className="animate-fade-in  flex flex-col items-center justify-center min-h-screen p-8">
     <div className="max-w-lg w-full  bg-gradient-to-b from-gray-900 to-black shadow-lg rounded-xl p-8">
       <div className="text-center">
-        <h1 className="text-4xl font-bold text-white mb-4">Contact Us</h1>
+        <h1 className="text-4xl font-bold  mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-400">Contact Us</h1>
         <p className="text-gray-400">We would love to hear from you! Please fill out the form below.</p>
       </div>
       <form
