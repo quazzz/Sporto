@@ -2,7 +2,7 @@ import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { authOptions } from "./api/auth/[...nextauth]/route.js";
-import { Dumbbell, Brain, LineChart, Activity, Users } from "lucide-react";
+import { Dumbbell, Brain, LineChart, Activity } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -113,7 +113,7 @@ export default async function Home() {
                 key={index}
                 className="bg-gray-900 p-6 rounded-lg border border-indigo-900/30 shadow-lg transform hover:scale-105 transition"
               >
-                <p className="text-gray-400">"{review.feedback}"</p>
+                <p className="text-gray-400">&quot;{review.feedback}&quot;</p>
                 <p className="text-indigo-400 mt-4 font-semibold">
                   {review.name}
                 </p>
