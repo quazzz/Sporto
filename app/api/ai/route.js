@@ -30,7 +30,6 @@ const MUSCLE_TARGETS = {
   glutes: "glutes",
   hamstrings: "hamstrings",
   "levator scapulae": "levator scapulae",
-  pectorals: "pectorals",
   quads: "quads",
   "serratus anterior": "serratus anterior",
   traps: "traps",

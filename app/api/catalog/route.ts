@@ -1,21 +1,13 @@
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 import { NextResponse } from "next/server";
-interface ExerciseRequest {
-  name: string;
-  equipment: string;
-  gifUrl: string;
-  target: string;
-  bodyPart: string;
-  instructions: string[];
-  secondaryMuscles: string[];
-  groupId: string;
-  sets: string;
-  reps: string;
-  kg: string;
-}
+import ExerciseRequest from "@/types/ExerciseReq";
 
-
+const jsonRes = (data: unknown, status: number = 200) =>
+  new NextResponse(JSON.stringify(data), {
+    status,
+    headers: { "Content-Type": "application/json" },
+  });
 
 export async function GET() {
   // preparing for fetch, adding options and url
@@ -23,7 +15,7 @@ export async function GET() {
   const options = {
     method: "GET",
     headers: {
-      "x-rapidapi-key": process.env.RAPIDAPI_KEY ?? '',
+      "x-rapidapi-key": process.env.RAPIDAPI_KEY ?? "",
       "x-rapidapi-host": "exercisedb.p.rapidapi.com",
     },
   };
@@ -33,36 +25,23 @@ export async function GET() {
     // getting json from response
     const data = await response.json();
     // returning that json to client-side
-    return new Response(JSON.stringify(data), {
-      status: 200,
-      headers: { "Content-Type": "application/json" },
-    });
+    return jsonRes(data);
   } catch (error) {
     // if error occures then we console it
     console.log(error);
   }
 }
-export async function POST(req: Request){
-  const body: ExerciseRequest = await req.json()
-  const { name, equipment, gifUrl, target, bodyPart, instructions, secondaryMuscles, groupId, sets, reps, kg } = body;
-  if(!name || !equipment || !gifUrl || !target || !bodyPart || !instructions || !secondaryMuscles || !groupId || !sets || !reps || !kg){
-    return new NextResponse(JSON.stringify({ error: "Some of properties are missing." }), { status: 401 });
-  }
-  await prisma.exercise.create({
-    data: {
-      name: name,
-      equipment: equipment,
-      gifUrl: gifUrl,
-      target: target,
-      bodyPart: bodyPart,
-      instructions: instructions,
-      secondaryMuscles: secondaryMuscles,
-      groupId: groupId,
-      sets: sets,
-      reps: reps,
-      kg: kg
+export async function POST(req: Request) {
+  try {
+    const body: ExerciseRequest = await req.json();
+    if (Object.values(body).some((value) => !value)) {
+      return jsonRes({ error: "Some properties are missing" }, 400);
     }
-  })
-  return new NextResponse(JSON.stringify({ message: "All ok" }), { status: 200 });
-
+    await prisma.exercise.create({
+      data: body,
+    });
+    return jsonRes({ message: "All ok" });
+  } catch (error) {
+    return jsonRes({ error: "Server error" }, 500);
+  }
 }

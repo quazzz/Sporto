@@ -41,7 +41,7 @@ export default function Navbar() {
     <nav className="bg-gradient-to-r from-blue-950 via-black to-gray-950 py-4 fixed w-full z-20 shadow-lg">
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         
-        <motion.div
+        <div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -50,7 +50,7 @@ export default function Navbar() {
           <Link href={pageConfig.home} className="hover:text-blue-300 transition-colors bg-clip-text text-transparent bg-gradient-to-r from-blue-200 to-white">
             Sporto
           </Link>
-        </motion.div>
+        </div>
 
       
         <div className="hidden md:flex items-center space-x-6">

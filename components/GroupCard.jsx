@@ -35,6 +35,7 @@ export default function GroupCard({
       const groupid = group.id;
       const res = await fetch(`/api/group?id=${groupid}`, {
         method: "PUT",
+        
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: newName }),
       });

@@ -9,7 +9,7 @@ export default function ExerciseCard({ workout, onPlusClick, onViewDetailsClick 
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
   const name = capitalizeFirstLetter(name0);
-
+  
   const equipment = capitalizeFirstLetter(equipment0);
   return (
     <div className="max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl rounded-lg animate-fade-in overflow-hidden shadow-xl bg-gradient-to-b from-gray-950 via-blue-950 to-gray-950  p-6 m-4 text-center transform transition-transform duration-300 hover:scale-105 animate-fade-in">

@@ -12,7 +12,12 @@
         background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><line x1="0" y1="" x2="100" y2="100" stroke="lightgray" stroke-width="2"/><line x1="100" y1="0" x2="0" y2="100" stroke="lightgray" stroke-width="2"/></svg>');
     }
 }
-   
+html, body, #__next, main {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+ 
+}
 .loader {
     width: 50px;
     aspect-ratio: 1;

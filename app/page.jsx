@@ -47,7 +47,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="animate-fade-in max-w-6xl mx-auto px-6 py-24 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+      <section className="animate-fade-in bg-gradient-to-b from-black to-blue-950  w-full mx-auto px-6 py-24 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
         {[
           {
             icon: <Dumbbell />,
@@ -88,7 +88,7 @@ export default async function Home() {
         ))}
       </section>
 
-      <section className="py-24 bg-gradient-to-r from-blue-950 to-black">
+      <section className="py-24 bg-blue-950 to-black">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <h2 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-blue-400">
             Trusted by Athletes & Beginners Alike
@@ -123,49 +123,64 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="max-w-4xl mx-auto px-6 py-24">
-        <h2 className="text-3xl font-bold text-center mb-12">FAQs</h2>
-        <Accordion type="single" collapsible className="space-y-4">
-          {[
-            {
-              q: "How do I get started?",
-              a: "Simply sign up and start your journey! Create a group and just add exercises from our catalog!",
-            },
-            {
-              q: "How does AI coaching work?",
-              a: "The AI adapts to your progress and helps you improve.",
-            },
-            {
-              q: "Can I track my performance?",
-              a: "Yes, detailed analytics are available for every workout.",
-            },
-          ].map((faq, index) => (
-            <AccordionItem
-              key={index}
-              value={`item-${index}`}
-              className="bg-gray-900 rounded-lg border border-indigo-900/30"
-            >
-              <AccordionTrigger className="px-6 py-4 text-lg hover:text-indigo-400 transition">
-                {faq.q}
-              </AccordionTrigger>
-              <AccordionContent className="px-6 pb-4 text-gray-400">
-                {faq.a}
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
-      </section>
-
-      <footer className=" py-12 text-center">
-        <p className="text-gray-400">
-          &copy; {new Date().getFullYear()} Sporto. All rights reserved.
-        </p>
-        <Link
-          href="/contact"
-          className="text-gray-400 hover:text-indigo-400 transition"
+      <section className="flex items-center justify-center mx-auto px-6 py-12 bg-blue-950 text-center ">
+  <div className="max-w-2xl w-full">
+    <h2 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-blue-400 mb-6 ">FAQs</h2>
+    <Accordion type="single" collapsible className="space-y-4">
+      {[
+        {
+          q: "How do I get started?",
+          a: "Simply sign up and start your journey! Create a group and just add exercises from our catalog!",
+        },
+        {
+          q: "How does AI coaching work?",
+          a: "The AI adapts to your progress and helps you improve.",
+        },
+        {
+          q: "Can I track my performance?",
+          a: "Yes, detailed analytics are available for every workout.",
+        },
+      ].map((faq, index) => (
+        <AccordionItem
+          key={index}
+          value={`item-${index}`}
+          className="bg-gray-900 rounded-lg border border-indigo-900/30"
         >
-          Contact Us
-        </Link>
+          <AccordionTrigger className="px-6 py-4 text-lg hover:text-indigo-400 transition">
+            {faq.q}
+          </AccordionTrigger>
+          <AccordionContent className="px-6 pb-4 text-gray-400">
+            {faq.a}
+          </AccordionContent>
+        </AccordionItem>
+      ))}
+    </Accordion>
+  </div>
+</section>
+
+
+      <section className="py-16 bg-gradient-to-b from-blue-950 to-black ">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h2 className="text-4xl font-extrabold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white to-blue-400">Ready to transform your fitness journey?</h2>
+          <Link href="/register">
+            <p className="inline-block px-8 py-4 bg-blue-700 rounded-full text-lg font-semibold hover:bg-blue-800 transition-all shadow-lg">
+              Get Started Today
+            </p>
+          </Link>
+        </div>
+      </section>
+      <footer className="py-12 text-center bg-black ">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="mb-8">
+            <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">Sporto</h3>
+          </div>
+          <div className="flex justify-center space-x-6 mb-8">
+            <Link href="/contact" className="text-gray-400 hover:text-gray-500 transition">Contact</Link>
+          </div>
+          <p className="text-gray-500">
+            &copy; {new Date().getFullYear()} Sporto. All rights reserved.
+          </p>
+        </div>
       </footer>
     </div>
   );

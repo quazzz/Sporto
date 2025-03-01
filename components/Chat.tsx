@@ -7,6 +7,7 @@ interface Message {
   content: string;
 }
 
+
 export default function Chat() {
   const { data: session } = useSession();
   const [open, setOpen] = useState<boolean>(false);
