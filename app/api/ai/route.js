@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 import { shuffle } from "lodash";
-
+import getSession from "../../../lib/getSession";
 const prisma = new PrismaClient();
 
 const BODY_PARTS = {
@@ -174,6 +174,9 @@ export async function POST(req) {
     validateApiSetup();
 
     const { messages, id } = await req.json();
+    if(!(await getSession(req,id))){
+      return new NextResponse(JSON.stringify('Access Denied'),{status:401})
+    }
     if (!id || !messages?.length) {
       return NextResponse.json(
         { error: "Invalid request: missing user ID or messages" },
