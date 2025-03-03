@@ -124,7 +124,7 @@ export default function Navbar() {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
-          className="md:hidden bg-gradient-to-r from-gray-900 via-black to-gray-900 py-4"
+          className="md:hidden  py-4"
         >
           <div className="flex flex-col items-center space-y-4">
             {session ? (

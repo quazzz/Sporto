@@ -9,16 +9,20 @@ export default async function page() {
   if (session) redirect("/dashboard");
 
   return (
-    <div className=" w-full bg-gradient-to-b from-black to-blue-950 flex flex-col lg:flex-row items-center justify-center  overflow-hidden">
-      <div className="absolute hidden right-10 sm:block top-1/2 transform -translate-y-1/2 w-[500px] h-[500px] opacity-40">
-        <div className="blob absolute w-full h-full bg-gradient-to-b from-blue-500 to-blue-600 mix-blend-screen animate-blob"></div>
-      </div>
-      <div className="lg:w-[70%] w-full flex items-center justify-center p-6"></div>
-      <div className="lg:w-[30%] w-full bg-black/10 backdrop-blur-md flex flex-col items-center justify-center p-6  text-center">
-        <div className="w-full max-w-md">
-          <LoginForm />
-        </div>
-      </div>
-    </div>
+   <div className="h-screen w-full flex flex-col lg:flex-row relative">
+     <div className="hidden lg:flex lg:w-1/2 items-center justify-center animated-bg relative">
+   
+      
+   
+       <h1 className="text-6xl md:text-7xl font-extrabold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-400">
+         Sporto. Stronger. Smarter
+       </h1>
+     </div>
+   
+   
+     <div className="w-full lg:w-1/2 flex items-center justify-center animated-bg">
+       <LoginForm />
+     </div>
+   </div>
   );
 }

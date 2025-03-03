@@ -49,7 +49,7 @@ export default function GroupPage({ userId }) {
   };
 
   return (
-    <div className="min-h-screen flex flex-col lg:flex-row items-center justify-center font-[var(--font-geist-sans)] p-4 sm:p-8 lg:p-12">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-blue-800 to-black lg:flex-row items-center justify-center font-[var(--font-geist-sans)] p-4 sm:p-8 lg:p-12">
       <div className="w-full max-w-md p-8 rounded-lg mb-10 lg:mb-0 lg:mr-10 ">
         <GroupForm onAddGroup={handleAddGroup} />
         <div className="w-full sm:w-[350px] lg:w-[400px] mx-auto mt-10">

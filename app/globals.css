@@ -181,3 +181,20 @@ html, body, #__next, main {
 .animate-blob {
   animation: morph 6s infinite ease-in-out;
 }
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animated-bg {
+  background: linear-gradient(-45deg, black, #1E3A8A, black);
+  background-size: 300% 300%;
+  animation: gradientAnimation 6s infinite alternate ease-in-out;
+}

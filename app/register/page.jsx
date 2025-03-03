@@ -9,23 +9,23 @@ export default async function page() {
   if (session) redirect("/dashboard");
   return (
     <>
-      <div className="h-screen bg-gradient-to-b from-black to-blue-950 w-full flex flex-col lg:flex-row relative">
-        
-        <div className="lg:w-[70%] w-full flex items-center justify-center p-6">
-          <h1 className="text-6xl font-bold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-400 tracking-wider">
-            An new era of fitness
-          </h1>
-        </div>
-      
-      
-        
-      
-        <div className="lg:w-[30%] w-full bg-black/5 backdrop-blur-sm flex items-center justify-center p-6">
-          <div className="w-full max-w-md">
-            <RegisterForm />
-          </div>
-        </div>
-      </div>
+  <div className="h-screen w-full flex flex-col lg:flex-row relative">
+  <div className="hidden lg:flex lg:w-1/2 items-center justify-center animated-bg relative">
+
+   
+
+    <h1 className="text-6xl md:text-7xl font-extrabold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-400">
+      Sporto. Faster. Better.
+    </h1>
+  </div>
+
+
+  <div className="w-full lg:w-1/2 flex items-center justify-center animated-bg">
+    <RegisterForm />
+  </div>
+</div>
+
+
     </>
   );
 }

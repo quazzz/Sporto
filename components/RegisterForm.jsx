@@ -112,13 +112,51 @@ export default function RegisterForm() {
             <label className="block text-sm font-medium text-gray-300 mb-2">
               Password
             </label>
-            <input
-              type="password"
+            <div className="relative">
+
+              <input
+              type={showPassword ? 'text' : 'password'}
+              
               onChange={(e) => setPassword(e.target.value)}
               className="w-full px-4 py-3 border border-gray-700 rounded-lg text-sm bg-gray-800 text-gray-300 placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition"
               placeholder="Create a password"
               required
             />
+            <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute inset-y-0 right-3 flex items-center text-gray-400 hover:text-gray-600"
+                >
+                  {showPassword ? (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      width="24"
+                      height="24"
+                      fill="none"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="M12 6c-3.333 0-6 2.667-6 6s2.667 6 6 6 6-2.667 6-6-2.667-6-6-6zm0 10c-2.221 0-4-1.779-4-4s1.779-4 4-4 4 1.779 4 4-1.779 4-4 4zm6-10c0 1.104-.896 2-2 2s-2-.896-2-2 2-.896 2-2 2 .896 2 2zm-4 4c0 .552-.448 1-1 1s-1-.448-1-1 1-.448 1-1 1 .448 1 1zm4 4c0 1.104-.896 2-2 2s-2-.896-2-2 2-.896 2-2 2 .896 2 2z"
+                      />
+                    </svg>
+                  ) : (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      width="24"
+                      height="24"
+                      fill="none"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="M12 6c-3.333 0-6 2.667-6 6s2.667 6 6 6 6-2.667 6-6-2.667-6-6-6zm0 10c-2.221 0-4-1.779-4-4s1.779-4 4-4 4 1.779 4 4-1.779 4-4 4zm6-10c0 1.104-.896 2-2 2s-2-.896-2-2 2-.896 2-2 2 .896 2 2zm-4 4c0 .552-.448 1-1 1s-1-.448-1-1 1-.448 1-1 1 .448 1 1zm4 4c0 1.104-.896 2-2 2s-2-.896-2-2 2-.896 2-2 2 .896 2 2z"
+                      />
+                    </svg>
+                  )}
+                </button>
+            </div>
+            
           </div>
 
           <button
