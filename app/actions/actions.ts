@@ -1,4 +1,3 @@
-
 export async function CreateUser(email: string, password: string, name: string){
     const response = await fetch("/api/user", {
         method: "POST",

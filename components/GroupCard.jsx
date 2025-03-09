@@ -35,7 +35,7 @@ export default function GroupCard({
       const groupid = group.id;
       const res = await fetch(`/api/group?id=${groupid}`, {
         method: "PUT",
-        
+
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: newName }),
       });
@@ -69,7 +69,7 @@ export default function GroupCard({
     fetchGroups();
   }, []);
   return (
-    <div className="max-w-sm animate-fade-in rounded-lg shadow-lg bg-gradient-to-b from-blue-950 to-black p-6 text-center text-white">
+    <div className="max-w-sm animate-fade-in rounded-lg shadow-lg bg-gradient-to-b from-blue-950 to-black p-6 text-center text-white border border-gray-950">
       <div className="flex justify-center space-x-3 mb-4">
         <div
           className="border rounded-full cursor-pointer p-2 transition-transform duration-200 hover:scale-105 hover:bg-red-500 hover:text-white flex items-center justify-center shadow-md"

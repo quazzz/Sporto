@@ -143,16 +143,16 @@ export default function WorkoutChart() {
 
   return (
     <>
-      <h1 className="animate-fade-in text-center mb-5 bg-gradient-to-b from-indigo-500 to-indigo-600 p-3 text-white rounded shadow-lg">
+      <h1 className="animate-fade-in  text-center mb-5 bg-gradient-to-b from-indigo-500 to-indigo-600 p-3 text-white rounded shadow-lg">
         Your Workout Timeline
       </h1>
 
-      <div className="chart-wrapper bg-gradient-to-b from-gray-900 to-black p-4 rounded-xl mb-6">
+      <div className="chart-wrapper bg-gradient-to-b from-gray-900 to-black p-4 rounded-xl mb-6 ">
         <h2 className="text-center text-white mb-4">Workout Count</h2>
         <Line data={workoutCountData} options={{ responsive: true }} />
       </div>
 
-      <div className="chart-wrapper bg-gradient-to-b from-gray-900 to-black p-4 rounded-xl">
+      <div className="chart-wrapper bg-gradient-to-b from-gray-900 to-black p-4 rounded-xl ">
         <h2 className="text-center text-white mb-4">Workout Names</h2>
         <Bar data={workoutNamesData} options={{ responsive: true }} />
       </div>

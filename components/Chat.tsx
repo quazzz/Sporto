@@ -12,7 +12,7 @@ export default function Chat() {
   const { data: session } = useSession();
   const [open, setOpen] = useState<boolean>(false);
   const [messages, setMessages] = useState<Message[]>([
-    { role: "assistant", content: "Hi! How can I assist you today?" },
+    { role: "assistant", content: "Hi! How can I assist you today? I can make workouts for you and answer your questions!" },
   ]);
   const [input, setInput] = useState<string>("");
 

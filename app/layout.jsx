@@ -1,15 +1,14 @@
-
 import "./globals.css";
 import React, { Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import { AuthProvider } from "./Providers";
 import { Toaster } from "react-hot-toast";
 import LoadingPage from "../app/loading";
-import { Raleway } from 'next/font/google'
-import Chat from '@/components/Chat'
+import { Raleway } from "next/font/google";
+import Chat from "@/components/Chat";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
-const raleway = Raleway({subsets: ['latin']})
+const raleway = Raleway({ subsets: ["latin"] });
 export const metadata = {
   title: "Sporto",
   description: "Sporto application",
@@ -20,19 +19,16 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <Suspense fallback={<LoadingPage />}>
-        <body
-          className={`${raleway.className}`}
-        >
+        <body className={`${raleway.className}`}>
           <Toaster position="bottom-center" />
           <AuthProvider>
-            <Navbar/>
-            <div className="bg-gradient-to-b from-blue-950 to-black">
-               {children}
+            <Navbar />
+            <div className="">
+             
+              {children}
             </div>
-                       
-            {session &&  <Chat/>}
-          
-            
+
+            {session && <Chat />}
           </AuthProvider>
         </body>
       </Suspense>

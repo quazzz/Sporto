@@ -1,28 +1,45 @@
-import React from "react";
+import { Sparkles } from "lucide-react";
 import LoginForm from "@/components/LoginForm";
-import { getServerSession } from "next-auth";
-import { redirect } from "next/navigation";
-import { authOptions } from "../api/auth/[...nextauth]/route.js";
 
-export default async function page() {
-  const session = await getServerSession(authOptions);
-  if (session) redirect("/dashboard");
-
+export default function HeroSection() {
   return (
-   <div className="h-screen w-full flex flex-col lg:flex-row relative">
-     <div className="hidden lg:flex lg:w-1/2 items-center justify-center animated-bg relative">
-   
-      
-   
-       <h1 className="text-6xl md:text-7xl font-extrabold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-400">
-         Sporto. Stronger. Smarter
-       </h1>
-     </div>
-   
-   
-     <div className="w-full lg:w-1/2 flex items-center justify-center animated-bg">
-       <LoginForm />
-     </div>
-   </div>
+    <div className="min-h-screen flex flex-col lg:flex-row items-center justify-center bg-black text-white relative overflow-hidden px-6">
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <div className="absolute -top-40 left-1/4 w-[700px] h-[700px] bg-blue-500/25 rounded-full blur-[180px] animate-pulse"></div>
+        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-blue-400/20 rounded-full blur-[150px] animate-pulse"></div>
+      </div>
+      <div className="absolute inset-0 z-0 bg-gradient-animated opacity-70 animate-gradient"></div>
+
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        {[...Array(50)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-white/40 rounded-full"
+            style={{
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              animation: `float ${2 + Math.random() * 3}s infinite ease-in-out`,
+            }}
+          ></div>
+        ))}
+      </div>
+
+      <div className="flex flex-col items-center justify-center relative z-10 mt-10">
+        <div className="w-full max-w-md p-5 rounded-3xl text-center bg-gradient-to-b from-gray-900 to-black shadow-2xl shadow-white/20">
+          <Sparkles
+            size={40}
+            className="text-blue-400 animate-pulse mx-auto mb-4"
+          />
+          <h1 className="text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-400">
+            Elevate
+          </h1>
+          <p className="text-white/80 mt-2 mb-6">
+            Unlock your full potential. Your journey from good to extraordinary
+            continues here.
+          </p>
+        </div>
+        <LoginForm />
+      </div>
+    </div>
   );
 }

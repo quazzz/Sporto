@@ -5,8 +5,8 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
 import { useSession } from "next-auth/react";
-import clsx from "clsx";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X } from "lucide-react";
 
 class PageConfig {
   home = "/";
@@ -18,14 +18,11 @@ class PageConfig {
 }
 export const pageConfig = new PageConfig();
 
-export default function Navbar() {
+export default function ModernNavbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
-
-  // Get session
   const { data: session } = useSession();
 
-  // Logout handler
   const handleClick = async () => {
     await signOut({ redirect: false });
     window.location.reload();
@@ -37,142 +34,115 @@ export default function Navbar() {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  return (
-    <nav className="bg-gradient-to-r from-blue-950 via-black to-gray-950 py-4 fixed w-full z-20 shadow-lg">
-      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-        
-        <div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-3xl font-bold text-white tracking-wide"
-        >
-          <Link href={pageConfig.home} className="hover:text-blue-300 transition-colors bg-clip-text text-transparent bg-gradient-to-r from-blue-200 to-white">
-            Sporto
-          </Link>
-        </div>
+  const NavLinks = ({ mobile = false }) => {
+    const linkStyle = mobile 
+      ? "text-xl py-3 hover:text-indigo-300 transition-colors" 
+      : "text-sm hover:text-indigo-300 transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-indigo-500 after:scale-x-0 hover:after:scale-x-100 after:transition-transform";
 
-      
-        <div className="hidden md:flex items-center space-x-6">
-          {session ? (
-            <>
-              <span className="font-medium text-white">{`Hello, ${session.user.name}!`}</span>
-              {[
-                { href: pageConfig.dashboard, label: "Dashboard" },
-                { href: pageConfig.catalog, label: "Catalog" },
-                { href: pageConfig.records, label: "Achievements" },
-              ].map(({ href, label }) => (
-                <Link
-                  key={label}
-                  href={href}
-                  className={clsx(
-                    "text-white hover:text-indigo-400 transition-colors duration-300",
-                    { "font-semibold": isActive(href) }
-                  )}
-                >
-                  {label}
-                </Link>
-              ))}
-              <button
-                onClick={handleClick}
-                className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-500 transition-colors duration-300"
-              >
-                Logout
-              </button>
-            </>
-          ) : (
-            [
-              { href: pageConfig.login, label: "Login" },
-              { href: pageConfig.register, label: "Register" },
+    const linkContainer = mobile 
+      ? "flex flex-col items-center space-y-4 w-full" 
+      : "flex items-center space-x-6";
+
+    return (
+      <div className={linkContainer}>
+        {session ? (
+          <>
+            <span className={`text-white ${mobile ? 'text-xl' : 'text-sm'} font-medium`}>
+              {`Hello, ${session.user.name}`}
+            </span>
+            {[
+              { href: pageConfig.dashboard, label: "Dashboard" },
+              { href: pageConfig.catalog, label: "Catalog" },
+              { href: pageConfig.records, label: "Achievements" },
             ].map(({ href, label }) => (
               <Link
                 key={label}
                 href={href}
-                className={clsx(
-                  "text-white hover:text-indigo-400 transition-colors duration-300",
-                  { "font-semibold": isActive(href) }
-                )}
+                className={`${linkStyle} ${isActive(href) ? 'text-indigo-400 font-semibold' : 'text-white'}`}
               >
                 {label}
               </Link>
-            ))
-          )}
+            ))}
+            <button
+              onClick={handleClick}
+              className="px-5 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-500 transition-colors group flex items-center space-x-2"
+            >
+              <span>Logout</span>
+              <motion.span
+                initial={{ x: 0 }}
+                whileHover={{ x: 5 }}
+                transition={{ type: "spring", stiffness: 300 }}
+                className="opacity-0 group-hover:opacity-100 transition-opacity"
+              >
+                →
+              </motion.span>
+            </button>
+          </>
+        ) : (
+          [
+            { href: pageConfig.login, label: "Login" },
+            { href: pageConfig.register, label: "Register" },
+          ].map(({ href, label }) => (
+            <Link
+              key={label}
+              href={href}
+              className={`${linkStyle} ${isActive(href) ? 'text-indigo-400 font-semibold' : 'text-white'}`}
+            >
+              {label}
+            </Link>
+          ))
+        )}
+      </div>
+    );
+  };
+
+  return (
+    <nav className="fixed w-full z-50 bg-gradient-to-r from-blue-950 via-black to-gray-950 shadow-xl">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        <div
+        
+        >
+          <Link 
+            href={pageConfig.home} 
+            className="text-3xl font-bold tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-blue-200 to-white hover:from-blue-300 hover:to-gray-100 transition-all"
+          >
+            Sporto
+          </Link>
         </div>
 
 
-        <div className="md:hidden flex items-center">
-          <button
-            onClick={toggleMenu}
+        <div className="hidden md:block">
+          <NavLinks />
+        </div>
+
+
+        <div className="md:hidden">
+          <button 
+            onClick={toggleMenu} 
             className="text-white focus:outline-none"
             aria-label="Toggle Menu"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
-            </svg>
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </div>
 
-      {isMenuOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-          className="md:hidden  py-4"
-        >
-          <div className="flex flex-col items-center space-y-4">
-            {session ? (
-              <>
-                <span className="font-medium text-white">{`Hello, ${session.user.name}`}</span>
-                {[
-                  { href: pageConfig.dashboard, label: "Dashboard" },
-                  { href: pageConfig.catalog, label: "Catalog" },
-                  { href: pageConfig.records, label: "Achievements" },
-                ].map(({ href, label }) => (
-                  <Link
-                    key={label}
-                    href={href}
-                    className={clsx(
-                      "text-white hover:text-indigo-400 transition-colors duration-300",
-                      { "font-semibold": isActive(href) }
-                    )}
-                  >
-                    {label}
-                  </Link>
-                ))}
-                <button
-                  onClick={handleClick}
-                  className="px-4 py-2 bg-gradient-to-b from-indigo-500 to-indigo-600 text-white rounded-lg hover:bg-indigo-500 transition-colors duration-300"
-                >
-                  Logout
-                </button>
-              </>
-            ) : (
-              [
-                { href: pageConfig.login, label: "Login" },
-                { href: pageConfig.register, label: "Register" },
-              ].map(({ href, label }) => (
-                <Link
-                  key={label}
-                  href={href}
-                  className={clsx(
-                    "text-white hover:text-indigo-400 transition-colors duration-300",
-                    { "font-semibold": isActive(href) }
-                  )}
-                >
-                  {label}
-                </Link>
-              ))
-            )}
+  
+      <AnimatePresence>
+        {isMenuOpen && (
+          <div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden bg-gradient-to-r from-blue-950  to-gray-950 overflow-hidden"
+          >
+            <div className="px-6 py-8">
+              <NavLinks mobile={true} />
+            </div>
           </div>
-        </motion.div>
-      )}
+        )}
+      </AnimatePresence>
     </nav>
   );
 }
