@@ -123,11 +123,9 @@ export default function GroupModalCard({ exercise, onClose }) {
               {selectedGroup === group.id && (
                 <div className="mt-4 space-y-4">
                   <div>
-                    <label className="block text-sm text-gray-400 mb-1">
-                      Number of sets
-                    </label>
+                
                     <input
-                      className="w-full p-2 bg-gray-850 border border-gray-800 rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                      className="transition w-full px-4 py-3 mt-2 rounded-lg font-medium bg-gray-700 bg-opacity-50 border border-gray-600 placeholder-gray-400 text-white focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-400"
                       value={sets}
                       onChange={(e) => setSets(e.target.value)}
                       type="text"
@@ -135,11 +133,9 @@ export default function GroupModalCard({ exercise, onClose }) {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm text-gray-400 mb-1">
-                      Number of reps
-                    </label>
+                
                     <input
-                      className="w-full p-2 bg-gray-850 border border-gray-800 rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                      className="transition w-full px-4 py-3 mt-2 rounded-lg font-medium bg-gray-700 bg-opacity-50 border border-gray-600 placeholder-gray-400 text-white focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-400"
                       value={reps}
                       onChange={(e) => setReps(e.target.value)}
                       type="text"
@@ -147,11 +143,9 @@ export default function GroupModalCard({ exercise, onClose }) {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm text-gray-400 mb-1">
-                      Weight (kg)
-                    </label>
+                    
                     <input
-                      className="w-full p-2 bg-gray-850 border border-gray-800 rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                      className="transition w-full px-4 py-3 mt-2 rounded-lg font-medium bg-gray-700 bg-opacity-50 border border-gray-600 placeholder-gray-400 text-white focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-400"
                       value={kg}
                       onChange={(e) => setKg(e.target.value)}
                       type="text"

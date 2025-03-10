@@ -93,9 +93,7 @@ export default function LoginForm() {
           <form onSubmit={handleEmailSubmit} className="space-y-6">
             <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">
-                Email Address
-              </label>
+            
               <input
                 type="email"
                 onChange={(e) => setEmail(e.target.value)}
@@ -105,9 +103,7 @@ export default function LoginForm() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">
-                Password
-              </label>
+          
               <div className="relative">
                 <input
                   type={showPassword ? "text" : "password"}
@@ -155,7 +151,7 @@ export default function LoginForm() {
               type="submit"
               className="w-full py-3 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-500 transition focus:ring-2 focus:ring-indigo-400 focus:outline-none"
             >
-              Log In
+              Continue Your Journey
             </button>
           </form>
         )}

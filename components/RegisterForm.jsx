@@ -83,9 +83,7 @@ export default function RegisterForm() {
         ) : (
           <form onSubmit={handleSubmit} className="space-y-6 ">
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">
-                Username
-              </label>
+           
               <input
                 type="text"
                 onChange={(e) => setName(e.target.value)}
@@ -96,9 +94,7 @@ export default function RegisterForm() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">
-                Email Address
-              </label>
+             
               <input
                 type="email"
                 onChange={(e) => setEmail(e.target.value)}
@@ -109,9 +105,7 @@ export default function RegisterForm() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">
-                Password
-              </label>
+              
               <div className="relative">
                 <input
                   type={showPassword ? "text" : "password"}
@@ -160,7 +154,7 @@ export default function RegisterForm() {
               type="submit"
               className="w-full py-3 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-500 transition focus:ring-2 focus:ring-indigo-400 focus:outline-none"
             >
-              Sign Up
+              Start Your Journey
             </button>
           </form>
         )}

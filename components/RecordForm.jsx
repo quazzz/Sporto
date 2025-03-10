@@ -39,9 +39,7 @@ export default function RecordForm({handleAdd}) {
             </div>
             <form className="bg-gradient-to-br from-gray-800 via-gray-900 to-black shadow-xl rounded-xl px-8 sm:px-10 py-10 sm:py-12 transition-all transform duration-300 ease-in-out">
               <div className="mb-6">
-                <label className="block text-sm font-medium text-gray-300">
-                  Type of sport
-                </label>
+            
                 <input
                   type="text"
                   value={recordName}
@@ -50,12 +48,7 @@ export default function RecordForm({handleAdd}) {
                   placeholder="Enter sport"
                 />
                 <div className="mt-2">
-                  <label
-                    htmlFor=""
-                    className="block text-sm font-medium text-gray-300"
-                  >
-                    Enter Your Achievement
-                  </label>
+                
                   <input
                     type="text"
                     value={achievement}

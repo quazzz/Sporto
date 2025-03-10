@@ -56,12 +56,9 @@ export default function GroupForm({ onAddGroup }) {
         className="bg-gradient-to-br from-gray-800 via-gray-900 to-black shadow-2xl rounded-2xl px-10 py-12 space-y-6 relative overflow-hidden"
       >
       
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/20 to-blue-900/20 opacity-30 blur-2xl -z-10"></div>
         
         <div>
-          <label className="block text-sm font-medium text-gray-300 mb-2">
-            Group Name
-          </label>
+    
           <div className="relative">
             <input
               value={namer}
