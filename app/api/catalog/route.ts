@@ -33,7 +33,8 @@ export async function GET() {
 }
 export async function POST(req: Request) {
   try {
-    const body: ExerciseRequest = await req.json();
+    const body = await req.json();
+    delete body.id
     if (Object.values(body).some((value) => !value)) {
       return jsonRes({ error: "Some properties are missing" }, 400);
     }

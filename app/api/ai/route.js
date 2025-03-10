@@ -63,9 +63,9 @@ async function analyzeUserIntent(message) {
     - "intent": Either "group_ex" (for exercise group creation), "group" (for empty group creation), or "chat" (for general questions)
     - "group_name": Name of the group if specified
     - "muscle_group": Target muscle or body part if specified
-    - "api": Either "bodyPart" (if muscle_group is in ${Object.keys(
+    - "api": Either "bodyPart" (if muscle_group has exactly the same name as in ${Object.keys(
       BODY_PARTS
-    ).join(", ")}) or "target" (if muscle_group is in ${Object.keys(
+    ).join(", ")}) or "target" (if muscle_group has exactly the same name as in ${Object.keys(
       MUSCLE_TARGETS
     ).join(", ")})
     - "message": Response message for chat intent
