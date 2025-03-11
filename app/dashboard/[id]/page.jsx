@@ -86,7 +86,7 @@ export default function Page() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 ">
+    <div className="min-h-screen flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-[#0f0c29] via-[#302b63] to-[#24243e] ">
       {workoutCompleted ? (
         <div className="text-center">
           <p className="mt-6 text-2xl font-semibold text-gray-200">
@@ -100,7 +100,7 @@ export default function Page() {
           </button>
         </div>
       ) : exercises.length > 0 ? (
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center mt-12">
           <h1 className="text-4xl font-bold mb-6 text-gray-100">{groupName}</h1>
           <div className="bg-gradient-to-b from-gray-900 to-black shadow-lg rounded-2xl p-8 max-w-lg w-full border border-gray-800">
             <h2 className="text-2xl font-semibold text-gray-200 mb-4 text-center">
@@ -112,8 +112,8 @@ export default function Page() {
                 width={180}
                 height={180}
                 unoptimized
-                alt="Workout demonstration"
-                className="mx-auto my-4 rounded border-2 border-gray-700 shadow-lg"
+                alt="Workout gif"
+                className="mx-auto my-4 rounded border-2 border-gray-700 shadow-lg text-white text-center "
               />
             </div>
             <div className="text-lg text-gray-300 mb-6 space-y-2 text-center">

@@ -1,7 +1,12 @@
 import { Sparkles } from "lucide-react";
 import LoginForm from "@/components/LoginForm";
-
-export default function HeroSection() {
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
+import { authOptions } from "../api/auth/[...nextauth]/route";
+export default async function page() {
+  const session = await getServerSession(authOptions);
+  if(session) redirect('/dashboard');
+  
   return (
     <div className="min-h-screen flex flex-col lg:flex-row items-center justify-center bg-black text-white relative overflow-hidden px-6">
       <div className="absolute inset-0 pointer-events-none z-0">
