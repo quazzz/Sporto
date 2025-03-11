@@ -10,7 +10,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-export default async function Home() {
+export default async function Page() {
   const session = await getServerSession(authOptions);
   if (session) redirect("/dashboard");
 
@@ -29,7 +29,7 @@ export default async function Home() {
             <h1 className="text-5xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white to-blue-400">
               Your AI-powered Workout Management
             </h1>
-            <p className="text-xl text-gray-300 mb-8">
+            <p className="text-xl text-gray-300 mb-8 animate-fade-in ">
               Experience a new era of fitness with AI-driven coaching, progress
               tracking, and personalized training plans.
             </p>
@@ -45,7 +45,7 @@ export default async function Home() {
 
           <div className="relative">
             <div className="bg-gray-900/50 backdrop-blur-lg p-6 rounded-xl border border-blue-800/40 shadow-2xl">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-4 animate-fade-in delay-1">
                 {[
                   {
                     icon: <Dumbbell className="w-8 h-8 text-blue-500" />,
@@ -82,10 +82,10 @@ export default async function Home() {
           </div>
         </main>
         <section className="max-w-7xl mx-auto px-6 py-16">
-          <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-white to-blue-400">
+          <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-white to-blue-400 ">
             Trusted by Athletes & Beginners Alike
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-8 animate-fade-in delay-2">
             {[
               {
                 name: "Alex G.",
