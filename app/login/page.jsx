@@ -29,7 +29,7 @@ export default async function page() {
         ))}
       </div>
 
-      <div className="flex flex-col items-center justify-center relative z-10 mt-10">
+      <div className="flex flex-col items-center justify-center relative z-10 mt-16">
         <div className="w-full max-w-md p-5 rounded-3xl text-center bg-gradient-to-b from-gray-900 to-black shadow-2xl shadow-white/20 ">
           <Sparkles
             size={40}

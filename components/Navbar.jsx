@@ -36,18 +36,18 @@ export default function ModernNavbar() {
 
   const NavLinks = ({ mobile = false }) => {
     const linkStyle = mobile 
-      ? "text-xl py-3 hover:text-indigo-300 transition-colors" 
+      ? "text-base py-2 hover:text-indigo-300 transition-colors" 
       : "text-sm hover:text-indigo-300 transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-indigo-500 after:scale-x-0 hover:after:scale-x-100 after:transition-transform";
 
     const linkContainer = mobile 
-      ? "flex flex-col items-center space-y-4 w-full" 
+      ? "flex flex-col items-center space-y-3 w-full" 
       : "flex items-center space-x-6";
 
     return (
       <div className={linkContainer}>
         {session ? (
           <>
-            <span className={`text-white ${mobile ? 'text-xl' : 'text-sm'} font-medium`}>
+            <span className={`text-white ${mobile ? 'text-base' : 'text-sm'} font-medium`}>
               {`Hello, ${session.user.name}`}
             </span>
             {[
@@ -65,7 +65,7 @@ export default function ModernNavbar() {
             ))}
             <button
               onClick={handleClick}
-              className="px-5 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-500 transition-colors group flex items-center space-x-2"
+              className={`px-4 py-1.5 ${mobile ? 'mt-2 w-32' : ''} bg-indigo-600 text-white rounded-full hover:bg-indigo-500 transition-colors group flex items-center justify-center space-x-2`}
             >
               <span>Logout</span>
               <motion.span
@@ -98,49 +98,44 @@ export default function ModernNavbar() {
 
   return (
     <nav className="fixed w-full z-50 bg-gradient-to-r from-blue-950 via-black to-gray-950 shadow-xl">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        <div
-        
-        >
+      <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+        <div>
           <Link 
             href={pageConfig.home} 
-            className="text-3xl font-bold tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-blue-200 to-white hover:from-blue-300 hover:to-gray-100 transition-all"
+            className="text-2xl md:text-3xl font-bold tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-blue-200 to-white hover:from-blue-300 hover:to-gray-100 transition-all"
           >
             Sporto
           </Link>
         </div>
 
-
         <div className="hidden md:block">
           <NavLinks />
         </div>
 
-
         <div className="md:hidden">
           <button 
             onClick={toggleMenu} 
-            className="text-white focus:outline-none"
+            className="text-white p-1 focus:outline-none"
             aria-label="Toggle Menu"
           >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </div>
 
-  
       <AnimatePresence>
         {isMenuOpen && (
-          <div
+          <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden bg-gradient-to-r from-blue-950  to-gray-950 overflow-hidden"
+            transition={{ duration: 0.2 }}
+            className="md:hidden bg-gradient-to-r from-blue-950 to-gray-950 overflow-hidden"
           >
-            <div className="px-6 py-8">
+            <div className="px-4 py-4">
               <NavLinks mobile={true} />
             </div>
-          </div>
+          </motion.div>
         )}
       </AnimatePresence>
     </nav>
