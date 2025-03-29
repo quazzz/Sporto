@@ -1,74 +1,55 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
-
+import { JsonRes } from "@/app/actions/actions";
 const prisma = new PrismaClient();
-
-//route for POST method
+function isValidEmail(email: string) {
+  const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return pattern.test(email);
+}
+function validate(name: string, email: string, password: string) {
+  if (!name.trim() || !email.trim() || !password.trim()) {
+    return "All fields are required";
+  }
+  if (!isValidEmail(email)) {
+    return "Invalid email format";
+  }
+  return null;
+}
 export async function POST(req: Request) {
   try {
-    // get info from request -> name,email,password
     const {
       name,
       email,
       password,
     }: { name: string; email: string; password: string } = await req.json();
-    if (!name || !email || !password) {
-      return new Response(
-        JSON.stringify({ message: "All fields must be fielded in" }),
-        {
-          status: 500,
-          headers: { "Content-Type": "application/json" },
-        }
-      );
+    const validation = validate(name, email, password);
+    if (validation) {
+      return JsonRes('error',validation, 400);
     }
-    //check for email valid
-    const emailcheck = await prisma.user.findUnique({
-      where: {
-        email: email,
-      },
-    });
-    if (emailcheck) {
-      return new Response(
-        JSON.stringify({ message: "Email is used by somebody" }),
-        {
-          status: 500,
-          headers: { "Content-Type": "application/json" },
-        }
-      );
+    const existingUser = await prisma.user.findUnique({ where: { email } });
+    if (existingUser) {
+      return JsonRes('error',"Email is already in use", 400);
     }
-
-    // hash password for security
-    const hashed: string = await bcrypt.hash(password, 10);
-    // create new user in db
+    const hashedPassword = await bcrypt.hash(password, 10);
     await prisma.user.create({
       data: {
-        name: name,
-        email: email,
-        password: hashed,
+        name: name.trim(),
+        email: email.trim(),
+        password: hashedPassword,
       },
     });
-    // if all ok then send response with status code 200
-    return new Response(
-      JSON.stringify({ message: "Data received successfully" }),
-      {
-        status: 200,
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+    return JsonRes('message',"User registered", 200);
   } catch (error: unknown) {
-    let errorMessage = "Error creating user";
-  
-    if (error instanceof Error) {
-      errorMessage = error.message;
+    if (process.env.NODE_ENV === "development") {
+      console.error("Error creating user:", error);
+    } else {
+      console.error(
+        "Error creating user:",
+        error instanceof Error ? error.message : error
+      );
     }
-  
-    return new Response(
-      JSON.stringify({ message: errorMessage }),
-      {
-        status: 500,
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+    return JsonRes('error',"Internal server error", 500);
+  } finally {
+    await prisma.$disconnect();
   }
-  
 }
