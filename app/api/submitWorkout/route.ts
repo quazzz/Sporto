@@ -31,6 +31,9 @@ export async function POST(req: Request, res: Response) {
     }
     return JsonRes('error','Server error',500)
   }
+  finally {
+    prisma.$disconnect()
+  }
 }
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
@@ -51,7 +54,12 @@ export async function GET(req: Request) {
     const dates = workouts.map((workout) => workout.workoutDate);
     return new NextResponse(JSON.stringify({ dates, names }), { status: 200 });
   } catch (error) {
-    console.log(error);
-    return JsonRes('error',"Error occurred", 500);
+    if (process.env.NODE_ENV == "development") {
+          return NextResponse.json(error, { status: 500 });
+    }
+    return JsonRes("message", "Internal server error", 500);
+  }
+  finally {
+    prisma.$disconnect()
   }
 }

@@ -17,6 +17,9 @@ export async function POST(req: Request) {
     console.error("Error creating group:", error);
     return JsonRes('message','Error creating group',500)
   }
+  finally {
+    prisma.$disconnect()
+  }
 }
 export async function GET(req: Request) {
   try {
@@ -26,27 +29,31 @@ export async function GET(req: Request) {
       return JsonRes('error','Access denied',401)
     }
     const groups = await prisma.group.findMany({ where: { userId } });
-
     return NextResponse.json(groups, { status: 200 });
   } catch (error) {
     console.error("Error fetching groups:", error);
     return JsonRes('message','Error fetching groups',500)
-
+  }
+  finally {
+    prisma.$disconnect()
   }
 }
 export async function DELETE(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
     const groupId = searchParams.get("id");
-
     if (!groupId) {
       return JsonRes('message','No such group',401)
     }
     await prisma.exercise.deleteMany({ where: { groupId } });
     await prisma.group.delete({ where: { id: groupId } });
-  return JsonRes('message','Deletion succesfull',400)  } catch (error) {
+  return JsonRes('message','Deletion succesfull',400)  } 
+  catch (error) {
     console.error("Error deleting group:", error);
     return JsonRes('message','Error deleting groups / exercises',500)
+  }
+  finally {
+    prisma.$disconnect()
   }
 }
 export async function PUT(req: Request) {
@@ -65,5 +72,8 @@ export async function PUT(req: Request) {
   } catch (error) {
     console.error("Error updating group:", error);
     return JsonRes('message','Error updating group',500)
+  }
+  finally {
+    prisma.$disconnect()
   }
 }
