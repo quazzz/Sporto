@@ -42,20 +42,28 @@ export async function DELETE(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
     const groupId = searchParams.get("id");
+
     if (!groupId) {
-      return JsonRes('message','No such group',401)
+      return JsonRes('message', 'No such group', 401);
+    }
+    const groupExists = await prisma.group.findUnique({
+      where: { id: groupId },
+    });
+    if (!groupExists) {
+      return JsonRes('message', 'Group not found', 404);
     }
     await prisma.exercise.deleteMany({ where: { groupId } });
     await prisma.group.delete({ where: { id: groupId } });
-  return JsonRes('message','Deletion succesfull',400)  } 
-  catch (error) {
+
+    return JsonRes('message', 'Deletion successful', 200);
+  } catch (error) {
     console.error("Error deleting group:", error);
-    return JsonRes('message','Error deleting groups / exercises',500)
-  }
-  finally {
-    prisma.$disconnect()
+    return JsonRes('message', 'Error deleting group/exercises', 500);
+  } finally {
+    await prisma.$disconnect();
   }
 }
+
 export async function PUT(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
