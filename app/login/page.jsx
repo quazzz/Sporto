@@ -8,26 +8,14 @@ export default async function page() {
   if(session) redirect('/dashboard');
   
   return (
-    <div className="min-h-screen flex flex-col lg:flex-row items-center justify-center bg-black text-white relative overflow-hidden px-6">
+    <div className="min-h-screen flex flex-col lg:flex-row items-center justify-center bg-gradient-to-br from-blue-800 via-gray-950 to-black text-white relative overflow-hidden px-6">
       <div className="absolute inset-0 pointer-events-none z-0">
         <div className="absolute -top-40 left-1/4 w-[700px] h-[700px] bg-blue-500/25 rounded-full blur-[180px] animate-pulse"></div>
         <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-blue-400/20 rounded-full blur-[150px] animate-pulse"></div>
       </div>
       <div className="absolute inset-0 z-0 bg-gradient-animated opacity-70 animate-gradient"></div>
 
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        {[...Array(50)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-white/40 rounded-full"
-            style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              animation: `float ${2 + Math.random() * 3}s infinite ease-in-out`,
-            }}
-          ></div>
-        ))}
-      </div>
+      
 
       <div className="flex flex-col items-center justify-center relative z-10 mt-16">
         <div className="w-full max-w-md p-5 rounded-3xl text-center bg-gradient-to-b from-gray-900 to-black shadow-2xl shadow-white/20 ">

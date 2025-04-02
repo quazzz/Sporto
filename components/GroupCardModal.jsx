@@ -81,7 +81,7 @@ export default function GroupModalCard({ exercise, onClose }) {
   onClick={handleClose}
 >
   <div
-    className="bg-gradient-to-br from-gray-900 to-gray-800 p-8 rounded-2xl shadow-2xl max-w-md w-full mx-4 border border-gray-800"
+    className="bg-gradient-to-br from-gray-900 to-blue-950 p-8 rounded-2xl shadow-2xl max-w-md w-full mx-4 border border-gray-800"
     onClick={handleModalClick}
   >
 
@@ -107,7 +107,7 @@ export default function GroupModalCard({ exercise, onClose }) {
               onClick={() => setSelectedGroup(group.id)}
               className={`p-4 border border-gray-800 rounded-xl cursor-pointer transition-all duration-200 ${
                 selectedGroup === group.id
-                  ? "bg-gradient-to-br from-gray-800 to-gray-700 border-blue-500"
+                  ? "bg-gradient-to-br from-gray-900 to-blue-900 border-blue-500"
                   : "hover:bg-gray-750 hover:border-gray-700"
               }`}
             >
@@ -125,7 +125,7 @@ export default function GroupModalCard({ exercise, onClose }) {
                   <div>
                 
                     <input
-                      className="transition w-full px-4 py-3 mt-2 rounded-lg font-medium bg-gray-700 bg-opacity-50 border border-gray-600 placeholder-gray-400 text-white focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-400"
+                      className="transition w-full px-4 py-3 mt-2 rounded-lg font-medium bg-gray-900 bg-opacity-50 border border-gray-600 placeholder-gray-400 text-white focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-400"
                       value={sets}
                       onChange={(e) => setSets(e.target.value)}
                       type="text"
@@ -135,7 +135,7 @@ export default function GroupModalCard({ exercise, onClose }) {
                   <div>
                 
                     <input
-                      className="transition w-full px-4 py-3 mt-2 rounded-lg font-medium bg-gray-700 bg-opacity-50 border border-gray-600 placeholder-gray-400 text-white focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-400"
+                      className="transition w-full px-4 py-3 mt-2 rounded-lg font-medium bg-gray-900 bg-opacity-50 border border-gray-600 placeholder-gray-400 text-white focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-400"
                       value={reps}
                       onChange={(e) => setReps(e.target.value)}
                       type="text"
@@ -145,7 +145,7 @@ export default function GroupModalCard({ exercise, onClose }) {
                   <div>
                     
                     <input
-                      className="transition w-full px-4 py-3 mt-2 rounded-lg font-medium bg-gray-700 bg-opacity-50 border border-gray-600 placeholder-gray-400 text-white focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-400"
+                      className="transition w-full px-4 py-3 mt-2 rounded-lg font-medium bg-gray-900 bg-opacity-50 border border-gray-600 placeholder-gray-400 text-white focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-400"
                       value={kg}
                       onChange={(e) => setKg(e.target.value)}
                       type="text"

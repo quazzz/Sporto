@@ -53,7 +53,7 @@ export default function GroupForm({ onAddGroup }) {
       </div>
       <form 
         onSubmit={handleSubmit}
-        className="bg-gradient-to-br from-gray-800 via-gray-900 to-black shadow-2xl rounded-2xl px-10 py-12 space-y-6 relative overflow-hidden"
+        className="bg-gradient-to-br  via-blue-950 to-black shadow-2xl rounded-2xl px-10 py-12 space-y-6 relative overflow-hidden"
       >
       
         
