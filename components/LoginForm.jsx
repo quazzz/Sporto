@@ -78,7 +78,7 @@ export default function LoginForm() {
             <div className="relative flex items-center justify-center">
               <div className="absolute inset-0 border-t border-gray-700"></div>
               <div className="relative bg-gray-900 px-4 text-sm text-gray-400">
-                or log in with Google
+                or
               </div>
             </div>
 
