@@ -1,8 +1,8 @@
-import { PrismaClient } from "@prisma/client";
+
 import { JsonRes } from "@/app/actions/actions";
 import { NextResponse } from "next/server";
 import getSession from "@/lib/getSession";
-const prisma = new PrismaClient(); 
+import prisma from "@/lib/prisma";
 export async function POST(req: Request) {
   try {
     const { namer, id }: { namer: string; id: string } = await req.json();
@@ -17,9 +17,7 @@ export async function POST(req: Request) {
     console.error("Error creating group:", error);
     return JsonRes('message','Error creating group',500)
   }
-  finally {
-    prisma.$disconnect()
-  }
+ 
 }
 export async function GET(req: Request) {
   try {
@@ -34,9 +32,7 @@ export async function GET(req: Request) {
     console.error("Error fetching groups:", error);
     return JsonRes('message','Error fetching groups',500)
   }
-  finally {
-    prisma.$disconnect()
-  }
+
 }
 export async function DELETE(req: Request) {
   try {
@@ -59,8 +55,6 @@ export async function DELETE(req: Request) {
   } catch (error) {
     console.error("Error deleting group:", error);
     return JsonRes('message', 'Error deleting group/exercises', 500);
-  } finally {
-    await prisma.$disconnect();
   }
 }
 
@@ -81,7 +75,5 @@ export async function PUT(req: Request) {
     console.error("Error updating group:", error);
     return JsonRes('message','Error updating group',500)
   }
-  finally {
-    prisma.$disconnect()
-  }
+ 
 }

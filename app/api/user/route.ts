@@ -1,7 +1,7 @@
-import { PrismaClient } from "@prisma/client";
+
 import bcrypt from "bcryptjs";
 import { JsonRes } from "@/app/actions/actions";
-const prisma = new PrismaClient();
+import prisma from "@/lib/prisma";
 function isValidEmail(email: string) {
   const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   return pattern.test(email);
@@ -49,7 +49,5 @@ export async function POST(req: Request) {
       );
     }
     return JsonRes('error',"Internal server error", 500);
-  } finally {
-    await prisma.$disconnect();
-  }
+  } 
 }

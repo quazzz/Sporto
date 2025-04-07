@@ -1,8 +1,7 @@
 import { NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
 import { shuffle } from "lodash";
 import getSession from "../../../lib/getSession";
-const prisma = new PrismaClient();
+import prisma from '@/lib/prisma'
 
 const BODY_PARTS = {
   back: "back",

@@ -1,6 +1,6 @@
-import { PrismaClient } from "@prisma/client";
+
 import { NextResponse } from "next/server";
-const prisma = new PrismaClient();
+import prisma from "@/lib/prisma";
 const jsonRes = (data: unknown, status: number = 200) =>
   NextResponse.json(data, { status });
 export async function GET() {
@@ -23,9 +23,7 @@ export async function GET() {
     console.error("GET error:", error);
     return jsonRes({ error: "Internal server error" }, 500);
   }
-  finally {
-    prisma.$disconnect()
-  }
+ 
 }
 export async function POST(req: Request) {
   try {
@@ -40,7 +38,5 @@ export async function POST(req: Request) {
     console.error("POST error:", error);
     return jsonRes({ error: "Internal server error" }, 500);
   }
-  finally {
-    prisma.$disconnect()
-  }
+ 
 }

@@ -1,7 +1,7 @@
-import { PrismaClient } from "@prisma/client";
+
 import { JsonRes } from "@/app/actions/actions";
 import { NextResponse } from "next/server";
-const prisma = new PrismaClient();
+import prisma from "@/lib/prisma";
 import getSession from "@/lib/getSession";
 export async function POST(req: Request, res: Response) {
   const { groupName, workoutDate, userId } = await req.json();
@@ -31,9 +31,7 @@ export async function POST(req: Request, res: Response) {
     }
     return JsonRes('error','Server error',500)
   }
-  finally {
-    prisma.$disconnect()
-  }
+
 }
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
@@ -58,8 +56,5 @@ export async function GET(req: Request) {
           return NextResponse.json(error, { status: 500 });
     }
     return JsonRes("message", "Internal server error", 500);
-  }
-  finally {
-    prisma.$disconnect()
   }
 }

@@ -1,8 +1,8 @@
-import { PrismaClient } from "@prisma/client";
+
 import { NextResponse } from "next/server";
 import { JsonRes } from "@/app/actions/actions";
 import getSession from "@/lib/getSession";
-const prisma = new PrismaClient();
+import prisma from "@/lib/prisma";
 export async function POST(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
@@ -29,9 +29,6 @@ export async function POST(req: Request) {
       return NextResponse.json(error, { status: 500 });
     }
     return JsonRes("message", "Internal server error", 500);
-  }
-  finally {
-    prisma.$disconnect()
   }
 }
 export async function GET(req: Request, res: Response) {
@@ -62,7 +59,5 @@ export async function DELETE(req: Request) {
       return NextResponse.json(error, { status: 500 });
     }
     return JsonRes("message", "Internal server error", 500);
-  } finally {
-    prisma.$disconnect();
   }
 }
