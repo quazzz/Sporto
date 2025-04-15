@@ -156,7 +156,7 @@ export default function GroupCard({
         />
       )}
 
-      {exercises.length > 1 && (
+      {exercises?.length > 1 && (
         <button
           className=" px-4 py-2 text-sm font-medium text-white bg-gradient-to-b from-indigo-500 to-indigo-600 rounded-lg hover:bg-blue-600 transition-all shadow-md"
           onClick={() => onStartWorkout(group.id)}

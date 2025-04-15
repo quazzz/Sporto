@@ -3,12 +3,13 @@ generator client {
 }
 
 datasource db {
-  provider = "mongodb"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model User {
-  id        String   @id @map("_id") @db.ObjectId @default(auto())  
+  id        String   @id @default(uuid())
   name      String
   email     String   @unique
   password  String
@@ -20,17 +21,17 @@ model User {
 
 
 model Group {
-  id        String     @id @default(auto()) @map("_id") @db.ObjectId
+  id        String     @id @default(uuid()) @map("_id") 
   name      String
-  userId    String     @db.ObjectId
+  userId    String     
   user User @relation(fields: [userId],references: [id])
   exercises Exercise[]
   
 }
 
 model Exercise {
-  id      String   @id @default(auto()) @map("_id") @db.ObjectId
-  groupId String     @db.ObjectId
+  id      String   @id @default(uuid())
+  groupId String   
   name String
   gifUrl String
   target String
@@ -44,15 +45,15 @@ model Exercise {
   group Group @relation(fields: [groupId],references: [id])
 }
 model Record {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  userId String @db.ObjectId
+  id String @id @default(uuid()) 
+  userId String 
   recordName String
   user User @relation(fields: [userId],references: [id])
   achievement String
 }
 model SubmittedWorkouts{
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  userId String @db.ObjectId
+  id String @id @default(uuid())
+  userId String 
   workoutDate String
   groupName String
   user User @relation(fields: [userId],references: [id])

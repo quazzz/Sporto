@@ -18,14 +18,13 @@ export const authOptions = {
 
         
         if (!existingUser) {
-          const aov = new ObjectId()
+          
           const random = Math.random().toString(36).slice(-8)
           const hashed = await bcrypt.hash(random,10)
           const newUser = await prisma.user.create({
             data: {
               email: profile.email,
               name: profile.name,
-              id: aov,
               password: hashed
             },
           });
@@ -33,7 +32,6 @@ export const authOptions = {
             id: newUser.id.toString(),
             email: newUser.email,
             name: newUser.name,
-         
           };
         }
 
