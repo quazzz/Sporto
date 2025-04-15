@@ -1,5 +1,6 @@
 "use client";
 import Loading from '@/components/Loading.jsx'
+import { useRef } from 'react';
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import ExerciseCard from "@/components/ExerciseCard";
 import GroupModalCard from "@/components/GroupCardModal";
@@ -48,15 +49,19 @@ export default function Page() {
     setDetailModalOpen(false)
     setSelectedExercise(null)
   }
-
+  const cache = useRef(null)
   useEffect(() => {
     
     const fetchWorkouts = async () => {
+      if(cache.current){
+        setExercises(cache.current)
+        return
+      }
       try {
         const res = await fetch("/api/catalog");
         const data = await res.json();
+        cache.current = data
         setExercises(data);
-        
       } catch (error) {
         console.error(error);
       }
