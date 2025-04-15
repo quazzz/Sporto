@@ -29,7 +29,7 @@ export const authOptions = {
             },
           });
           return {
-            id: newUser.id.toString(),
+            id: newUser.id,
             email: newUser.email,
             name: newUser.name,
           };
