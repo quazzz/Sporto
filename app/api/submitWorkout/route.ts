@@ -1,7 +1,7 @@
 
 import { JsonRes } from "@/app/actions/actions";
 import { NextResponse } from "next/server";
-import prisma from "@/lib/prisma";
+import {prisma} from "@/lib/prisma";
 import getSession from "@/lib/getSession";
 export async function POST(req: Request, res: Response) {
   const { groupName, workoutDate, userId } = await req.json();

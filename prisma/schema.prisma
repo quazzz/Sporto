@@ -9,52 +9,52 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  name      String
-  email     String   @unique
-  password  String
-  createdAt DateTime @default(now())           
-  groups    Group[]
-  record Record[]
-  submittedWorkouts SubmittedWorkouts[]
+  id                 String               @id @default(uuid())
+  name               String
+  email              String               @unique
+  password           String
+  createdAt          DateTime             @default(now())          
+  groups             Group[]
+  records            Record[]
+  submittedWorkouts  SubmittedWorkouts[]
 }
 
-
 model Group {
-  id        String     @id @default(uuid()) @map("_id") 
+  id        String     @id @default(uuid())
   name      String
-  userId    String     
-  user User @relation(fields: [userId],references: [id])
+  userId    String    
+  user      User       @relation(fields: [userId], references: [id])  
   exercises Exercise[]
-  
 }
 
 model Exercise {
-  id      String   @id @default(uuid())
-  groupId String   
-  name String
-  gifUrl String
-  target String
-  equipment String
-  bodyPart String
-  instructions String[]
-  secondaryMuscles String[]
-  reps String
-  sets String
-  kg String
-  group Group @relation(fields: [groupId],references: [id])
+  id                String   @id @default(uuid())
+  groupId           String  
+  name              String
+  gifUrl            String
+  target            String
+  equipment         String
+  bodyPart          String
+  instructions      String[]
+  secondaryMuscles  String[]
+  reps              String
+  sets              String
+  kg                String
+  group             Group    @relation(fields: [groupId], references: [id])  
 }
+
 model Record {
-  id String @id @default(uuid()) 
-  userId String 
-  recordName String
-  user User @relation(fields: [userId],references: [id])
+  id          String   @id @default(uuid())
+  userId      String
+  recordName  String
+  user        User     @relation(fields: [userId], references: [id])  
   achievement String
 }
-model SubmittedWorkouts{
-  id String @id @default(uuid())
-  userId String 
+
+model SubmittedWorkouts {
+  id          String   @id @default(uuid())
+  userId      String
   workoutDate String
-  groupName String
-  user User @relation(fields: [userId],references: [id])
+  groupName   String
+  user        User     @relation(fields: [userId], references: [id])  
 }

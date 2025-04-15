@@ -2,7 +2,7 @@
 import { NextResponse } from "next/server";
 import { JsonRes } from "@/app/actions/actions";
 import getSession from "@/lib/getSession";
-import prisma from "@/lib/prisma";
+import { prisma } from "@/lib/prisma";
 export async function POST(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
@@ -25,6 +25,7 @@ export async function POST(req: Request) {
       status: 200,
     });
   } catch (error) {
+    console.log(error)
     if (process.env.NODE_ENV == "development") {
       return NextResponse.json(error, { status: 500 });
     }

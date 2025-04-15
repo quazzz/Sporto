@@ -2,10 +2,11 @@
 import { JsonRes } from "@/app/actions/actions";
 import { NextResponse } from "next/server";
 import getSession from "@/lib/getSession";
-import prisma from "@/lib/prisma";
+import {prisma} from "@/lib/prisma";
 export async function POST(req: Request) {
   try {
     const { namer, id }: { namer: string; id: string } = await req.json();
+    console.log('USERID' ,id)
     if (!namer || !id) {
       return JsonRes('message',"All fields must be filled", 400);
     }
