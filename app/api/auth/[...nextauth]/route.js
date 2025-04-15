@@ -22,7 +22,7 @@ export const authOptions = {
           const random = Math.random().toString(36).slice(-8)
           const hashed = await bcrypt.hash(random,10)
           const newUser = await prisma.user.create({
-            data: {
+            data: { 
               email: profile.email,
               name: profile.name,
               password: hashed

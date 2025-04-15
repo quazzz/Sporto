@@ -7,7 +7,7 @@ import debounce from 'lodash/debounce'
 import CatalogDetailsModal from '@/components/CatalogDetailsModal';
 export default function Page() {
   const [exercises, setExercises] = useState([]);
-  const [options, setOptions] = useState('');
+  const [options, setOptions] = useState([]);
   const [modalOpen, setModalOpen] = useState(false); 
   const [selectedExercise, setSelectedExercise] = useState(null);
   const [isModalOpen,setIsModalOpen] = useState(false)
@@ -15,8 +15,16 @@ export default function Page() {
 
   const [detailModalOpen, setDetailModalOpen] = useState(false)
   const handleCheckboxChange = (e) => {
-    const {value} = e.target
-    setOptions(value)
+    const {value, checked} = e.target
+    setOptions((prev) => {
+      if(checked){
+        return [...prev,value]
+      }
+      else{
+        return prev.filter(option => option !== value)
+      }
+    })
+ 
   };
   
 
@@ -60,11 +68,11 @@ export default function Page() {
   )
   const filteredExercises = useMemo(() => {
     return exercises.filter((exercise) => {
-      const matchesoptions = options === "" || exercise.bodyPart.includes(options)
+      const matchesoptions = options.length === 0 || options.some(option => exercise.bodyPart.includes(option))
       const matchessearch = exercise.name.toLowerCase().includes(search.toLowerCase())
       return matchesoptions && matchessearch
     })
-  })
+  },[exercises,search,options])
 
   const checkboxOptions = [
     { id: "back", label: "Back" },
@@ -89,6 +97,7 @@ export default function Page() {
           type="checkbox"
           id={option.id}
           value={option.id}
+          checked ={options.includes(option.id)}
           name="options"
           onChange={handleCheckboxChange}
         />

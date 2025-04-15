@@ -11,6 +11,7 @@ export default function GroupCard({
   const [nameVisible, setNameVisible] = useState(true);
   const [newName, setNewName] = useState("");
   const [exercises, setExercises] = useState([]);
+  const [showExercises,setShowExercises] = useState(false)
   const handleDelete = async () => {
     try {
       const groupid = group.id;
@@ -164,9 +165,16 @@ export default function GroupCard({
           Start Workout
         </button>
       )}
+      <div className="block md:hidden">
+        <button
+        onClick={(e) => setShowExercises(!showExercises)}
+        className="px-4 py-2 text-sm font-medium text-white bg-gradient-to-b from-indigo-500 to-indigo-600 rounded-lg hover:bg-blue-600 transition-all shadow-md mt-2">
+          {showExercises ? 'Hide exercises' : 'Show exercises'}
+          </button>
+      </div>
       <div className="mt-6 space-y-4 ">
         
-        {Array.isArray(exercises) && exercises.length > 0 ? (
+        {Array.isArray(exercises) && exercises.length > 0 && (showExercises || window.innerWidth >= 768)  ? (
           exercises.map((exercise) => (
             <ExerciseCardDashboard
               key={exercise.id}
@@ -184,16 +192,7 @@ export default function GroupCard({
             />
           ))
         ) : (
-          <p className="text-sm text-gray-400">
-            No exercises found. Find new in{" "}
-            <Link
-              href="/dashboard/catalog"
-              className="underline text-blue-400 hover:text-blue-500"
-            >
-              catalog
-            </Link>
-            .
-          </p>
+       <p></p>
         )}
       </div>
     </div>
