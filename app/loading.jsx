@@ -1,7 +1,7 @@
 "use client";
 function LoadingPage() {
   return (
-    <div className="min-h-screen text-white flex items-center justify-center py-12 animate-gradient bg-gradient-to-r from-[#0f0c29] via-[#302b63] to-[#24243e] ">
+    <div className="min-h-screen text-white flex items-center justify-center py-12 animate-gradient bg-gradient-to-br from-blue-900 via-gray-950 to-black ">
       <div className="text-center space-y-6 animate-opacity">
         <h1 className="text-2xl font-semibold z-100">Give us a second</h1>
         <div className="flex justify-center items-center">

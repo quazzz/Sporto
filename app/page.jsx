@@ -2,7 +2,7 @@ import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { authOptions } from "./api/auth/[...nextauth]/route.js";
-import { Dumbbell, Brain, LineChart, Activity, ChevronRight, Star, Users, CheckCircle } from "lucide-react";
+import { Dumbbell, Brain, LineChart, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import {
   Accordion,
@@ -27,14 +27,11 @@ export default async function Page() {
         <main className="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-16 items-center mt-10">
           <div className="space-y-8">
             <div>
-              <div className="inline-block px-3 py-1 mb-4 text-sm font-semibold bg-blue-900/40 text-blue-400 rounded-full border border-blue-800/40">
-                AI-Powered Fitness
-              </div>
               <h1 className="text-5xl md:text-6xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white to-blue-400 leading-tight">
                 Transform Your Workouts with AI
               </h1>
               <p className="text-xl text-gray-300 mb-8 leading-relaxed animate-fade-in">
-                Experience a new era of fitness with AI-driven coaching, intelligent progress tracking, and personalized training plans tailored to your goals.
+                Totally new experience of working out with AI coaching, progress tracking, and training plans tailored to your goals.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-4">
@@ -75,10 +72,10 @@ export default async function Page() {
         <section id="features" className="max-w-7xl mx-auto px-6 py-24">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-white to-blue-400">
-              Supercharge Your Workout Journey
+              Make Your Workout Journey Faster
             </h2>
             <p className="text-gray-300 max-w-2xl mx-auto">
-              Our platform combines cutting-edge AI with proven workout exercises to help you achieve your goals faster.
+              Our platform combines AI with proven workout exercises to help you achieve your goals faster.
             </p>
           </div>
           
@@ -86,18 +83,18 @@ export default async function Page() {
             {[
               {
                 icon: <Dumbbell className="w-8 h-8 text-blue-500" />,
-                title: "Smart Workout Management",
-                desc: "Create and customize workouts tailored to your specific fitness goals and preferences.",
+                title: "Workout Management",
+                desc: "Create and customize workouts tailored to your specific workout goals and preferences.",
               },
               {
                 icon: <Brain className="w-8 h-8 text-blue-500" />,
                 title: "AI Personal Coach",
-                desc: "Get personalized training recommendations and real-time feedback on your form.",
+                desc: "Get personalized training recommendations and real-time feedback.",
               },
               {
                 icon: <LineChart className="w-8 h-8 text-blue-500" />,
                 title: "Progress Tracking",
-                desc: "Visualize your performance with detailed analytics and achievement metrics.",
+                desc: "Visualize your performance with analytics and achievement metrics.",
               },
             
             ].map((feature, index) => (
@@ -123,7 +120,7 @@ export default async function Page() {
               How Sporto Works
             </h2>
             <p className="text-gray-300 max-w-2xl mx-auto">
-              Getting started is simple. Follow these steps to begin your fitness transformation.
+              Getting started is simple. Follow these steps to begin your workout transformation.
             </p>
           </div>
           
@@ -147,7 +144,7 @@ export default async function Page() {
             ].map((item, index) => (
               <div key={index} className="relative">
                 <div className="bg-gray-900/80 p-6 rounded-xl border border-blue-800/30 h-full">
-                  <div className="text-4xl font-bold text-blue-700/30 mb-4">{item.step}</div>
+                  <div className="text-4xl font-bold text-blue-600 mb-4">{item.step}</div>
                   <h3 className="text-xl font-bold mb-3 text-white">{item.title}</h3>
                   <p className="text-gray-400">{item.desc}</p>
                 </div>
@@ -171,22 +168,22 @@ export default async function Page() {
             {[
               {
                 q: "How do I get started with Sporto?",
-                a: "Simply sign up to create your account, complete your fitness profile, and you'll be guided through setting up your first workout plan. You can create workout groups and add exercises from our extensive catalog right away!",
+                a: "Simply sign up, and then You can create workout groups and add exercises from our catalog right away!",
               },
               {
                 q: "How does the AI coaching feature work?",
-                a: "Our AI coach analyzes your workout data, progress, and goals to provide personalized recommendations. It helps identify areas for improvement, suggests workout modifications.",
+                a: "Our AI coach analyzes your workout data, progress, and goals to provide personalized recommendations via chat. It helps identify areas for improvement, suggests workout modifications.",
               },
               {
                 q: "Can I track my performance over time?",
-                a: "Absolutely! Detailed analytics are available for every workout. You can view progress charts, performance metrics, and achievement milestones to see how you're improving over time.",
+                a: "Absolutely! Analytics are available for every workout. You can view progress charts and achievements, youve put on, to see how you're improving over time.",
               },
               {
                 q: "Is Sporto suitable for beginners?",
-                a: "Yes! Sporto is designed for all fitness levels. For beginners, the AI provides simpler workout plans and more guidance. As you progress, your workouts will adapt to keep challenging you appropriately.",
+                a: "Yes! Sporto is designed for all workout levels, especially for people who are strugling with workout planning.",
               },
               {
-                q: "Can I use Sporto with my existing fitness equipment?",
+                q: "Can I use Sporto with my existing workout equipment?",
                 a: "Yes, Sporto is flexible and can work with any equipment you have available. You can filter exercises based on your available equipment, or discover bodyweight alternatives when needed.",
               },
             ].map((faq, index) => (
@@ -236,7 +233,7 @@ export default async function Page() {
                   Sporto
                 </h3>
                 <p className="text-gray-400">
-                  AI-powered fitness platform to help you achieve your health and wellness goals.
+                  AI-powered workout platform to help you achieve Your workout goals.
                 </p>
               </div>
             </div>   

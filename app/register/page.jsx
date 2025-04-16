@@ -26,19 +26,14 @@ export default async function Page() {
  
         <div className="flex-1 w-full md:w-1/2 max-w-lg">
           <div className="p-6 md:p-8">
-            <div className="flex items-center mb-6">
-              <Sparkles size={32} className="text-blue-400 mr-3" />
-              <h1 className="text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-300">
-                Sporto
-              </h1>
-            </div>
+          
             
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
               Begin your journey to excellence
             </h2>
             
             <p className="text-blue-100/80 text-lg mb-6 max-w-md">
-              Unlock your full potential with our comprehensive workout platform designed to transform your workout quality and elevate your performance.
+              Unlock your full potential with our workout platform designed to transform your workout quality and raise your performance.
             </p>
             
             <div className="hidden md:flex space-x-6 mt-10">

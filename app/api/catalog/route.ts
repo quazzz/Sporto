@@ -4,7 +4,7 @@ import {prisma} from "@/lib/prisma";
 const jsonRes = (data: unknown, status: number = 200) =>
   NextResponse.json(data, { status });
 export async function GET() {
-  const url = "https://exercisedb.p.rapidapi.com/exercises?limit=1000";
+  const url = "https://exercisedb.p.rapidapi.com/exercises?limit=5000";
   const options = {
     method: "GET",
     headers: {
