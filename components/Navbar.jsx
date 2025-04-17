@@ -130,7 +130,7 @@ export default function ModernNavbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden bg-gradient-to-r from-blue-950 to-gray-950 overflow-hidden"
+            className=" md:hidden bg-gradient-to-r from-blue-950 to-gray-950 overflow-hidden"
           >
             <div className="px-4 py-4">
               <NavLinks mobile={true} />

@@ -35,8 +35,9 @@ const MUSCLE_TARGETS = {
   triceps: "triceps",
   lats: "lats",
 };
-
-function getRandomLegsVariation(muscleGroup) {
+const ALL_BODY_PARTS = Object.keys(BODY_PARTS)
+const ALL_MUSCLE_TARGETS = Object.keys(MUSCLE_TARGETS)
+ function getRandomLegsVariation(muscleGroup) {
   if (muscleGroup.toLowerCase() === "legs") {
     return Math.random() > 0.5 ? "upper legs" : "lower legs";
   }
@@ -53,7 +54,8 @@ async function analyzeUserIntent(message) {
   const systemPrompt = {
     role: "system",
     content:
-      "You are a helpful assistant. Extract the user's intent and provide structured output as JSON.",
+      "You must return a 'muscle_group' that matches **exactly one of the values** in the provided list. If the message contains ambiguous terms (e.g. 'legs'), map them to one of the valid values based on context. Do not invent new muscle group names. Only choose from the list."
+,
   };
 
   const userPrompt = {
@@ -62,6 +64,7 @@ async function analyzeUserIntent(message) {
     - "intent": Either "group_ex" (for exercise group creation), "group" (for empty group creation), or "chat" (for general questions)
     - "group_name": Name of the group if specified
     - "muscle_group": Target muscle or body part if specified
+    
     - "api": Either "bodyPart" (if muscle_group has exactly the same name as in ${Object.keys(
       BODY_PARTS
     ).join(", ")}) or "target" (if muscle_group has exactly the same name as in ${Object.keys(

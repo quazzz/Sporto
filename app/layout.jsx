@@ -20,13 +20,20 @@ export default async function RootLayout({ children }) {
     <html lang="en">
       <Suspense fallback={<LoadingPage />}>
         <body className={`${raleway.className}`}>
-          <Toaster position="bottom-center" />
+          <Toaster
+            position="bottom-center"
+            toastOptions={{
+              className: "",
+              style: {
+                padding: "16px",
+                color: "white",
+                backgroundImage: "linear-gradient(135deg, #172554, #0f172a)"
+              },
+            }}
+          />
           <AuthProvider>
             <Navbar />
-            <div className="">
-             
-              {children}
-            </div>
+            <div className="">{children}</div>
 
             {session && <Chat />}
           </AuthProvider>
