@@ -272,7 +272,7 @@ export default function Page() {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center py-12 px-6 mx-auto text-center bg-gradient-to-r from-[#0f0c29] via-[#302b63] to-[#24243e]">
+      <div className="flex flex-col items-center justify-center py-12 px-6 mx-auto text-center bg-gradient-to-br from-blue-900 via-gray-950 to-black">
         <div className="animate-fade-in flex flex-wrap gap-4 justify-center mt-10 shadow-lg bg-gradient-to-r from-gray-950 to-blue-950 p-6 rounded-lg">
           {checkboxOptions.map((option) => (
             <div className="flex items-center" key={option.id}>

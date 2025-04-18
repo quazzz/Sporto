@@ -39,7 +39,7 @@ export default function RecordsPage() {
   }
   return (
  
-    <div className="min-h-screen flex flex-col lg:flex-row bg-gradient-to-r from-[#0f0c29] via-[#302b63] to-[#24243e] items-center justify-center  font-[var(--font-geist-sans)] p-4 sm:p-8 lg:p-12">
+    <div className="min-h-screen flex flex-col lg:flex-row bg-gradient-to-br from-blue-900 via-gray-950 to-black items-center justify-center  font-[var(--font-geist-sans)] p-4 sm:p-8 lg:p-12">
       <div className="w-full max-w-md p-8  rounded-lg  mb-10 lg:mb-0 lg:mr-10">
         <RecordForm handleAdd={handleAdd}/>
       </div>

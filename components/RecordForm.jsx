@@ -37,7 +37,7 @@ export default function RecordForm({handleAdd}) {
                 Submit your new achievement in sports
               </h1>
             </div>
-            <form className="bg-gradient-to-br from-gray-800 via-gray-900 to-black shadow-xl rounded-xl px-8 sm:px-10 py-10 sm:py-12 transition-all transform duration-300 ease-in-out">
+            <form className="bg-gradient-to-br  via-blue-950 to-black shadow-xl rounded-xl px-8 sm:px-10 py-10 sm:py-12 transition-all transform duration-300 ease-in-out">
               <div className="mb-6">
             
                 <input

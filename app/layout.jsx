@@ -33,7 +33,7 @@ export default async function RootLayout({ children }) {
           />
           <AuthProvider>
             <Navbar />
-            <div className="">{children}</div>
+            <div className="bg-gradient-to-br from-blue-900 via-gray-950 to-black min-h-screen">{children}</div>
 
             {session && <Chat />}
           </AuthProvider>
