@@ -63,7 +63,7 @@ export default function GroupPage({ userId }) {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4 md:px-8 justify-items-center">
           {groups.length > 0 ? (
             groups.map((group) => (
-              <div className="">
+    
                 <GroupCard
                   key={group.id}
                   group={group}
@@ -71,7 +71,7 @@ export default function GroupPage({ userId }) {
                   handleDeleteGroup={handleDeleteGroup}
                   handleChange={handleRenameGroup}
                 />
-              </div>
+             
             ))
           ) : (
             <h1 className="text-gray-400">

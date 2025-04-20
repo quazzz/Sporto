@@ -61,3 +61,38 @@ export async function DELETE(req: Request) {
     return JsonRes("message", "Internal server error", 500);
   } 
 }
+export async function PUT(req: Request){
+  try {
+    // getting exercise id
+    const {searchParams}= new URL(req.url)
+    const exerciseId = searchParams?.get('exerciseId')
+    if(!exerciseId){
+      return JsonRes('message','No exercise id.', 400)
+    }
+    // getting json
+    const data = await req.json();
+    const {state, value} = data
+    if(!state || !value || value === undefined){
+      return JsonRes('message', 'Some fields are missing', 400);
+    }
+    // validating field
+    const allowedFields = ['sets','weight','reps']
+    if(!allowedFields.includes(state)){
+      return JsonRes('message','Invalid field',400)
+    }
+    // updating the exercise
+    await prisma.exercise.update({
+      where: {
+        id: exerciseId 
+      },
+      data: {
+        [state]: value
+      }
+    })
+
+    // returning 200
+    return JsonRes('message', 'Exercise props updated', 200)
+  } catch (error) {
+      return JsonRes('error','Internal server error', 500)
+  }
+}
