@@ -36,7 +36,7 @@
     "components/LoginForm.jsx",
     "app/layout.tsx",
     "app/loading.jsx"
-, "app/api/auth/[...nextauth]/route.js", "app/api/contact/route.js", "components/ExerciseCardDashboard.jsx", "app/api/catalog/route.js"  ],
+, "app/api/auth/[...nextauth]/route.js", "app/api/contact/route.js", "components/ExerciseCardDashboard.jsx", "app/api/catalog/route.js", "lib/getUserIdFromRequest.js"  ],
   "exclude": [
     "node_modules"
   ]

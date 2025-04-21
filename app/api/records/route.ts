@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { JsonRes } from "@/app/actions/actions";
 import getSession from "@/lib/getSession";
 import { prisma } from "@/lib/prisma";
+import getUserId from "@/lib/getUserIdFromRequest";
 export async function POST(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
@@ -32,7 +33,7 @@ export async function POST(req: Request) {
     return JsonRes("message", "Internal server error", 500);
   }
 }
-export async function GET(req: Request, res: Response) {
+export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const userId = searchParams.get("userId") ?? undefined;
   if (!(await getSession(req, userId))) {
@@ -40,7 +41,7 @@ export async function GET(req: Request, res: Response) {
   }
   const records = await prisma.record.findMany({
     where: {
-      userId: userId,
+      userId
     },
   });
   return NextResponse.json(records);
@@ -49,12 +50,27 @@ export async function DELETE(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
     const recordId = searchParams.get("recordId") ?? undefined;
+    const userId = await getUserId();
+    console.log(userId)
+    const record = await prisma.record.findFirst({
+      where: {
+        id: recordId,
+        userId: userId
+      }
+    })
+    if(!record){
+      return JsonRes('Error','No record or unauthorized', 401)
+    }
+    if(!userId){
+      return JsonRes('Error','Invalid user', 400)
+    }
     await prisma.record.delete({
       where: {
         id: recordId,
+        userId: userId
       },
     });
-    return JsonRes("message", "All good", 200);
+    return JsonRes("message", `All good`, 200);
   } catch (error) {
     if (process.env.NODE_ENV == "development") {
       return NextResponse.json(error, { status: 500 });
