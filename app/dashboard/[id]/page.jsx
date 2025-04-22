@@ -86,7 +86,7 @@ export default function Page() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-[#0f0c29] via-[#302b63] to-[#24243e] ">
+    <div className="min-h-screen flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-900 via-gray-950 to-black">
       {workoutCompleted ? (
         <div className="text-center">
           <p className="mt-6 text-2xl font-semibold text-gray-200">
@@ -102,7 +102,7 @@ export default function Page() {
       ) : exercises.length > 0 ? (
         <div className="flex flex-col items-center mt-12">
           <h1 className="text-4xl font-bold mb-6 text-gray-100">{groupName}</h1>
-          <div className="bg-gradient-to-b from-gray-900 to-black shadow-lg rounded-2xl p-8 max-w-lg w-full border border-gray-800">
+          <div className="bg-gradient-to-b from-blue-900/30 to-black shadow-lg rounded-2xl p-8 max-w-lg w-full border border-gray-800">
             <h2 className="text-2xl font-semibold text-gray-200 mb-4 text-center">
               {exercises[curExercise].name}
             </h2>
