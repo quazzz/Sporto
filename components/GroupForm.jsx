@@ -41,19 +41,19 @@ export default function GroupForm({ onAddGroup }) {
   };
 
   return (
-    <div className="w-full flex rounded-xl justify-center   items-start bg-gradient-to-b from-blue-950 to-black py-12 px-4 sm:px-6 lg:px-8 relative animate-fade-in">
+    <div className="w-full flex rounded-xl justify-center   items-start bg-gradient-to-b from-blue-950 to-black py-6 lg:py-12  px-4 sm:px-6 lg:px-8 relative animate-fade-in">
     <div className="max-w-lg w-full space-y-8">
       
       <div className="text-center relative">
       
-        <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-blue-400 relative z-10 ">
+        <h1 className="text-3xl sm:text-3xl lg:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-blue-400 relative z-10 ">
           Create New Group
         </h1>
        
       </div>
       <form 
         onSubmit={handleSubmit}
-        className="bg-gradient-to-br  via-blue-950 to-black shadow-2xl rounded-2xl px-10 py-12 space-y-6 relative overflow-hidden"
+        className="bg-gradient-to-br  via-blue-950 to-black shadow-2xl rounded-2xl px-5 py-6 sm:py-6 lg:py-12  space-y-6 relative overflow-hidden"
       >
       
         
