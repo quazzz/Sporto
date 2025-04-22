@@ -48,7 +48,7 @@ export default function RegisterForm() {
 
   return (
     <div className="flex flex-col items-center justify-center  p-8 ">
-      <div className="max-w-md w-full bg-gradient-to-b from-gray-900 to-black shadow-2xl rounded-2xl p-8 animate-fade-in border border-gray-800">
+      <div className="max-w-md w-full bg-gradient-to-b from-blue-900/30 to-black shadow-2xl rounded-2xl p-8 animate-fade-in border border-gray-800">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-400 mb-4">
             Create an Account

@@ -14,16 +14,26 @@ import Head from "next/head";
 
 export const metadata = {
   title: "Sporto - Workout Platform",
-  description: "Transform your workouts with AI coaching, progress tracking, and personalized training plans. Sporto helps you achieve your fitness goals faster.",
-  keywords: "AI fitness app, workout tracking, personal trainer app, fitness goals, workout planner, AI coach",
+  description:
+    "Transform your workouts with AI coaching, progress tracking, and personalized training plans. Sporto helps you achieve your fitness goals faster.",
+  keywords:
+    "AI fitness app, workout tracking, personal trainer app, fitness goals, workout planner, AI coach",
   openGraph: {
     title: "Sporto - AI-Powered Workout Platform",
-    description: "Transform your workouts with AI coaching and personalized training plans",
-    images: [{ url: '/lib/images/landing-page-intro.png', width: 1200, height: 630, alt: 'Sporto AI Fitness Platform' }],
-    url: 'https://sporto.netlify.app',
-    type: 'website',
+    description:
+      "Transform your workouts with AI coaching and personalized training plans",
+    images: [
+      {
+        url: "/lib/images/landing-page-intro.png",
+        width: 1200,
+        height: 630,
+        alt: "Sporto AI Fitness Platform",
+      },
+    ],
+    url: "https://sporto.netlify.app",
+    type: "website",
   },
-}
+};
 
 export default async function Page() {
   const session = await getServerSession(authOptions);
@@ -32,16 +42,17 @@ export default async function Page() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "Sporto",
-    "applicationCategory": "HealthApplication",
-    "operatingSystem": "Web",
-    "description": "AI-powered workout platform to help you achieve your fitness goals",
-    "offers": {
+    name: "Sporto",
+    applicationCategory: "HealthApplication",
+    operatingSystem: "Web",
+    description:
+      "AI-powered workout platform to help you achieve your fitness goals",
+    offers: {
       "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
+      price: "0",
+      priceCurrency: "USD",
     },
-    "featureList": "AI Personal Coach, Workout Management, Progress Tracking"
+    featureList: "AI Personal Coach, Workout Management, Progress Tracking",
   };
 
   return (
@@ -53,23 +64,28 @@ export default async function Page() {
         />
         <link rel="canonical" href="https://sporto.app" />
       </Head>
-      
+
       <div className="relative min-h-screen overflow-hidden bg-black text-white">
+        <div className="absolute left-10 top-0 h-full w-[0.7px] bg-blue-800/30"></div>
+        <div className="absolute right-10 top-0 h-full w-[0.7px] bg-blue-800/30"></div>
         <div className="absolute inset-0 z-0 opacity-70"></div>
         <div className="absolute inset-0 z-0 opacity-10"></div>
-        <div className="absolute -top-1/4 -right-1/4 w-full h-full bg-blue-600/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 left-2/4 w-3/4 h-3/4 bg-purple-700/20 rounded-full blur-3xl animate-pulse animation-delay-2000"></div>
+
+        <div className="absolute bottom-1/4 -left-1/4 w-3/4 h-3/4 bg-blue-900/20 rounded-full blur-3xl animate-pulse animation-delay-2000"></div>
+
         <div className="absolute -bottom-1/4 -left-1/4 w-3/4 h-3/4 bg-purple-600/20 rounded-full blur-3xl animate-pulse animation-delay-2000"></div>
         <div className="absolute top-1/2 left-1/2 w-1/2 h-1/2 bg-blue-900/10 rounded-full blur-3xl animate-pulse animation-delay-1000"></div>
         <div className="relative z-10">
-
           <main className="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-16 items-center mt-10">
-            <div className="space-y-8">
+            <div className="space-y-8 ">
               <div>
-                <h1 className="text-5xl md:text-6xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white to-blue-400 leading-tight">
+                <h1 className="text-5xl md:text-7xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white to-blue-400 leading-tight">
                   Transform Your Workouts with AI
                 </h1>
                 <p className="text-xl text-gray-300 mb-8 leading-relaxed animate-fade-in">
-                Totally new experience of working out with AI coaching, progress tracking, and training plans tailored to your goals.
+                  Totally new experience of working out with AI coaching,
+                  progress tracking, and training plans tailored to your goals.
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -89,7 +105,6 @@ export default async function Page() {
                   Explore Features
                 </Link>
               </div>
-              
             </div>
 
             <div className="relative">
@@ -109,16 +124,20 @@ export default async function Page() {
             </div>
           </main>
 
-          
-          <section id="features" className="max-w-7xl mx-auto px-6 py-24">
+          <section
+            id="features"
+            className="max-w-7xl mx-auto px-6 py-24 bg-gradient-to-b from-blue-950/10 to-transparent  border border-transparent border-t-blue-800/30 border-l-blue-800/30 border-r-blue-800/30 rounded-tl-xl rounded-tr-xl"
+          >
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-white to-blue-400">
-              Make Your Workout Journey Faster
+                Make Your Workout Journey Faster
               </h2>
               <p className="text-gray-300 max-w-2xl mx-auto">
-              Our platform combines AI with proven workout exercises to help you achieve your goals faster.              </p>
+                Our platform combines AI with proven workout exercises to help
+                you achieve your goals faster.{" "}
+              </p>
             </div>
-            
+
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
                 {
@@ -136,7 +155,6 @@ export default async function Page() {
                   title: "Progress Tracking",
                   desc: "Visualize your performance with analytics and achievement metrics.",
                 },
-              
               ].map((feature, index) => (
                 <div
                   key={index}
@@ -148,22 +166,24 @@ export default async function Page() {
                   <h3 className="text-xl font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-white to-blue-400">
                     {feature.title}
                   </h3>
-                  <p className="text-gray-400 text-sm flex-grow">{feature.desc}</p>
-
+                  <p className="text-gray-400 text-sm flex-grow">
+                    {feature.desc}
+                  </p>
                 </div>
               ))}
             </div>
           </section>
-          <section className="max-w-7xl mx-auto px-6 py-24 bg-gradient-to-b from-transparent to-blue-950/10">
+          <section className="max-w-7xl mx-auto px-6 py-24 bg-gradient-to-b from-transparent to-blue-950/10 border border-l-blue-800/30 border-r-blue-800/30 border-transparent border-b-blue-800/30 rounded-bl-xl rounded-br-xl">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-white to-blue-400">
-              How Sporto Works
+                How Sporto Works
               </h2>
               <p className="text-gray-300 max-w-2xl mx-auto">
-                Getting started is simple. Follow these steps to begin your workout journey accelerating with Sporto.
+                Getting started is simple. Follow these steps to begin your
+                workout journey accelerating with Sporto.
               </p>
             </div>
-            
+
             <div className="grid md:grid-cols-3 gap-8">
               {[
                 {
@@ -184,8 +204,12 @@ export default async function Page() {
               ].map((item, index) => (
                 <div key={index} className="relative">
                   <div className="bg-gray-900/80 p-6 rounded-xl border border-blue-800/30 h-full">
-                    <div className="text-4xl font-bold text-blue-500 bg-blue-900/30 p-3 rounded-lg inline-flex mb-4 border border-blue-800/30 w-full">{item.step}</div>
-                    <h3 className="text-xl font-bold mb-3 text-white">{item.title}</h3>
+                    <div className="text-4xl font-bold text-blue-500 bg-blue-900/30 p-3 rounded-lg inline-flex mb-4 border border-blue-800/30 w-full">
+                      {item.step}
+                    </div>
+                    <h3 className="text-xl font-bold mb-3 text-white">
+                      {item.title}
+                    </h3>
                     <p className="text-gray-400">{item.desc}</p>
                   </div>
                   {index < 2 && (
@@ -198,8 +222,16 @@ export default async function Page() {
             </div>
           </section>
 
-
-        
+          <section className="max-w-3xl mx-auto px-6 py-24" id="faq">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-white to-blue-400">
+              Sporto's Platform Goal
+            </h2>
+            <div className="flex content-center text-center">
+              <p className="text-gray-300 text-xl">
+              Sporto aims to help individuals effectively organize and track their workout sessions, making them to stay focused, motivated, and consistent with their workout goals.
+              </p>
+            </div>
+          </section>
           <section className="max-w-3xl mx-auto px-6 py-24" id="faq">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-white to-blue-400">
               Frequently Asked Questions About Sporto
@@ -243,13 +275,12 @@ export default async function Page() {
             </Accordion>
           </section>
 
-
           <section className="max-w-7xl mx-auto px-6 py-24">
             <div className="bg-gradient-to-r from-blue-900/30 to-purple-900/30 rounded-2xl p-12 text-center relative overflow-hidden border border-blue-800/30">
               <div className="absolute inset-0 backdrop-blur-sm"></div>
               <div className="relative z-10">
                 <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
-                  Ready to Transform Your Fitness Journey with AI?
+                  Ready to Transform Your Workout Journey with AI?
                 </h2>
 
                 <Link
@@ -257,14 +288,13 @@ export default async function Page() {
                   className="px-8 py-4 bg-blue-700 text-white rounded-lg font-medium shadow-lg hover:bg-blue-600 hover:shadow-xl active:bg-blue-800 active:scale-95 transition-all duration-200 text-lg inline-flex items-center gap-2"
                   aria-label="Sign up for Sporto AI fitness platform"
                 >
-                  <span>Start Your Fitness Journey Today</span>
+                  <span>Start Your Journey</span>
                   <ChevronRight className="w-5 h-5" />
                 </Link>
-                <p className="mt-4 text-sm text-gray-400">For free – no credit card required</p>
+
               </div>
             </div>
           </section>
-
 
           <footer className="relative z-10 bg-black/80 backdrop-blur-lg py-16 text-center">
             <div className="max-w-7xl mx-auto px-6">
@@ -274,15 +304,15 @@ export default async function Page() {
                     Sporto - AI Workout Coach
                   </h3>
                   <p className="text-gray-400">
-                    AI-powered workout platform helping you achieve your workout goals with personalized training and progress tracking.
+                    AI-powered workout platform helping you achieve your workout
+                    goals with personalized training and progress tracking.
                   </p>
                 </div>
-              </div>   
+              </div>
               <div className="pt-8 border-t text-center border-gray-800 flex flex-col md:flex-row justify-center items-center gap-4">
                 <p className="text-gray-500">
                   &copy; {new Date().getFullYear()} Sporto. All rights reserved.
                 </p>
-            
               </div>
             </div>
           </footer>

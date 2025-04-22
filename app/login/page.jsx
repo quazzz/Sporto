@@ -22,10 +22,10 @@ export default async function Page() {
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0wIDBoNjB2NjBIMHoiLz48cGF0aCBkPSJNMzAgMzBtLTMwIDBhMzAgMzAgMCAxIDAgNjAgMCAzMCAzMCAwIDEgMC02MCAweiIgc3Ryb2tlPSJyZ2JhKDI1NSwgMjU1LCAyNTUsIDAuMDIpIiBzdHJva2Utd2lkdGg9Ii41Ii8+PHBhdGggZD0iTTMwIDBWNjAiIHN0cm9rZT0icmdiYSgyNTUsIDI1NSwgMjU1LCAwLjAyKSIgc3Ryb2tlLXdpZHRoPSIuNSIvPjxwYXRoIGQ9Ik0wIDMwSDYwIiBzdHJva2U9InJnYmEoMjU1LCAyNTUsIDI1NSwgMC4wMikiIHN0cm9rZS13aWR0aD0iLjUiLz48L2c+PC9zdmc+')] opacity-20"></div>
       </div>
 
-      <div className="relative z-10 flex flex-col md:flex-row gap-8 items-center max-w-6xl w-full py-10">
+      <div className="relative z-10 flex flex-col md:flex-row  items-center max-w-6xl w-full py-10">
  
         <div className="flex-1 w-full md:w-1/2 max-w-lg">
-          <div className="p-6 md:p-8">
+          <div className="p-6 md:p-8 text-center">
             
             
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
@@ -63,7 +63,7 @@ export default async function Page() {
             </div>
           </div>
         </div>
-        <div className="w-full md:w-1/2 max-w-md">     
+        <div className="w-full md:w-1/2 max-w-md mb-5">     
             <LoginForm />
         </div>
       </div>
