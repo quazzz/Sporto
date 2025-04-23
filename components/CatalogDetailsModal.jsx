@@ -20,7 +20,7 @@ export default function CatalogDetailsModal({
 
   return (
 <div onClick={onClose} className="fixed animate-fade-in inset-0 bg-opacity-60 backdrop-blur-sm flex items-center justify-center bg-opacity-50 z-50">
-  <div className="bg-gradient-to-b from-blue-950 via-gray-900 to-blue-950  p-6 rounded-lg shadow-xl max-w-md w-full m-4 relative transform transition-transform duration-300 ">
+  <div className="bg-gradient-to-b from-blue-950 to-gray-950  p-6 rounded-lg shadow-xl max-w-md w-full m-4 relative transform transition-transform duration-300 ">
     <button
       onClick={onClose}
       className="absolute top-4 right-4 text-white hover:text-red-500 transition-colors duration-300"

@@ -50,7 +50,7 @@ export default function Chat() {
       {!open && (
         <button
           onClick={() => setOpen(true)}
-          className="fixed bottom-10 right-10 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full shadow-lg hover:opacity-90 focus:outline-none transition-all duration-300"
+          className="fixed bottom-10 right-10 px-6 py-3 bg-gradient-to-b from-indigo-500 to-indigo-600 text-white rounded-full shadow-lg hover:opacity-90 focus:outline-none transition-all duration-300"
         >
           Open Chat
         </button>
@@ -58,7 +58,7 @@ export default function Chat() {
 
       {open && (
         <div className="fixed bottom-0 right-0 w-full max-w-sm rounded-t-3xl shadow-2xl overflow-hidden transform transition-transform duration-300">
-          <div className="flex justify-between items-center bg-gradient-to-r from-blue-600 to-purple-600 p-4 text-white">
+          <div className="flex justify-between items-center bg-gradient-to-b from-indigo-500 to-indigo-600 p-4 text-white">
             <h2 className="text-lg font-bold">Chat</h2>
             <button
               onClick={() => setOpen(false)}
@@ -73,8 +73,8 @@ export default function Chat() {
                 key={idx}
                 className={`p-3 rounded-lg shadow-md ${
                   msg.role === "user"
-                    ? "bg-gradient-to-r from-gray-800 to-blue-800 text-white self-end"
-                    : "bg-gradient-to-r from-gray-900 to-blue-900 text-white self-start"
+                    ? "bg-gradient-to-r from-gray-900 to-blue-800 text-white self-end"
+                    : "bg-gradient-to-r from-gray-950 to-blue-900 text-white self-start"
                 }`}
               >
                 <strong
@@ -98,7 +98,7 @@ export default function Chat() {
             />
             <button
               onClick={send}
-              className="ml-3 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg shadow-lg hover:opacity-90 transition-all duration-300"
+              className="ml-3 px-6 py-3 bg-gradient-to-b from-indigo-500 to-indigo-600 text-white rounded-lg shadow-lg hover:opacity-90 transition-all duration-300"
             >
               Send
             </button>

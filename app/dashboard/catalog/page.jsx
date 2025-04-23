@@ -296,7 +296,7 @@ export default function Page() {
         </div>
         <button
           onClick={() => setShowAdvanced((prev) => !prev)}
-          className="mt-6 bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg shadow-md transition"
+          className="mt-6 bg-gradient-to-b from-indigo-500 to-indigo-600 hover:bg-blue-800 text-white px-4 py-2 rounded-lg shadow-md transition"
         >
           {showAdvanced ? "Hide Advanced Filters" : "Show Advanced Filters"}
         </button>
@@ -362,7 +362,7 @@ export default function Page() {
           </div>
         ) : (
           <>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-8 mb-8 w-full px-4">
+            <div className="grid grid-cols-1 sm:grid-cols-4 gap-6 mt-8 mb-8 w-full px-4">
               {paginatedExercises.map((exercise) => (
                 <ExerciseCard
                   key={exercise.id}

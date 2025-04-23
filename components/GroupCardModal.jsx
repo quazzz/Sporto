@@ -81,7 +81,7 @@ export default function GroupModalCard({ exercise, onClose }) {
   onClick={handleClose}
 >
   <div
-    className="bg-gradient-to-br from-gray-900 to-blue-950 p-8 rounded-2xl shadow-2xl max-w-md w-full mx-4 border border-gray-800"
+    className="bg-gradient-to-br from-gray-950 to-blue-950 p-8 rounded-2xl shadow-2xl max-w-md w-full mx-4 border border-gray-800"
     onClick={handleModalClick}
   >
 
@@ -107,7 +107,7 @@ export default function GroupModalCard({ exercise, onClose }) {
               onClick={() => setSelectedGroup(group.id)}
               className={`p-4 border border-gray-800 rounded-xl cursor-pointer transition-all duration-200 ${
                 selectedGroup === group.id
-                  ? "bg-gradient-to-br from-gray-900 to-blue-900 border-blue-500"
+                  ? "bg-gradient-to-br from-gray-950 to-blue-900 border-blue-500"
                   : "hover:bg-gray-750 hover:border-gray-700"
               }`}
             >
@@ -154,7 +154,7 @@ export default function GroupModalCard({ exercise, onClose }) {
                   </div>
                   <div className="text-center">
                     <button
-                      className="py-2 px-6 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg shadow-md hover:from-blue-600 hover:to-blue-700 transition-all duration-200"
+                      className="py-2 px-6 bg-gradient-to-b from-indigo-500 to-indigo-600 text-white rounded-lg shadow-md hover:from-blue-600 hover:to-blue-700 transition-all duration-200"
                       onClick={() => handleClick(group.id)}
                     >
                       Add to Group
