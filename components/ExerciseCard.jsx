@@ -12,7 +12,7 @@ export default function ExerciseCard({ workout, onPlusClick, onViewDetailsClick 
   
   const equipment = capitalizeFirstLetter(equipment0);
   return (
-    <div className="h-auto max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl rounded-lg animate-fade-in overflow-hidden shadow-xl bg-gradient-to-b from-blue-800/30 to-black   p-6 m-4 text-center transform transition-transform duration-300 hover:scale-105 animate-fade-in">
+    <div className="h-auto max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl rounded-lg animate-fade-in overflow-hidden shadow-xl bg-gradient-to-b from-blue-900/30 to-black   p-6 m-4 text-center transform transition-transform duration-300 hover:scale-105 animate-fade-in">
     <h2 className="text-2xl font-bold mb-4 text-white">{name}</h2>
     <Image
       unoptimized={true}
