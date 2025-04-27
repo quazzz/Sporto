@@ -124,10 +124,7 @@ export default async function Page() {
             </div>
           </main>
 
-          <section
-            id="features"
-            className="max-w-7xl mx-auto px-6 py-24 bg-gradient-to-b from-blue-950/10 to-transparent  border border-transparent border-t-blue-800/30 border-l-blue-800/30 border-r-blue-800/30 rounded-tl-xl rounded-tr-xl"
-          >
+          <section className="max-w-7xl mx-auto px-6 py-24 bg-none sm:bg-gradient-to-b from-blue-950/10 to-transparent sm:border sm:border-t-blue-800/30 sm:border-l-blue-800/30 sm:border-b-transparent sm:border-r-blue-800/30 rounded-tl-xl rounded-tr-xl">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-white to-blue-400">
                 Make Your Workout Journey Faster
@@ -173,7 +170,7 @@ export default async function Page() {
               ))}
             </div>
           </section>
-          <section className="max-w-7xl mx-auto px-6 py-24 bg-gradient-to-b from-transparent to-blue-950/10 border border-l-blue-800/30 border-r-blue-800/30 border-transparent border-b-blue-800/30 rounded-bl-xl rounded-br-xl">
+          <section className="max-w-7xl mx-auto bg-none px-6 py-24 sm:bg-gradient-to-b from-transparent to-blue-950/10  sm:border border-l-blue-800/30 border-r-blue-800/30 border-transparent border-b-blue-800/30 rounded-bl-xl rounded-br-xl">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-white to-blue-400">
                 How Sporto Works
@@ -228,7 +225,9 @@ export default async function Page() {
             </h2>
             <div className="flex content-center text-center">
               <p className="text-gray-300 text-xl">
-              Sporto aims to help individuals effectively organize and track their workout sessions, making them to stay focused, motivated, and consistent with their workout goals.
+                Sporto aims to help individuals effectively organize and track
+                their workout sessions, making them to stay focused, motivated,
+                and consistent with their workout goals.
               </p>
             </div>
           </section>
@@ -291,7 +290,6 @@ export default async function Page() {
                   <span>Start Your Journey</span>
                   <ChevronRight className="w-5 h-5" />
                 </Link>
-
               </div>
             </div>
           </section>
