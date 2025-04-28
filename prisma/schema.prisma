@@ -17,6 +17,7 @@ model User {
   groups             Group[]
   records            Record[]
   submittedWorkouts  SubmittedWorkouts[]
+  exercises          Exercise[]
 }
 
 model Group {
@@ -40,6 +41,8 @@ model Exercise {
   reps              String
   sets              String
   kg                String
+  userId            String
+  user              User     @relation(fields: [userId], references: [id])
   group             Group    @relation(fields: [groupId], references: [id])  
 }
 

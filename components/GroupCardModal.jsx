@@ -10,6 +10,7 @@ export default function GroupModalCard({ exercise, onClose }) {
   const [sets, setSets] = useState();
   const [reps, setReps] = useState();
   const [kg, setKg] = useState();
+
   useEffect(() => {
     const fetchGroups = async () => {
       if (status === "authenticated") {
@@ -38,6 +39,7 @@ export default function GroupModalCard({ exercise, onClose }) {
   const handleClick = async (groupId) => {
     console.log(exercise);
     if (status === "authenticated" && sets && reps) {
+      console.log(userId)
       try {
         let name = exercise?.name;
         let equipment = exercise?.equipment;
@@ -62,7 +64,8 @@ export default function GroupModalCard({ exercise, onClose }) {
             groupId,
             sets,
             reps,
-            kg,
+            kg
+           
           }),
         });
         console.log(req);
