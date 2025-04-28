@@ -91,7 +91,7 @@ export default async function Page() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
                   href="/register"
-                  className="px-6 py-4 bg-blue-700 text-white rounded-lg font-medium shadow-lg hover:bg-blue-600 hover:shadow-xl active:bg-blue-800 active:scale-95 transition-all duration-200 text-center flex items-center justify-center gap-2"
+                  className="px-6 py-4 bg-indigo-600 text-white rounded-lg font-medium shadow-lg hover:bg-indigo-500 hover:shadow-xl active:bg-blue-800 active:scale-95 transition-all duration-200 text-center flex items-center justify-center gap-2"
                   aria-label="Sign up for Sporto"
                 >
                   <span>Start Your Journey</span>
@@ -124,7 +124,7 @@ export default async function Page() {
             </div>
           </main>
 
-          <section className="max-w-7xl mx-auto px-6 py-24 bg-none sm:bg-gradient-to-b from-blue-950/10 to-transparent sm:border sm:border-t-blue-800/30 sm:border-l-blue-800/30 sm:border-b-transparent sm:border-r-blue-800/30 rounded-tl-xl rounded-tr-xl">
+          <section  className="max-w-7xl mx-auto px-6 py-24 bg-none sm:bg-gradient-to-b from-blue-950/10 to-transparent sm:border sm:border-t-blue-800/30 sm:border-l-blue-800/30 sm:border-b-transparent sm:border-r-blue-800/30 rounded-tl-xl rounded-tr-xl">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-white to-blue-400">
                 Make Your Workout Journey Faster
@@ -135,7 +135,7 @@ export default async function Page() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div  className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
                 {
                   icon: <Dumbbell className="w-8 h-8 text-blue-500" />,
@@ -284,7 +284,7 @@ export default async function Page() {
 
                 <Link
                   href="/register"
-                  className="px-8 py-4 bg-blue-700 text-white rounded-lg font-medium shadow-lg hover:bg-blue-600 hover:shadow-xl active:bg-blue-800 active:scale-95 transition-all duration-200 text-lg inline-flex items-center gap-2"
+                  className="px-8 py-4 bg-indigo-600 text-white rounded-lg font-medium shadow-lg hover:bg-indigo-500 hover:shadow-xl active:bg-blue-800 active:scale-95 transition-all duration-200 text-lg inline-flex items-center gap-2"
                   aria-label="Sign up for Sporto AI fitness platform"
                 >
                   <span>Start Your Journey</span>

@@ -4,7 +4,7 @@ import { prisma } from "@/lib/prisma";
 import fs from 'fs';
 import path from "path";
 const fpath = path.join(process.cwd(), 'lib', '/exercises/exercises.json');
-
+let history = []
 const readf = (fpath) => {
   return new Promise((resolve, reject) => {
     fs.readFile(fpath, 'utf-8', (err, data) => {
@@ -62,7 +62,7 @@ async function analyzeUserIntent(message, userId) {
     
     const userPrompt = {
       role: "user",
-      content: `Help user with their needs using very easy language and short answers. Here's their data: ${JSON.stringify(userData)}. If there's no data, don't mention that to the user. Here's their message: ${message}`
+      content: `THIS IS A PROMPT BY DEV: Help user with their needs using very easy language and short answers, heres chat history ${history}. Here's their data: ${JSON.stringify(userData)}. If there's no data, don't mention that to the user. Here's their message: ${message}`
     };
     
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -82,8 +82,9 @@ async function analyzeUserIntent(message, userId) {
       const errorData = await response.json().catch(() => ({}));
       throw new Error(`OpenAI API error: ${response.status} - ${JSON.stringify(errorData)}`);
     }
-    
+  
     const data = await response.json();
+    history.push(`User message ${userPrompt}, ChatGPT answer ${data.choices[0]?.message?.content || ''}`)
     return data.choices[0]?.message?.content || "Sorry, I couldn't process your request.";
   } catch (error) {
     console.error("Intent analysis error:", error);

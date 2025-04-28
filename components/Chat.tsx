@@ -88,14 +88,14 @@ export default function Chat() {
               &times;
             </button>
           </div>
-          <div className="flex-1 overflow-y-auto p-4 bg-gradient-to-r from-gray-950 to-blue-950 max-h-[70vh] space-y-4">
+          <div className="flex-1 overflow-y-auto p-4 bg-gradient-to-r from-gray-950/10 to-blue-950 max-h-[70vh] space-y-4">
             {messages.map((msg, idx) => (
               <div
                 key={idx}
                 className={`p-3 rounded-lg shadow-md ${
                   msg.role === "user"
-                    ? "bg-gradient-to-r from-gray-900 to-blue-800 text-white self-end"
-                    : "bg-gradient-to-r from-gray-950 to-blue-900 text-white self-start"
+                    ? "bg-gradient-to-r from-gray-950 to-blue-800 text-white self-end tracking-wide"
+                    : "bg-gradient-to-r from-gray-950 to-blue-900 text-white self-start tracking-wide"
                 }`}
               >
                 <strong
