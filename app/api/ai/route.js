@@ -57,12 +57,12 @@ async function analyzeUserIntent(message, userId) {
     
     const systemPrompt = {
       role: "system",
-      content: `You must help user by analyzing their workouts data or help user pick workout exercises from this catalog: ${JSON.stringify(exerciseCatalog)}`
+      content: `You must help user by analyzing their workouts data or help user pick workout exercises from this catalog: ${JSON.stringify(exerciseCatalog)} Help user with their needs using very easy language and short answers, heres chat history ${history}. Here's their data: ${JSON.stringify(userData)}. If there's no data, don't mention that to the user.`
     };
     
     const userPrompt = {
       role: "user",
-      content: `THIS IS A PROMPT BY DEV: Help user with their needs using very easy language and short answers, heres chat history ${history}. Here's their data: ${JSON.stringify(userData)}. If there's no data, don't mention that to the user. Here's their message: ${message}`
+      content: `${message}`
     };
     
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
