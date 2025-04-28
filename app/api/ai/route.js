@@ -3,7 +3,6 @@ import getSession from "../../../lib/getSession";
 import { prisma } from "@/lib/prisma";
 import fs from 'fs';
 import path from "path";
-
 const fpath = path.join(process.cwd(), 'lib', '/exercises/exercises.json');
 
 const readf = (fpath) => {
@@ -22,9 +21,12 @@ const getUserData = async(userId) => {
         userId: userId
       }
     });
+    const groupIds = groups.map(group => group.id)
     const exercises = await prisma.exercise.findMany({
       where: {
-        groupId: userId
+        groupId: {
+          in: groupIds
+        }
       }
     });
     const records = await prisma.record.findMany({
@@ -46,6 +48,7 @@ function validateApiSetup() {
 }
 
 async function analyzeUserIntent(message, userId) {
+ 
   try {
     const fileContent = await readf(fpath);
     const exerciseCatalog = JSON.parse(fileContent);

@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useSession } from "next-auth/react";
 
 interface Message {
@@ -7,14 +7,24 @@ interface Message {
   content: string;
 }
 
-
 export default function Chat() {
   const { data: session } = useSession();
   const [open, setOpen] = useState<boolean>(false);
   const [messages, setMessages] = useState<Message[]>([
-    { role: "assistant", content: "Hi! How can I assist you today? I can make workouts for you and answer your questions!" },
+    { role: "assistant", content: "Hi! How can I assist you today? I can help you through your journey!" },
   ]);
   const [input, setInput] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   const send = async () => {
     if (!input.trim()) return;
@@ -22,6 +32,7 @@ export default function Chat() {
     const newMessages: Message[] = [...messages, { role: "user", content: input }];
     setMessages(newMessages);
     setInput("");
+    setIsLoading(true);
 
     try {
       const res = await fetch("/api/ai", {
@@ -42,6 +53,16 @@ export default function Chat() {
     } catch (error) {
       setMessages([...newMessages, { role: "assistant", content: "Error generating response." }]);
       console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      send();
     }
   };
 
@@ -67,7 +88,7 @@ export default function Chat() {
               &times;
             </button>
           </div>
-          <div className="flex-1 overflow-y-auto p-4 bg-gradient-to-r from-gray-950 to-blue-950  max-h-[70vh] space-y-4">
+          <div className="flex-1 overflow-y-auto p-4 bg-gradient-to-r from-gray-950 to-blue-950 max-h-[70vh] space-y-4">
             {messages.map((msg, idx) => (
               <div
                 key={idx}
@@ -87,18 +108,40 @@ export default function Chat() {
                 <p className="mt-1">{msg.content}</p>
               </div>
             ))}
+            
+         
+            {isLoading && (
+              <div className="p-3 rounded-lg shadow-md bg-gradient-to-r from-gray-950 to-blue-900 text-white self-start">
+                <strong className="block font-semibold text-gray-200">
+                  Assistant:
+                </strong>
+                <div className="flex space-x-2 mt-2">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: "0ms" }}></div>
+                  <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: "300ms" }}></div>
+                  <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: "600ms" }}></div>
+                </div>
+              </div>
+            )}
+            
+        
+            <div ref={messagesEndRef} />
           </div>
-          <div className="flex items-center p-4 bg-gradient-to-r from-gray-950 to-blue-950 ">
+          <div className="flex items-center p-4 bg-gradient-to-r from-gray-950 to-blue-950">
             <input
               type="text"
               className="flex-1 p-3 border rounded-lg text-sm text-gray-700 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Type your message here..."
+              onKeyDown={handleKeyPress}
+              disabled={isLoading}
             />
             <button
               onClick={send}
-              className="ml-3 px-6 py-3 bg-gradient-to-b from-indigo-500 to-indigo-600 text-white rounded-lg shadow-lg hover:opacity-90 transition-all duration-300"
+              className={`ml-3 px-6 py-3 bg-gradient-to-b from-indigo-500 to-indigo-600 text-white rounded-lg shadow-lg transition-all duration-300 ${
+                isLoading ? "opacity-50 cursor-not-allowed" : "hover:opacity-90"
+              }`}
+              disabled={isLoading}
             >
               Send
             </button>
