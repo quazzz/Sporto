@@ -34,7 +34,7 @@ export default function RecordForm({handleAdd}) {
           <div className="max-w-md w-full space-y-8">
             <div className="text-center">
               <h1 className="text-3xl sm:text-4xl font-extrabold text-white">
-                Submit your new achievement in sports
+                Add your new achievement in sport
               </h1>
             </div>
             <form className="bg-gradient-to-br  via-blue-950 to-black shadow-xl rounded-xl px-8 sm:px-10 py-10 sm:py-12 transition-all transform duration-300 ease-in-out">
@@ -68,7 +68,7 @@ export default function RecordForm({handleAdd}) {
                   className="w-full py-3 bg-gradient-to-b from-indigo-500 to-indigo-600 text-white font-semibold rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 
   transition-all duration-300 hover:brightness-110"
                 >
-                  Submit achievement
+                  Submit
                 </button>
               </div>
             </form>

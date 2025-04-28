@@ -20,22 +20,24 @@ export default function RecordCardDashboard({ name, record, id, handleDeleteProp
 
   return (
     <>
-      <div className="max-w-sm animate-fade-in rounded-lg shadow-md bg-gradient-to-b from-blue-950 to-black p-4 m-4 text-center text-white">
-        <button
-          onClick={handleDelete}
+     <div className="relative max-w-md w-full rounded-3xl bg-gradient-to-b from-blue-800/50 to-black/60 backdrop-blur-md p-8 m-6 text-white shadow-2xl hover:scale-[1.02] transition-transform duration-300">
+  <button
+    onClick={handleDelete}
+    className="absolute top-4 right-4 text-gray-300 hover:text-red-400 transition-colors duration-200 text-2xl"
+  >
+    ✕
+  </button>
 
-        >
-          ✕
-        </button>
+  <h2 className="text-3xl font-bold text-gray-100 mb-4">
+    {name}
+  </h2>
 
-        <h2 className="text-lg sm:text-xl font-semibold text-gray-300 mb-2 mt-2">
-          {name}
-        </h2>
+  <p className="text-gray-200 text-lg leading-relaxed">
+    <span className="font-semibold">Achievement:</span> {record}
+  </p>
+</div>
 
-        <p className="text-gray-200 text-sm sm:text-base mb-2">
-          <span className="font-semibold">Achievement:</span> {record}
-        </p>
-      </div>
+
     </>
   );
 }
