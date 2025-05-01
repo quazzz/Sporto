@@ -56,8 +56,11 @@ export default function RecordsPage() {
             />
           ))
         ) : (
-          <div className="flex items-center justify-center min-h-[200px] w-full">
-            <p className="text-center text-white">No records found</p>
+          <div className="col-span-full w-full h-full  flex items-center justify-center">
+            <div className="bg-gradient-to-b from-blue-950 to-black text-center p-8 rounded mx-auto">
+              <h1 className="text-gray-100 text-lg">No records yet</h1>
+              <h3 className="text-gray-300">Create new via form</h3>
+            </div>
           </div>
         )}
       </div>

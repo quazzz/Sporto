@@ -2,6 +2,7 @@
 import toast from "react-hot-toast";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
+import { Dumbbell } from "lucide-react";
 export default function RecordForm({handleAdd}) {
   const { data: session } = useSession();
   const [recordName, setRecordName] = useState("");
@@ -46,7 +47,9 @@ export default function RecordForm({handleAdd}) {
                   onChange={(e) => setRecordName(e.target.value)}
                   className="transition w-full px-4 py-3 mt-2 rounded-lg font-medium bg-gray-700 bg-opacity-50 border border-gray-600 placeholder-gray-400 text-white focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-400"
                   placeholder="Enter sport"
+                  
                 />
+                   
                 <div className="mt-2">
                 
                   <input

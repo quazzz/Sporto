@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
-import { Star, Users } from 'lucide-react';
+import { Dumbbell, Users } from 'lucide-react';
 export default function GroupForm({ onAddGroup }) {
   const { data: session } = useSession();
   const [namer, setName] = useState("");
@@ -74,7 +74,7 @@ export default function GroupForm({ onAddGroup }) {
               required
             />
             <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-              <Users size={20} className="text-gray-400" />
+              <Dumbbell size={20} className="text-gray-400" />
             </div>
           </div>
         </div>
