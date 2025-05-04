@@ -22,7 +22,7 @@ export default function Page() {
   const [selectedEquipment, setSelectedEquipment] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const perPage = 20;
+  const perPage = 10;
 
   const cache = useRef(null);
   const gridRef = useRef(null);
@@ -302,8 +302,8 @@ export default function Page() {
         </button>
 
         {showAdvanced && (
-          <div className="w-full mt-6 animate-fade-in">
-            <div className="grid md:grid-cols-2 gap-6 bg-gray-900 p-6 rounded-lg shadow-lg text-left text-white">
+          <div className="w-full mt-6 animate-fade-in ">
+            <div className="grid md:grid-cols-2 gap-6 bg-gray-900 p-6 rounded-lg shadow-lg text-left text-white bg-gradient-to-r from-gray-950 to-blue-950">
               <div>
                 <h3 className="text-lg mb-2 font-semibold text-blue-300">
                   Target Muscles

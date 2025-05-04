@@ -1,7 +1,7 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import { useSession } from "next-auth/react";
-
+import { MessageSquarePlus, Send } from "lucide-react";
 interface Message {
   role: "user" | "assistant";
   content: string;
@@ -73,7 +73,7 @@ export default function Chat() {
         onClick={() => setOpen(true)}
         className="fixed bottom-6 right-6 px-5 py-3 bg-gradient-to-b from-indigo-500 to-indigo-600 text-white rounded-full shadow-lg hover:opacity-90 focus:outline-none transition-all duration-300 md:bottom-10 md:right-10"
       >
-        Open Chat
+       <MessageSquarePlus/>
       </button>
     )}
   
@@ -143,7 +143,7 @@ export default function Chat() {
             }`}
             disabled={isLoading}
           >
-            Send
+            <Send/>
           </button>
         </div>
       </div>

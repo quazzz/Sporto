@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import RecordForm from "./RecordForm";
 import { useSession } from "next-auth/react";
 import RecordCard from './RecordCard';
-
+import { Activity } from "lucide-react";
 export default function RecordsPage() {
   const { data: session } = useSession();
   const [records, setRecords] = useState([]);
@@ -39,10 +39,7 @@ export default function RecordsPage() {
   }
   return (
  
-    <div className="min-h-screen flex flex-col lg:flex-row bg-gradient-to-br from-blue-900 via-gray-950 to-black items-center justify-center  font-[var(--font-geist-sans)] p-4 sm:p-8 lg:p-12">
-      <div className="w-full max-w-md p-8  rounded-lg  mb-10 lg:mb-0 lg:mr-10">
-        <RecordForm handleAdd={handleAdd}/>
-      </div>
+    <div className="min-h-screen flex flex-col lg:flex-row-reverse bg-gradient-to-br from-blue-900 via-gray-950 to-black items-center justify-center  font-[var(--font-geist-sans)] p-4 sm:p-8 lg:p-12">
       <div className="flex flex-col w-full lg:w-3/5 space-y-10">
       <div className="flex flex-wrap gap-6 justify-center px-4 md:px-8 items-start">
           {records.length > 0 ? (
@@ -56,10 +53,22 @@ export default function RecordsPage() {
             />
           ))
         ) : (
-          <div className="col-span-full w-full h-full  flex items-center justify-center">
-            <div className="bg-gradient-to-b from-blue-950 to-black text-center p-8 rounded mx-auto">
-              <h1 className="text-gray-100 text-lg">No records yet</h1>
-              <h3 className="text-gray-300">Create new via form</h3>
+          <div className="col-span-full w-full flex items-center justify-center py-16">
+            <div className="bg-gradient-to-b to-gray-950 from-blue-950/70  rounded-xl p-10 text-center max-w-md backdrop-blur-sm">
+              <div className="mb-6 flex justify-center">
+                <div className="relative">
+                  <div className="h-24 w-24 rounded-full bg-blue-800/30 flex items-center justify-center">
+                    <Activity size={42} className="text-blue-300" />
+                  </div>
+                </div>
+              </div>
+  
+              <h2 className="text-2xl font-bold text-white mb-2">
+                No records yet
+              </h2>
+              <p className="text-blue-300 mb-6">
+                Start tracking your records by <a className="underline" href="#form">adding your achievement.</a> 
+              </p>
             </div>
           </div>
         )}
@@ -67,6 +76,10 @@ export default function RecordsPage() {
       
        
       </div>
+      <div id="form" className="w-full max-w-md p-8  rounded-lg  mb-10 lg:mb-0 lg:mr-10">
+        <RecordForm handleAdd={handleAdd}/>
+      </div>
+      
     </div>
    
   );
