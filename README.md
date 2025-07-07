@@ -4,7 +4,7 @@ a smart, Next.js-based workout application that helps you **plan, track, and opt
 
 ## 🧠 what it does
 - 🔄 built in 1000+ exercises catalog with advanced filtering.
-- 📅 interactive calendar to track your workouts
+- 📅 interactive calendar to track your workouts & achievement tracker
 - 💬 built-in chatbot: your personal AI workout coach
 
 ## 🛠️ built with
