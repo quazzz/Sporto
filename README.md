@@ -26,7 +26,7 @@ this project is built for educational purposes, by **quazzz** in 2024, as an pri
 
 > ⚠️ this repo is part of a personal AI workout series. stealing is for the weak.
 
-## 🙌 made with code and protein by [quazzz]
+## 🙌 made with code and protein by quazzz ##
 
 
 This project is licensed under the Attribution-NonCommercial 4.0 International (CC BY-NC 4.0) License - see the [LICENSE](./LICENSE) file for details.
