@@ -1,4 +1,5 @@
 # 💪 Sporto - AI Workout Manager
+![Page]("public/lib/images/landing-page-intro.png")
 
 a smart, Next.js-based workout application that helps you **plan, track, and optimize** your workouts — powered by AI.
 
