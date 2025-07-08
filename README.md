@@ -11,7 +11,7 @@ a smart, Next.js-based workout application that helps you **plan, track, and opt
 - **Next.js 14** (App Router)
 - **Tailwind CSS**
 - **OpenAI API** for AI coaching 
-- **Supabase** for authentication, DB, and realtime
+- **Supabase** for authentication and DB.
 
 ## 🎯 why this exists
 most workout apps give you a static plan. this one **talks to you** and actually feels like a coach — not a spreadsheet.
